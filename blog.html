@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog | Christmas Wish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red-deep: #8b1a1a;
+      --red-mid: #b22222;
+      --gold: #c9943a;
+      --gold-light: #e8c46a;
+      --cream: #fdf8f0;
+      --white: #ffffff;
+      --green-trace: #2d5a3d;
+      --text-dark: #1a1a1a;
+      --text-mid: #5a5a5a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--cream); color: var(--text-dark); font-family: 'Lato', sans-serif; overflow-x: hidden; }
+
+    /* SNOWFLAKES */
+    .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+    .snowflake { position: absolute; top: -20px; color: rgba(255,255,255,0.4); animation: fall linear infinite; user-select: none; font-family: Arial, sans-serif; }
+    @keyframes fall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0.1; } }
+
+    /* HEADER */
+    header { background: linear-gradient(160deg, #6b0f0f 0%, #3d0707 60%, #1a0303 100%); position: relative; z-index: 10; }
+    header::before { content: ''; display: block; height: 3px; background: linear-gradient(90deg, transparent, var(--green-trace), var(--gold), var(--green-trace), transparent); }
+
+    .header-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 50px; border-bottom: 1px solid rgba(201,148,58,0.2); }
+
+    .lang-toggle { display: flex; gap: 8px; }
+    .lang-btn { background: transparent; border: 1px solid rgba(201,148,58,0.5); color: rgba(255,255,255,0.6); padding: 4px 14px; border-radius: 20px; cursor: pointer; font-family: 'Lato', sans-serif; font-size: 0.72rem; letter-spacing: 2px; transition: all 0.3s; }
+    .lang-btn.active, .lang-btn:hover { background: var(--gold); color: #3d0707; border-color: var(--gold); font-weight: 700; }
+
+    .social-links { display: flex; gap: 20px; }
+    .social-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+    .social-links a:hover { color: var(--gold-light); }
+
+    .hero { text-align: center; padding: 50px 40px 60px; }
+    .logo-text { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--white); font-weight: 700; letter-spacing: 3px; }
+    .logo-text span { color: var(--gold-light); font-style: italic; }
+    .hero-tagline { font-weight: 300; color: rgba(255,255,255,0.5); font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 14px; }
+    .gold-divider { width: 100px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 18px auto 0; }
+
+    /* NAV */
+    nav { background: #2a0505; border-top: 1px solid rgba(201,148,58,0.15); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+    nav ul { display: flex; justify-content: center; list-style: none; }
+    nav ul li a { display: block; padding: 17px 30px; color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; transition: all 0.3s; border-bottom: 2px solid transparent; }
+    nav ul li a:hover, nav ul li a.active { color: var(--gold-light); border-bottom-color: var(--gold); }
+
+    /* PAGE HEADER */
+    .page-header { background: var(--white); padding: 55px 40px 45px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.06); position: relative; z-index: 1; }
+    .section-eyebrow { font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); font-weight: 700; margin-bottom: 14px; }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); color: var(--red-deep); }
+    .page-header p { max-width: 500px; margin: 16px auto 0; color: var(--text-mid); font-size: 0.92rem; line-height: 1.8; font-weight: 300; }
+
+    /* FILTER */
+    .filter-bar { background: var(--cream); padding: 28px 40px; text-align: center; border-bottom: 1px solid rgba(0,0,0,0.06); position: relative; z-index: 1; }
+    .filter-btn { background: transparent; border: 1px solid rgba(139,26,26,0.25); color: var(--text-mid); padding: 8px 20px; border-radius: 30px; cursor: pointer; font-family: 'Lato', sans-serif; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s; margin: 4px; }
+    .filter-btn.active, .filter-btn:hover { background: var(--red-deep); color: var(--white); border-color: var(--red-deep); }
+
+    /* BLOG GRID */
+    .blog-section { padding: 60px 40px 80px; position: relative; z-index: 1; }
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 28px; max-width: 1140px; margin: 0 auto; }
+
+    .blog-card { background: var(--white); border-radius: 4px; overflow: hidden; box-shadow: 0 3px 16px rgba(0,0,0,0.07); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; border-bottom: 3px solid transparent; }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 14px 45px rgba(0,0,0,0.12); border-bottom-color: var(--gold); }
+
+    .blog-card-img { width: 100%; height: 185px; background: linear-gradient(135deg, var(--red-mid), var(--red-deep)); display: flex; align-items: center; justify-content: center; }
+    .blog-card-img svg { opacity: 0.15; width: 70px; height: 70px; }
+
+    .blog-card-body { padding: 24px; }
+    .blog-card-category { display: inline-block; font-size: 0.62rem; letter-spacing: 3px; color: var(--white); background: var(--red-mid); text-transform: uppercase; padding: 3px 10px; border-radius: 2px; margin-bottom: 10px; font-weight: 700; }
+    .blog-card-date { font-size: 0.68rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
+    .blog-card-title { font-family: 'Playfair Display', serif; font-size: 1.12rem; color: var(--red-deep); margin-bottom: 10px; line-height: 1.45; }
+    .blog-card-excerpt { font-size: 0.86rem; color: var(--text-mid); line-height: 1.75; font-weight: 300; }
+    .blog-card-link { display: inline-block; margin-top: 16px; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--red-mid); font-weight: 700; text-decoration: none; transition: color 0.3s; border-bottom: 1px solid transparent; padding-bottom: 2px; }
+    .blog-card-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+    /* SNOWFLAKE SVG */
+    .sf { display: inline-block; }
+
+    /* FOOTER */
+    footer { background: linear-gradient(160deg, #3d0707, #1a0303); color: rgba(255,255,255,0.5); text-align: center; padding: 55px 40px 30px; position: relative; z-index: 1; }
+    footer::before { content: ''; display: block; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin-bottom: 45px; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold-light); margin-bottom: 6px; font-style: italic; }
+    .footer-tagline { font-size: 0.68rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; color: rgba(255,255,255,0.35); }
+    .footer-links { display: flex; justify-content: center; gap: 28px; margin-bottom: 30px; flex-wrap: wrap; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; transition: color 0.3s; }
+    .footer-links a:hover { color: var(--gold-light); }
+    .footer-copy { font-size: 0.7rem; border-top: 1px solid rgba(255,255,255,0.07); padding-top: 22px; color: rgba(255,255,255,0.25); letter-spacing: 1px; }
+    footer::after { content: ''; display: block; height: 3px; background: linear-gradient(90deg, transparent, var(--green-trace), var(--gold), var(--green-trace), transparent); margin-top: 25px; }
+
+    @media (max-width: 768px) {
+      .header-top { padding: 12px 20px; }
+      .hero { padding: 35px 20px 45px; }
+      nav ul li a { padding: 14px 12px; font-size: 0.65rem; }
+      .blog-section { padding: 40px 20px 60px; }
+      .social-links { display: none; }
+      .page-header { padding: 40px 20px 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="snowflakes" id="snowflakes"></div>
+
+<header>
+  <div class="header-top">
+    <div class="social-links">
+      <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/christmas_wish2" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@ChristmasWishHR" target="_blank">YouTube</a>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('hr')" id="btn-hr">HR</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="logo-text"><a href="index.html" style="text-decoration:none;color:inherit;">Christmas <span>Wish</span></a></div>
+    <div class="hero-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
+    <div class="gold-divider"></div>
+  </div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
+    <li><a href="blog.html" class="active" data-hr="Blog" data-en="Blog">Blog</a></li>
+    <li><a href="index.html#video" data-hr="Video" data-en="Video">Video</a></li>
+    <li><a href="index.html#galerija" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
+    <li><a href="index.html#kontakt" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="section-eyebrow" data-hr="Čitanje uz čaj" data-en="Reading with tea">Čitanje uz čaj</div>
+  <h1 data-hr="Blog" data-en="Blog">Blog</h1>
+  <p data-hr="Priče, razmišljanja i uspomene o Božiću, zimi i svemu što dolazi s prvim pahuljama." data-en="Stories, thoughts and memories about Christmas, winter and everything that comes with the first snowflakes.">Priče, razmišljanja i uspomene o Božiću, zimi i svemu što dolazi s prvim pahuljama.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-hr="Sve" data-en="All">Sve</button>
+  <button class="filter-btn" data-hr="Tradicija" data-en="Tradition">Tradicija</button>
+  <button class="filter-btn" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</button>
+  <button class="filter-btn" data-hr="Recepti" data-en="Recipes">Recepti</button>
+  <button class="filter-btn" data-hr="Uspomene" data-en="Memories">Uspomene</button>
+</div>
+
+<section class="blog-section">
+  <div class="blog-grid">
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</span>
+        <div class="blog-card-date" data-hr="Prosinac 2024" data-en="December 2024">Prosinac 2024</div>
+        <div class="blog-card-title" data-hr="Mirisi koji nas vraćaju kući" data-en="Scents that bring us home">Mirisi koji nas vraćaju kući</div>
+        <div class="blog-card-excerpt" data-hr="Cimet, vanilija, bor... Postoje mirisi koji nas bez upozorenja vrate na neko staro božićno jutro kad smo bili djeca i sve je bilo jednostavno." data-en="Cinnamon, vanilla, pine... Some scents take us back without warning to an old Christmas morning when everything was simple.">Cimet, vanilija, bor... Postoje mirisi koji nas bez upozorenja vrate na neko staro božićno jutro kad smo bili djeca i sve je bilo jednostavno.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</span>
+        <div class="blog-card-date" data-hr="Studeni 2024" data-en="November 2024">Studeni 2024</div>
+        <div class="blog-card-title" data-hr="Prva pahulja — zašto nas toliko raduje?" data-en="The first snowflake — why does it delight us so?">Prva pahulja — zašto nas toliko raduje?</div>
+        <div class="blog-card-excerpt" data-hr="Nema razlike ima li pet ili pet tisuća pahulja — onu prvu uvijek primijetimo. Pogledamo van kroz prozor i na trenutak sve stanemo." data-en="It doesn't matter if there are five or five thousand — we always notice the first one. We look out the window and for a moment everything stops.">Nema razlike ima li pet ili pet tisuća pahulja — onu prvu uvijek primijetimo. Pogledamo van kroz prozor i na trenutak sve stanemo.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Uspomene" data-en="Memories">Uspomene</span>
+        <div class="blog-card-date" data-hr="Listopad 2024" data-en="October 2024">Listopad 2024</div>
+        <div class="blog-card-title" data-hr="Dar koji se pamti cijeli život" data-en="A gift remembered for a lifetime">Dar koji se pamti cijeli život</div>
+        <div class="blog-card-excerpt" data-hr="Nije uvijek bio skupocjen. Često je bio jednostavan. Ali uvijek je bio u pravo vrijeme, od prave osobe — i to je sve što je trebalo." data-en="It wasn't always expensive. Often it was simple. But always at the right time, from the right person — and that was all it took.">Nije uvijek bio skupocjen. Često je bio jednostavan. Ali uvijek je bio u pravo vrijeme, od prave osobe — i to je sve što je trebalo.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Tradicija" data-en="Tradition">Tradicija</span>
+        <div class="blog-card-date" data-hr="Prosinac 2023" data-en="December 2023">Prosinac 2023</div>
+        <div class="blog-card-title" data-hr="Pravo ili umjetno — vječna božićna rasprava" data-en="Real or artificial — the eternal Christmas debate">Pravo ili umjetno — vječna božićna rasprava</div>
+        <div class="blog-card-excerpt" data-hr="Svaka obitelj ima svoju tradiciju i svoje pravilo. I svaka obitelj je sigurna da je upravo njihovo pravilo — jedino ispravno." data-en="Every family has its own tradition and rule. And every family is certain their rule is the only correct one.">Svaka obitelj ima svoju tradiciju i svoje pravilo. I svaka obitelj je sigurna da je upravo njihovo pravilo — jedino ispravno.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</span>
+        <div class="blog-card-date" data-hr="Studeni 2023" data-en="November 2023">Studeni 2023</div>
+        <div class="blog-card-title" data-hr="Advent: četiri tjedna čekanja" data-en="Advent: four weeks of waiting">Advent: četiri tjedna čekanja</div>
+        <div class="blog-card-excerpt" data-hr="Advent nije samo uvod u Božić. Za mnoge od nas, Advent je — Božić. Ona iščekivanja, mirisi, svijeće, mrak koji pada sve ranije." data-en="Advent isn't just an introduction to Christmas. For many of us, Advent is Christmas itself. That anticipation, scents, candles, early darkness.">Advent nije samo uvod u Božić. Za mnoge od nas, Advent je — Božić. Ona iščekivanja, mirisi, svijeće, mrak koji pada sve ranije.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Uspomene" data-en="Memories">Uspomene</span>
+        <div class="blog-card-date" data-hr="Prosinac 2022" data-en="December 2022">Prosinac 2022</div>
+        <div class="blog-card-title" data-hr="Zašto volimo božićne filmove?" data-en="Why do we love Christmas movies?">Zašto volimo božićne filmove?</div>
+        <div class="blog-card-excerpt" data-hr="Svake godine ih gledamo iznova. Znamo kraj. Znamo šale. I svejedno — negdje oko sredine filma, osjećamo onaj poznati topli val." data-en="Every year we watch them again. We know the ending, the jokes. And yet — somewhere around the middle, that familiar warm wave arrives.">Svake godine ih gledamo iznova. Znamo kraj. Znamo šale. I svejedno — negdje oko sredine filma, osjećamo onaj poznati topli val.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Recepti" data-en="Recipes">Recepti</span>
+        <div class="blog-card-date" data-hr="Prosinac 2022" data-en="December 2022">Prosinac 2022</div>
+        <div class="blog-card-title" data-hr="Kuhanog vina nema bez ljubavi" data-en="Mulled wine needs love to taste right">Kuhanog vina nema bez ljubavi</div>
+        <div class="blog-card-excerpt" data-hr="Recept je jednostavan: vino, cimet, klinčići, narančina korica. Ali onaj pravi okus — taj dolazi od nekoga tko ga pravi s veseljem." data-en="The recipe is simple: wine, cinnamon, cloves, orange peel. But the real taste — that comes from someone who makes it with joy.">Recept je jednostavan: vino, cimet, klinčići, narančina korica. Ali onaj pravi okus — taj dolazi od nekoga tko ga pravi s veseljem.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Tradicija" data-en="Tradition">Tradicija</span>
+        <div class="blog-card-date" data-hr="Studeni 2022" data-en="November 2022">Studeni 2022</div>
+        <div class="blog-card-title" data-hr="Božićni ukrasi koji imaju priču" data-en="Christmas ornaments with a story">Božićni ukrasi koji imaju priču</div>
+        <div class="blog-card-excerpt" data-hr="Ona stara, malo oštećena kuglica na vrhu drvca. Svi je znamo. Nitko je ne bi zamijenio ni za što. Jer nije ukrašavala drvo — ukrašavala je sjećanje." data-en="That old, slightly chipped ball on top of the tree. We all know it. Nobody would trade it for anything. Because it wasn't decorating the tree — it was decorating a memory.">Ona stara, malo oštećena kuglica na vrhu drvca. Svi je znamo. Nitko je ne bi zamijenio ni za što. Jer nije ukrašavala drvo — ukrašavala je sjećanje.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</span>
+        <div class="blog-card-date" data-hr="Prosinac 2021" data-en="December 2021">Prosinac 2021</div>
+        <div class="blog-card-title" data-hr="Kad noć miriše na Božić" data-en="When the night smells like Christmas">Kad noć miriše na Božić</div>
+        <div class="blog-card-excerpt" data-hr="Postoje noći, obično negdje između 20. i 24. prosinca, kada izađete van i zrak je toliko specifičan da ga možete prepoznati i zatvorenih očiju." data-en="There are nights, usually somewhere between the 20th and 24th of December, when you step outside and the air is so specific you could recognise it with your eyes closed.">Postoje noći, obično negdje između 20. i 24. prosinca, kada izađete van i zrak je toliko specifičan da ga možete prepoznati i zatvorenih očiju.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Recepti" data-en="Recipes">Recepti</span>
+        <div class="blog-card-date" data-hr="Studeni 2021" data-en="November 2021">Studeni 2021</div>
+        <div class="blog-card-title" data-hr="Medenjaci: recept koji se ne mijenja" data-en="Gingerbread: a recipe that never changes">Medenjaci: recept koji se ne mijenja</div>
+        <div class="blog-card-excerpt" data-hr="Svaka obitelj ima svoj recept za medenjake. I svaka obitelj tvrdi da je upravo njihov — jedini pravi. Evo našeg, koji prenosimo već godinama." data-en="Every family has their gingerbread recipe. And every family insists theirs is the only real one. Here is ours, passed down for years.">Svaka obitelj ima svoj recept za medenjake. I svaka obitelj tvrdi da je upravo njihov — jedini pravi. Evo našeg, koji prenosimo već godinama.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Uspomene" data-en="Memories">Uspomene</span>
+        <div class="blog-card-date" data-hr="Prosinac 2020" data-en="December 2020">Prosinac 2020</div>
+        <div class="blog-card-title" data-hr="Božić bez snijega — pa što?" data-en="Christmas without snow — so what?">Božić bez snijega — pa što?</div>
+        <div class="blog-card-excerpt" data-hr="Nismo uvijek imali bijeli Božić. Ali uvijek smo imali topao dom, pun stol i ljude koji su nam bili važni. I to je, ispostavilo se, bilo sasvim dovoljno." data-en="We didn't always have a white Christmas. But we always had a warm home, a full table and people who mattered to us. And that, it turned out, was quite enough.">Nismo uvijek imali bijeli Božić. Ali uvijek smo imali topao dom, pun stol i ljude koji su nam bili važni. I to je, ispostavilo se, bilo sasvim dovoljno.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+    <div class="blog-card">
+      <div class="blog-card-img"><svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg></div>
+      <div class="blog-card-body">
+        <span class="blog-card-category" data-hr="Tradicija" data-en="Tradition">Tradicija</span>
+        <div class="blog-card-date" data-hr="Studeni 2020" data-en="November 2020">Studeni 2020</div>
+        <div class="blog-card-title" data-hr="Adventski kalendar: tradicija koja nikad ne stari" data-en="Advent calendar: a tradition that never gets old">Adventski kalendar: tradicija koja nikad ne stari</div>
+        <div class="blog-card-excerpt" data-hr="Bila su to 24 malena prozorčića. Iza svakog nešto sitno. I svako jutro u prosincu — taj poseban osjećaj da Božić dolazi sve bliže." data-en="There were 24 small windows. Behind each one something tiny. And every December morning — that special feeling that Christmas was getting closer.">Bila su to 24 malena prozorčića. Iza svakog nešto sitno. I svako jutro u prosincu — taj poseban osjećaj da Božić dolazi sve bliže.</div>
+        <a href="#" class="blog-card-link" data-hr="Pročitaj više" data-en="Read more">Pročitaj više</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer id="kontakt">
+  <div class="footer-logo">Christmas Wish</div>
+  <div class="footer-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
+  <div class="footer-links">
+    <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank">Facebook</a>
+    <a href="https://www.instagram.com/christmas_wish2" target="_blank">Instagram</a>
+    <a href="https://www.youtube.com/@ChristmasWishHR" target="_blank">YouTube</a>
+    <a href="mailto:bozic.christmas@gmail.com">bozic.christmas@gmail.com</a>
+  </div>
+  <div class="footer-copy">© 2025 Christmas Wish &nbsp;·&nbsp; <span data-hr="Sva prava pridržana" data-en="All rights reserved">Sva prava pridržana</span></div>
+</footer>
+
+<script>
+  const container = document.getElementById('snowflakes');
+  const symbols = ['❄', '❅', '❆'];
+  for (let i = 0; i < 25; i++) {
+    const sf = document.createElement('div');
+    sf.className = 'snowflake';
+    sf.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    sf.style.left = Math.random() * 100 + 'vw';
+    sf.style.fontSize = (0.7 + Math.random() * 1.1) + 'em';
+    sf.style.animationDuration = (7 + Math.random() * 15) + 's';
+    sf.style.animationDelay = (Math.random() * 12) + 's';
+    sf.style.opacity = 0.15 + Math.random() * 0.35;
+    container.appendChild(sf);
+  }
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-hr]').forEach(el => { el.textContent = el.dataset[lang]; });
+    document.getElementById('btn-hr').classList.toggle('active', lang === 'hr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
