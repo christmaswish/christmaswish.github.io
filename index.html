@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Christmas Wish | Božićna atmosfera</title>
   <link rel="icon" type="image/png" href="logo.png"/>
-  <!-- NOVI FONTOVI: Cinzel za naslove, Mulish za tekst (Podržavaju HR znakove) -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Mulish:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -24,11 +23,10 @@
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* MODERAN KURSOR */
     body { 
       background: var(--cream); 
       color: var(--text-dark); 
-      font-family: 'Mulish', sans-serif; /* Novi font za tekst */
+      font-family: 'Mulish', sans-serif; 
       overflow-x: hidden;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23c9943a"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>') 10 10, auto;
     }
@@ -37,7 +35,6 @@
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23e8c46a"><path d="M12 1L15 9L23 12L15 15L12 23L9 15L1 12L9 9L12 1Z"/></svg>') 12 12, pointer !important;
     }
 
-    /* SCROLL ANIMACIJE */
     .scroll-reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -65,29 +62,34 @@
     .social-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
     .social-links a:hover { color:var(--gold-light); text-shadow: 0 0 10px rgba(232, 196, 106, 0.5); }
 
-    .hero { text-align:center; padding:60px 40px 80px; position: relative; }
+    /* Smanjeni hero odjeljak sa zlatnim sjajem */
+    .hero { 
+      text-align:center; 
+      padding:35px 20px 45px; 
+      position: relative; 
+      background: radial-gradient(circle at 50% 40%, rgba(201,148,58,0.15) 0%, transparent 50%);
+    }
     
-    /* ANIMACIJA I VELIČINA LOGOTIPA */
     .hero-logo { 
-      width:240px; /* Povećano */
-      height:240px; /* Povećano */
+      width:130px; 
+      height:130px; 
       object-fit:contain; 
-      margin:0 auto 20px; 
+      margin:0 auto 15px; 
       display:block; 
-      filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.3)); 
+      filter:brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.2)); 
       opacity:0.95; 
-      animation: float 5s ease-in-out infinite; /* Lebdenje */
+      animation: float 5s ease-in-out infinite; 
     }
     @keyframes float {
       0% { transform: translateY(0px); }
-      50% { transform: translateY(-12px); }
+      50% { transform: translateY(-8px); }
       100% { transform: translateY(0px); }
     }
     
-    .logo-text { font-family:'Cinzel', serif; font-size:clamp(2.2rem,5vw,4.5rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+    .logo-text { font-family:'Cinzel', serif; font-size:clamp(1.5rem,3.5vw,2.5rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 3px 15px rgba(0,0,0,0.5); }
     .logo-text span { color:var(--gold-light); }
-    .hero-tagline { font-family: 'Mulish', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.95rem; letter-spacing:6px; text-transform:uppercase; margin-top:20px; }
-    .gold-divider { width:150px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:30px auto 0; opacity: 0.8; }
+    .hero-tagline { font-family: 'Mulish', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:12px; }
+    .gold-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px auto 0; opacity: 0.8; }
 
     /* NAV */
     nav { 
@@ -100,7 +102,7 @@
       box-shadow: 0 5px 30px rgba(0,0,0,0.4); 
     }
     nav ul { display:flex; justify-content:center; list-style:none; }
-    nav ul li a { display:block; padding:20px 35px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; }
+    nav ul li a { display:block; padding:18px 30px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; cursor: pointer; }
     nav ul li a:hover, nav ul li a.active { color:var(--gold-light); border-bottom-color:var(--gold); background: linear-gradient(to top, rgba(201,148,58,0.15), transparent); text-shadow: 0 0 8px rgba(232,196,106,0.3); }
 
     /* VIEWS ANIMATION */
@@ -112,60 +114,63 @@
     }
 
     /* HOME VIEW */
-    .intro-section { background:var(--white); padding:120px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .intro-section { background:var(--white); padding:100px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
     .section-eyebrow { font-family:'Mulish',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
-    .intro-section h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
-    .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.15rem; font-weight:300; }
+    .intro-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
+    .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.1rem; font-weight:300; }
 
-    .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:120px 40px; text-align:center; position: relative; }
+    .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:100px 40px; text-align:center; position: relative; }
     .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,148,58,0.4),transparent); }
     .video-section .section-eyebrow { color:var(--gold-light); }
-    .video-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,3.5vw,3rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
-    .video-wrapper { max-width:950px; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 35px 70px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.4); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .video-section h2 { font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
+    .video-wrapper { max-width:900px; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 35px 70px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.4); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
     .video-wrapper:hover { transform: translateY(-8px) scale(1.01); box-shadow:0 40px 80px rgba(0,0,0,0.7); }
     .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; }
 
-    /* HOME BLOG PREVIEW */
-    .blog-preview-section { padding:120px 40px; background:var(--cream); }
+    .blog-preview-section { padding:100px 40px; background:var(--cream); }
     .blog-preview-section .section-eyebrow { text-align:center; }
-    .blog-preview-section > h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); text-align:center; margin-bottom:70px; }
-    .view-all-btn { display:block; width:fit-content; margin:60px auto 0; padding:16px 45px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; }
+    .blog-preview-section > h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); text-align:center; margin-bottom:60px; }
+    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
     .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
 
     /* GALLERY */
-    .gallery-section { background:var(--white); padding:120px 40px; text-align:center; }
-    .gallery-section h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); margin-bottom:60px; }
-    .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
-    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:16px; display:flex; align-items:center; justify-content:center; transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); }
-    .gallery-item:hover { transform:scale(1.05) translateY(-8px); box-shadow: var(--shadow-hover); }
-    .gallery-item svg { opacity:0.2; width:60px; height:60px; transition: all 0.4s ease; }
-    .gallery-item:hover svg { opacity:0.5; transform: scale(1.2) rotate(15deg); }
+    .gallery-section { background:var(--white); padding:100px 40px; text-align:center; }
+    .gallery-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); margin-bottom:50px; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; max-width:1100px; margin:0 auto; }
+    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:12px; display:flex; align-items:center; justify-content:center; transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); position: relative; }
+    .gallery-item:hover { transform:scale(1.03) translateY(-5px); box-shadow: var(--shadow-hover); }
+    
+    /* Postavke za fotografije u galeriji */
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; z-index: 2; position: absolute; top:0; left:0; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .gallery-item svg { opacity:0.15; width:50px; height:50px; transition: all 0.4s ease; z-index: 1; position: absolute; }
+    
     .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Mulish',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
 
     /* BLOG LIST VIEW */
-    .page-header { background:var(--white); padding:90px 40px 60px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .page-header h1 { font-family:'Cinzel',serif; font-size:clamp(2.5rem,5vw,4rem); color:var(--red-deep); }
-    .page-header p { max-width:600px; margin:25px auto 0; color:var(--text-mid); font-size:1.1rem; line-height:1.9; font-weight:300; }
+    .page-header { background:var(--white); padding:80px 40px 50px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .page-header h1 { font-family:'Cinzel',serif; font-size:clamp(2.5rem,5vw,3.5rem); color:var(--red-deep); }
+    .page-header p { max-width:600px; margin:20px auto 0; color:var(--text-mid); font-size:1.05rem; line-height:1.9; font-weight:300; }
 
-    .filter-bar { background:var(--cream); padding:35px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-    .filter-btn { background:transparent; border:1px solid rgba(139,26,26,0.25); color:var(--text-mid); padding:12px 28px; border-radius:30px; font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
-    .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 5px 20px rgba(139,26,26,0.25); transform: translateY(-3px); }
+    .filter-bar { background:var(--cream); padding:30px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .filter-btn { background:transparent; border:1px solid rgba(139,26,26,0.25); color:var(--text-mid); padding:10px 24px; border-radius:30px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; cursor: pointer; }
+    .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 5px 15px rgba(139,26,26,0.25); transform: translateY(-2px); }
 
-    .blog-section { padding:90px 40px 120px; }
-    .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:40px; max-width:1200px; margin:0 auto; }
+    .blog-section { padding:80px 40px 100px; }
+    .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:35px; max-width:1150px; margin:0 auto; }
 
-    /* EDITORIAL/CINEMATIC BLOG CARDS (NOVO) */
+    /* EDITORIAL/CINEMATIC BLOG CARDS */
     .blog-card { 
       position: relative;
-      height: 420px; /* Visoka kartica za magazin stil */
-      border-radius: 16px; 
+      height: 400px; 
+      border-radius: 12px; 
       overflow: hidden; 
       box-shadow: var(--shadow-soft); 
       transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
       cursor: pointer;
     }
     .blog-card:hover { 
-      transform: translateY(-12px); 
+      transform: translateY(-10px); 
       box-shadow: var(--shadow-hover); 
     }
     
@@ -180,130 +185,79 @@
       object-fit: cover; 
       transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
     }
-    .blog-card:hover .blog-card-img img { transform: scale(1.1); }
+    .blog-card:hover .blog-card-img img { transform: scale(1.08); }
     
-    /* Zatamnjeni sloj preko slike za čitljivost */
     .blog-card-img::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.6) 40%, rgba(26, 3, 3, 0.1) 100%);
+      background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.5) 45%, rgba(26, 3, 3, 0.1) 100%);
       transition: background 0.5s ease;
     }
     .blog-card:hover .blog-card-img::after {
-      background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.7) 50%, rgba(26, 3, 3, 0.2) 100%);
+      background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.6) 55%, rgba(26, 3, 3, 0.2) 100%);
     }
 
-    /* SVG Placeholder kad nema slike */
-    .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 100px; height: 100px; z-index: 1; }
+    .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 80px; height: 80px; z-index: 1; }
 
-    /* Sadržaj kartice ide na dno */
     .blog-card-body { 
       position: absolute; 
       bottom: 0; 
       left: 0; 
       right: 0; 
-      padding: 35px 30px; 
+      padding: 30px 25px; 
       z-index: 2; 
       display: flex; 
       flex-direction: column; 
     }
     
-    .blog-card-header {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 15px;
-    }
-    .blog-card-category { 
-      font-size: 0.65rem; 
-      letter-spacing: 3px; 
-      color: var(--white); 
-      background: var(--gold); 
-      text-transform: uppercase; 
-      padding: 5px 14px; 
-      border-radius: 20px; 
-      font-weight: 700; 
-    }
-    .blog-card-date { 
-      font-size: 0.75rem; 
-      letter-spacing: 2px; 
-      color: rgba(255,255,255,0.7); 
-      text-transform: uppercase; 
-      font-weight: 600; 
-    }
+    .blog-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .blog-card-category { font-size: 0.65rem; letter-spacing: 3px; color: var(--white); background: var(--gold); text-transform: uppercase; padding: 4px 12px; border-radius: 20px; font-weight: 700; }
+    .blog-card-date { font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); text-transform: uppercase; font-weight: 600; }
     
-    .blog-card-title { 
-      font-family: 'Cinzel', serif; 
-      font-size: 1.6rem; 
-      color: var(--white); 
-      line-height: 1.3; 
-      margin-bottom: 0; 
-      transition: color 0.3s; 
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
+    .blog-card-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--white); line-height: 1.3; margin-bottom: 0; transition: color 0.3s; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     .blog-card:hover .blog-card-title { color: var(--gold-light); }
     
-    /* Excerpt skriven po defaultu, otkriva se na hover */
-    .blog-card-excerpt-wrapper {
-      height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      margin-top: 0;
-    }
-    .blog-card:hover .blog-card-excerpt-wrapper {
-      height: 70px; /* Okvirna visina za excerpt */
-      opacity: 1;
-      margin-top: 15px;
-    }
-    .blog-card-excerpt { 
-      font-size: 0.95rem; 
-      color: rgba(255,255,255,0.8); 
-      line-height: 1.6; 
-      font-weight: 300; 
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
+    .blog-card-excerpt-wrapper { height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 0; }
+    .blog-card:hover .blog-card-excerpt-wrapper { height: 65px; opacity: 1; margin-top: 12px; }
+    .blog-card-excerpt { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-weight: 300; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
     /* SINGLE POST VIEW */
-    .post-container { max-width:850px; margin:0 auto; padding:100px 40px 120px; }
-    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); margin-bottom:50px; background:none; border:none; font-family:'Mulish',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(139,26,26,0.06); }
-    .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-8px); box-shadow: 0 5px 15px rgba(139,26,26,0.25); }
+    .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
+    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); margin-bottom:40px; background:none; border:none; font-family:'Mulish',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(139,26,26,0.06); cursor: pointer; }
+    .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-6px); box-shadow: 0 4px 12px rgba(139,26,26,0.25); }
     
-    .post-header-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
-    .post-category { font-size:0.7rem; letter-spacing:3px; color:var(--white); background:var(--gold); text-transform:uppercase; padding:6px 16px; border-radius:20px; font-weight:700; }
+    .post-header-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+    .post-category { font-size:0.7rem; letter-spacing:3px; color:var(--white); background:var(--gold); text-transform:uppercase; padding:5px 14px; border-radius:20px; font-weight:700; }
     .post-date { font-size:0.8rem; letter-spacing:2px; color:var(--text-mid); text-transform:uppercase; font-weight:600; }
     
-    .post-title { font-family:'Cinzel',serif; font-size:clamp(2.2rem,5vw,3.8rem); color:var(--red-deep); line-height:1.2; margin-bottom:40px; }
-    .post-divider { width:100px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:50px; border-radius: 2px; }
-    .post-body { font-size:1.15rem; line-height:2.1; color:var(--text-dark); font-weight:300; }
-    .post-body p { margin-bottom:30px; }
+    .post-title { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.5rem); color:var(--red-deep); line-height:1.2; margin-bottom:30px; }
+    .post-divider { width:80px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:40px; border-radius: 2px; }
+    .post-body { font-size:1.1rem; line-height:2; color:var(--text-dark); font-weight:300; }
+    .post-body p { margin-bottom:25px; }
 
     /* FOOTER */
-    footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:80px 40px 50px; position:relative; z-index:1; }
-    footer::before { content:''; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity: 0.4; }
-    .footer-logo { font-family:'Cinzel',serif; font-size:2.5rem; color:var(--gold-light); margin-bottom:15px; text-shadow: 0 3px 10px rgba(232,196,106,0.2); }
-    .footer-tagline { font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:6px; text-transform:uppercase; margin-bottom:45px; color:rgba(255,255,255,0.5); }
-    .footer-links { display:flex; justify-content:center; gap:40px; margin-bottom:50px; flex-wrap:wrap; }
-    .footer-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.8rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; }
-    .footer-links a:hover { color:var(--gold-light); transform: translateY(-3px); display: inline-block; text-shadow: 0 0 10px rgba(232,196,106,0.3); }
-    .footer-copy { font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:30px; color:rgba(255,255,255,0.3); letter-spacing:2px; font-weight:300; }
+    footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
+    footer::before { content:''; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity: 0.3; }
+    .footer-logo { font-family:'Cinzel',serif; font-size:2.2rem; color:var(--gold-light); margin-bottom:12px; text-shadow: 0 2px 8px rgba(232,196,106,0.2); }
+    .footer-tagline { font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:5px; text-transform:uppercase; margin-bottom:40px; color:rgba(255,255,255,0.4); }
+    .footer-links { display:flex; justify-content:center; gap:30px; margin-bottom:40px; flex-wrap:wrap; }
+    .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; }
+    .footer-links a:hover { color:var(--gold-light); transform: translateY(-2px); display: inline-block; text-shadow: 0 0 8px rgba(232,196,106,0.3); }
+    .footer-copy { font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:25px; color:rgba(255,255,255,0.3); letter-spacing:1px; font-weight:300; }
     footer::after { content:''; display:block; height:4px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); position: absolute; bottom: 0; left: 0; right: 0; }
 
     @media (max-width:768px) {
-      .header-top { padding:16px 20px; }
-      .hero { padding:40px 20px 60px; }
-      .hero-logo { width:180px; height:180px; }
-      nav ul li a { padding:16px 12px; font-size:0.7rem; letter-spacing: 1px; }
-      .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:80px 20px; }
-      .post-container { padding:60px 20px 80px; }
-      .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 15px; }
+      .header-top { padding:14px 20px; }
+      .hero { padding:30px 20px 40px; }
+      .hero-logo { width:100px; height:100px; }
+      nav ul li a { padding:14px 10px; font-size:0.65rem; letter-spacing: 1px; }
+      .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:60px 20px; }
+      .post-container { padding:50px 20px 70px; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 10px; }
       .social-links { display:none; }
-      .page-header { padding:60px 20px 40px; }
-      .blog-card { height: 350px; }
+      .page-header { padding:50px 20px 35px; }
+      .blog-card { height: 320px; }
     }
   </style>
 </head>
@@ -336,12 +290,11 @@
     <li><a onclick="showView('home')" id="nav-home" class="active" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
     <li><a onclick="showView('blog')" id="nav-blog" data-hr="Blog" data-en="Blog">Blog</a></li>
     <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('video').scrollIntoView({behavior:'smooth'}),100)" data-hr="Video" data-en="Video">Video</a></li>
-    <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('galerija').scrollIntoView({behavior:'smooth'}),100)" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
+    <li><a onclick="showView('galerija')" id="nav-galerija" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
     <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),100)" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
   </ul>
 </nav>
 
-<!-- HOME VIEW -->
 <div id="view-home" class="view active">
 
   <section class="intro-section scroll-reveal">
@@ -368,22 +321,37 @@
   <section class="gallery-section scroll-reveal" id="galerija">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
-    <div class="gallery-grid" id="gallery-grid">
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
-    <p class="gallery-coming" data-hr="Fotografije dolaze uskoro" data-en="Photos coming soon">Fotografije dolaze uskoro</p>
+    <button class="view-all-btn" onclick="showView('galerija')" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
   </section>
 
 </div>
 
-<!-- BLOG LIST VIEW -->
+<div id="view-galerija" class="view">
+  <div class="page-header scroll-reveal">
+    <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
+    <h1 data-hr="Galerija" data-en="Gallery">Galerija</h1>
+    <p data-hr="Svi zabilježeni trenuci zimske čarolije na jednom mjestu." data-en="All captured moments of winter magic in one place.">Svi zabilježeni trenuci zimske čarolije na jednom mjestu.</p>
+  </div>
+  <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-5.jpg" alt="Zimski prizor 5" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-6.jpg" alt="Zimski prizor 6" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-7.jpg" alt="Zimski prizor 7" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item"><img src="slika-8.jpg" alt="Zimski prizor 8" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+    </div>
+  </section>
+</div>
+
 <div id="view-blog" class="view">
   <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Čitanje uz čaj" data-en="Reading with tea">Čitanje uz čaj</div>
@@ -402,7 +370,6 @@
   </section>
 </div>
 
-<!-- SINGLE POST VIEW -->
 <div id="view-post" class="view">
   <div class="post-container">
     <button class="post-back" onclick="showView('blog')">&#8592; <span data-hr="Natrag na blog" data-en="Back to blog">Natrag na blog</span></button>
@@ -431,7 +398,6 @@
 <script>
 const SF_SVG = `<svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg>`;
 
-// Postovi su isti, ostavio sam ih kakvi jesu
 const posts = [
   { id:1, category:'atmosfera', categoryLabel:'Atmosfera', date:'Prosinac 2024', title:'Mirisi koji nas vraćaju kući', image:'', excerpt:'Cimet, vanilija, bor... Postoje mirisi koji nas bez upozorenja vrate na neko staro božićno jutro kad smo bili djeca i sve je bilo jednostavno.', body:`<p>Postoji nešto gotovo iracionalno u tome kako nas miris može teleportirati. Ne slika, ne zvuk — miris. Onaj koji udahneš slučajno, prolazeći pokraj nečije kuhinje, ili kad otvoriš ladicu u kojoj je netko nekad držao čaj od šipka i cimet.</p><p>Cimet je vjerojatno najsavršeniji primjer. Nema ga u životu gotovo cijelu godinu — a onda, prvog dana studenog kad netko negdje u zgradi počne kuhati nešto toplo, i on se vrati. I s njim sve: baka koja je mijesila tijesto, kuhinja prepuna pare, prozor na kojemu je netko nacrtao srce u magli.</p><p>Vanilija je nježnija. Dolazi tiše, bez najave. Ali ostaje dulje. Ima nešto umiruće u tome kako miriše — kao da govori da nije žurba, da ima vremena, da će sve biti dobro.</p><p>Bor je pak miris koji ne traži razgovor. On samo stane u prostoriju i svi znaju što znači. Čak i oni koji nisu odrasli uz pravo drvce — čak i oni prepoznaju taj miris. Kao da je negdje duboko u nama, upisan odavno.</p><p>Mirise ne možemo kupiti, ne možemo ih pohraniti, ne možemo ih dijeliti kao fotografije. Ali kad dođu — a uvijek dođu — vraćaju nam nešto što nismo ni znali da smo izgubili.</p>` },
   { id:2, category:'atmosfera', categoryLabel:'Atmosfera', date:'Studeni 2024', title:'Prva pahulja — zašto nas toliko raduje?', image:'', excerpt:'Nema razlike ima li pet ili pet tisuća pahulja — onu prvu uvijek primijetimo. Pogledamo van kroz prozor i na trenutak sve stanemo.', body:`<p>Zima ima puno lica. Ima maglu, led, vjetar koji reže, sive dane koji se ni ne potrude rasvijetliti do kraja. I svako od tih lica podnašamo, nekako, jer znamo da prolazi.</p><p>Ali prvu pahuljу — nju čekamo.</p><p>Nema razlike koliko nam je hladno, koliko smo umorni, koliko nas čeka posla. Kad padne prva pahulja, stanemo. Pogledamo kroz prozor. I na trenutak — samo na trenutak — sve ostalo prestane biti važno.</p><p>Djeca to rade glasno, s vrištenjem i trčanjem prema prozoru. Odrasli to radimo tiho, za sebe, s osmijehom koji ne objašnjavamo nikome. Ali radimo isto.</p><p>Možda je to zato što je pahulja obećanje. Ne garancija bijelog Božića, ne najava savršene zime — samo obećanje da nešto dolazi. Da se nešto mijenja. Da ono što je bilo sivo i dosadno može, sasvim iznenada, postati bijelo i tiho i lijepo.</p>` },
@@ -447,7 +413,6 @@ const posts = [
   { id:12, category:'tradicija', categoryLabel:'Tradicija', date:'Studeni 2020', title:'Adventski kalendar: tradicija koja nikad ne stari', image:'', excerpt:'Bila su to 24 malena prozorčića. Iza svakog nešto sitno. I svako jutro u prosincu — taj poseban osjećaj da Božić dolazi sve bliže.', body:`<p>Adventski kalendar je jedna od onih tradicija koje funkcioniraju jednako dobro u pet godina kao i u pedeset. Možda čak i bolje u pedeset, jer odrasli znaju cijeniti sitnice koje djeca uzimaju zdravo za gotovo.</p><p>Prvotno su bili samo prozorčići s biblijskim prizorima. Onda su dobili čokolade. Onda igračke. Svijet je pronašao način da komercijalizira čak i odbrojavanje do Božića.</p><p>Ali suština je ostala ista: svako jutro u prosincu, jedan mali čin iščekivanja. Jedan mali korak prema nečemu što dolazi.</p><p>Ima nešto duboko mudro u ideji da se radost razmaže na 24 dana umjesto da se sruši sve odjednom u jednoj noći. Svako malo veselje je i dalje veselje.</p><p>Kupite si kalendar. Ili ga napravite. I otvarajte ga svako jutro polako, bez žurbe. Božić ionako dolazi — nema potrebe žuriti mu u susret.</p>` }
 ];
 
-// NOVA HTML STRUKTURA KARTICE (EDITORIAL STYLE)
 function cardHTML(p) {
   const img = p.image
     ? `<img src="${p.image}" alt="${p.title}" loading="lazy">`
@@ -472,7 +437,6 @@ function renderGrid(filter, targetId) {
   const filtered = filter === 'sve' ? posts : posts.filter(p => p.category === filter);
   document.getElementById(targetId).innerHTML = filtered.map(cardHTML).join('');
   
-  // Ponovno pokreni animacije na novim elementima ako je observer aktivan
   if (window.initObserver) window.initObserver();
 }
 
@@ -519,7 +483,6 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-// SCROLL ANIMATIONS OBSERVER
 window.initObserver = function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -534,7 +497,6 @@ window.initObserver = function() {
   });
 };
 
-// Pokretanje
 document.addEventListener('DOMContentLoaded', () => {
   window.initObserver();
 });
