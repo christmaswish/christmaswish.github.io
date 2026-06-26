@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Christmas Wish | Božićna atmosfera</title>
   <link rel="icon" type="image/png" href="logo.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <!-- NOVI FONTOVI: Cinzel za naslove, Mulish za tekst (Podržavaju HR znakove) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Mulish:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
   <style>
     :root {
       --red-deep: #8b1a1a;
@@ -16,25 +17,35 @@
       --white: #ffffff;
       --green-trace: #2d5a3d;
       --text-dark: #1a1a1a;
-      --text-mid: #4a4a4a;
-      --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 15px 40px rgba(139, 26, 26, 0.15);
+      --text-mid: #3a3a3a;
+      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.12);
+      --shadow-hover: 0 20px 50px rgba(139, 26, 26, 0.25);
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* MODERAN 2026 KURSOR - Zlatna zvijezda */
+    /* MODERAN KURSOR */
     body { 
       background: var(--cream); 
       color: var(--text-dark); 
-      font-family: 'Lato', sans-serif; 
+      font-family: 'Mulish', sans-serif; /* Novi font za tekst */
       overflow-x: hidden;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23c9943a"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>') 10 10, auto;
     }
     
-    /* Veća zvijezda za interaktivne elemente */
     a, button, .blog-card, .gallery-item {
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="%23e8c46a"><path d="M12 1L15 9L23 12L15 15L12 23L9 15L1 12L9 9L12 1Z"/></svg>') 12 12, pointer !important;
+    }
+
+    /* SCROLL ANIMACIJE */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -47,137 +58,252 @@
 
     .header-top { display:flex; justify-content:space-between; align-items:center; padding:12px 50px; border-bottom:1px solid rgba(201,148,58,0.15); }
     .lang-toggle { display:flex; gap:8px; }
-    .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Lato',sans-serif; font-size:0.72rem; letter-spacing:2px; transition:all 0.3s ease; }
-    .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); font-weight:700; box-shadow: 0 0 10px rgba(201,148,58,0.3); }
+    .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
+    .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); box-shadow: 0 0 15px rgba(201,148,58,0.4); }
     
     .social-links { display:flex; gap:20px; }
-    .social-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.72rem; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
-    .social-links a:hover { color:var(--gold-light); text-shadow: 0 0 8px rgba(232, 196, 106, 0.4); }
+    .social-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
+    .social-links a:hover { color:var(--gold-light); text-shadow: 0 0 10px rgba(232, 196, 106, 0.5); }
 
-    .hero { text-align:center; padding:55px 40px 70px; }
-    .hero-logo { width:160px; height:160px; object-fit:contain; margin:0 auto 20px; display:block; filter:brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.2)); opacity:0.95; transition: transform 0.4s ease; }
-    .hero-logo:hover { transform: scale(1.05); }
-    .logo-text { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,3.5rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 4px 15px rgba(0,0,0,0.4); }
-    .logo-text span { color:var(--gold-light); font-style:italic; }
-    .hero-tagline { font-weight:300; color:rgba(255,255,255,0.6); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:16px; }
-    .gold-divider { width:120px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:24px auto 0; opacity: 0.7; }
+    .hero { text-align:center; padding:60px 40px 80px; position: relative; }
+    
+    /* ANIMACIJA I VELIČINA LOGOTIPA */
+    .hero-logo { 
+      width:240px; /* Povećano */
+      height:240px; /* Povećano */
+      object-fit:contain; 
+      margin:0 auto 20px; 
+      display:block; 
+      filter:brightness(0) invert(1) drop-shadow(0 0 20px rgba(255,255,255,0.3)); 
+      opacity:0.95; 
+      animation: float 5s ease-in-out infinite; /* Lebdenje */
+    }
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .logo-text { font-family:'Cinzel', serif; font-size:clamp(2.2rem,5vw,4.5rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 5px 20px rgba(0,0,0,0.5); }
+    .logo-text span { color:var(--gold-light); }
+    .hero-tagline { font-family: 'Mulish', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.95rem; letter-spacing:6px; text-transform:uppercase; margin-top:20px; }
+    .gold-divider { width:150px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:30px auto 0; opacity: 0.8; }
 
-    /* NAV - GLASSMORPHISM 2026 */
+    /* NAV */
     nav { 
-      background: rgba(42, 5, 5, 0.85); 
-      backdrop-filter: blur(12px); 
-      -webkit-backdrop-filter: blur(12px);
-      border-top: 1px solid rgba(201,148,58,0.15); 
-      border-bottom: 1px solid rgba(201,148,58,0.05); 
+      background: rgba(42, 5, 5, 0.9); 
+      backdrop-filter: blur(15px); 
+      -webkit-backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(201,148,58,0.2); 
+      border-bottom: 1px solid rgba(201,148,58,0.1); 
       position: sticky; top: 0; z-index: 100; 
-      box-shadow: 0 4px 30px rgba(0,0,0,0.3); 
+      box-shadow: 0 5px 30px rgba(0,0,0,0.4); 
     }
     nav ul { display:flex; justify-content:center; list-style:none; }
-    nav ul li a { display:block; padding:18px 32px; color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; }
-    nav ul li a:hover, nav ul li a.active { color:var(--gold-light); border-bottom-color:var(--gold); background: linear-gradient(to top, rgba(201,148,58,0.1), transparent); }
+    nav ul li a { display:block; padding:20px 35px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; }
+    nav ul li a:hover, nav ul li a.active { color:var(--gold-light); border-bottom-color:var(--gold); background: linear-gradient(to top, rgba(201,148,58,0.15), transparent); text-shadow: 0 0 8px rgba(232,196,106,0.3); }
 
     /* VIEWS ANIMATION */
-    .view { display:none; position:relative; z-index:1; animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    .view { display:none; position:relative; z-index:1; animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
     .view.active { display:block; }
-    
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* HOME VIEW */
-    .intro-section { background:var(--white); padding:100px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.04); }
-    .section-eyebrow { font-size:0.7rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:20px; }
-    .intro-section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3rem); color:var(--red-deep); max-width:680px; margin:0 auto 24px; line-height:1.3; }
-    .intro-section p { max-width:600px; margin:0 auto; color:var(--text-mid); line-height:1.9; font-size:1.05rem; font-weight:300; }
+    .intro-section { background:var(--white); padding:120px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .section-eyebrow { font-family:'Mulish',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
+    .intro-section h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
+    .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.15rem; font-weight:300; }
 
-    .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:100px 40px; text-align:center; position: relative; }
-    .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,148,58,0.3),transparent); }
-    .video-section .section-eyebrow { color:var(--gold-light); opacity:0.9; }
-    .video-section h2 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3vw,2.6rem); color:var(--white); margin-bottom:45px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-    .video-wrapper { max-width:880px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 30px 60px rgba(0,0,0,0.5); border:1px solid rgba(201,148,58,0.3); transition: transform 0.4s ease; }
-    .video-wrapper:hover { transform: translateY(-5px); box-shadow:0 35px 70px rgba(0,0,0,0.6); }
+    .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:120px 40px; text-align:center; position: relative; }
+    .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,148,58,0.4),transparent); }
+    .video-section .section-eyebrow { color:var(--gold-light); }
+    .video-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,3.5vw,3rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
+    .video-wrapper { max-width:950px; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 35px 70px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.4); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .video-wrapper:hover { transform: translateY(-8px) scale(1.01); box-shadow:0 40px 80px rgba(0,0,0,0.7); }
     .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; }
 
     /* HOME BLOG PREVIEW */
-    .blog-preview-section { padding:100px 40px; background:var(--cream); }
+    .blog-preview-section { padding:120px 40px; background:var(--cream); }
     .blog-preview-section .section-eyebrow { text-align:center; }
-    .blog-preview-section > h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,3vw,2.8rem); color:var(--red-deep); text-align:center; margin-bottom:60px; }
-    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:1px solid var(--red-mid); color:var(--red-mid); font-family:'Lato',sans-serif; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); font-weight:700; border-radius: 30px; }
-    .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+    .blog-preview-section > h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); text-align:center; margin-bottom:70px; }
+    .view-all-btn { display:block; width:fit-content; margin:60px auto 0; padding:16px 45px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:4px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; }
+    .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
 
     /* GALLERY */
-    .gallery-section { background:var(--white); padding:100px 40px; text-align:center; }
-    .gallery-section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,3vw,2.8rem); color:var(--red-deep); margin-bottom:50px; }
-    .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1000px; margin:0 auto; }
-    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:12px; display:flex; align-items:center; justify-content:center; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); }
-    .gallery-item:hover { transform:scale(1.04) translateY(-5px); box-shadow: var(--shadow-hover); }
-    .gallery-item svg { opacity:0.15; width:50px; height:50px; transition: opacity 0.3s ease; }
-    .gallery-item:hover svg { opacity:0.3; }
-    .gallery-coming { margin-top:35px; color:var(--text-mid); font-size:0.85rem; letter-spacing:3px; text-transform:uppercase; font-weight: 300; }
+    .gallery-section { background:var(--white); padding:120px 40px; text-align:center; }
+    .gallery-section h2 { font-family:'Cinzel',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); margin-bottom:60px; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; max-width:1100px; margin:0 auto; }
+    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:16px; display:flex; align-items:center; justify-content:center; transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); }
+    .gallery-item:hover { transform:scale(1.05) translateY(-8px); box-shadow: var(--shadow-hover); }
+    .gallery-item svg { opacity:0.2; width:60px; height:60px; transition: all 0.4s ease; }
+    .gallery-item:hover svg { opacity:0.5; transform: scale(1.2) rotate(15deg); }
+    .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Mulish',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
 
     /* BLOG LIST VIEW */
-    .page-header { background:var(--white); padding:70px 40px 50px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.04); }
-    .page-header h1 { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,4vw,3.5rem); color:var(--red-deep); }
-    .page-header p { max-width:540px; margin:20px auto 0; color:var(--text-mid); font-size:0.95rem; line-height:1.8; font-weight:300; }
+    .page-header { background:var(--white); padding:90px 40px 60px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .page-header h1 { font-family:'Cinzel',serif; font-size:clamp(2.5rem,5vw,4rem); color:var(--red-deep); }
+    .page-header p { max-width:600px; margin:25px auto 0; color:var(--text-mid); font-size:1.1rem; line-height:1.9; font-weight:300; }
 
-    .filter-bar { background:var(--cream); padding:30px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.04); display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .filter-btn { background:transparent; border:1px solid rgba(139,26,26,0.2); color:var(--text-mid); padding:10px 24px; border-radius:30px; font-family:'Lato',sans-serif; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
-    .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 4px 15px rgba(139,26,26,0.2); transform: translateY(-2px); }
+    .filter-bar { background:var(--cream); padding:35px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .filter-btn { background:transparent; border:1px solid rgba(139,26,26,0.25); color:var(--text-mid); padding:12px 28px; border-radius:30px; font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; }
+    .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 5px 20px rgba(139,26,26,0.25); transform: translateY(-3px); }
 
-    .blog-section { padding:80px 40px 100px; }
-    .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:32px; max-width:1140px; margin:0 auto; }
+    .blog-section { padding:90px 40px 120px; }
+    .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:40px; max-width:1200px; margin:0 auto; }
 
-    /* MODERN CARD DESIGN */
-    .blog-card { background:var(--white); border-radius:12px; overflow:hidden; box-shadow:var(--shadow-soft); transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border: 1px solid rgba(0,0,0,0.03); display: flex; flex-direction: column; }
-    .blog-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-hover); border-color: rgba(201,148,58,0.3); }
-    .blog-card-img { width:100%; height:200px; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); display:flex; align-items:center; justify-content:center; overflow:hidden; position: relative; }
-    .blog-card-img img { width:100%; height:100%; object-fit:cover; transition: transform 0.6s ease; }
-    .blog-card:hover .blog-card-img img { transform: scale(1.08); }
-    .blog-card-img svg { opacity:0.15; width:70px; height:70px; }
-    .blog-card-body { padding:28px; flex-grow: 1; display: flex; flex-direction: column; }
-    .blog-card-category { align-self: flex-start; font-size:0.65rem; letter-spacing:3px; color:var(--white); background:var(--red-mid); text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:12px; font-weight:700; box-shadow: 0 2px 8px rgba(178,34,34,0.3); }
-    .blog-card-date { font-size:0.7rem; letter-spacing:2px; color:var(--gold); text-transform:uppercase; font-weight:700; margin-bottom:10px; }
-    .blog-card-title { font-family:'Playfair Display',serif; font-size:1.25rem; color:var(--red-deep); margin-bottom:12px; line-height:1.4; transition: color 0.3s; }
-    .blog-card:hover .blog-card-title { color: var(--gold); }
-    .blog-card-excerpt { font-size:0.9rem; color:var(--text-mid); line-height:1.7; font-weight:300; flex-grow: 1; }
-    .blog-card-link { display:inline-block; margin-top:20px; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); font-weight:700; text-decoration:none; transition:all 0.3s; padding-bottom:4px; background:none; border:none; font-family:'Lato',sans-serif; position: relative; }
-    .blog-card-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.3s ease; }
-    .blog-card:hover .blog-card-link::after { width: 100%; }
-    .blog-card-link:hover { color:var(--gold); }
+    /* EDITORIAL/CINEMATIC BLOG CARDS (NOVO) */
+    .blog-card { 
+      position: relative;
+      height: 420px; /* Visoka kartica za magazin stil */
+      border-radius: 16px; 
+      overflow: hidden; 
+      box-shadow: var(--shadow-soft); 
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+      cursor: pointer;
+    }
+    .blog-card:hover { 
+      transform: translateY(-12px); 
+      box-shadow: var(--shadow-hover); 
+    }
+    
+    .blog-card-img { 
+      position: absolute; 
+      inset: 0; 
+      background: linear-gradient(135deg, var(--red-mid), var(--red-deep)); 
+    }
+    .blog-card-img img { 
+      width: 100%; 
+      height: 100%; 
+      object-fit: cover; 
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
+    }
+    .blog-card:hover .blog-card-img img { transform: scale(1.1); }
+    
+    /* Zatamnjeni sloj preko slike za čitljivost */
+    .blog-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.6) 40%, rgba(26, 3, 3, 0.1) 100%);
+      transition: background 0.5s ease;
+    }
+    .blog-card:hover .blog-card-img::after {
+      background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.7) 50%, rgba(26, 3, 3, 0.2) 100%);
+    }
+
+    /* SVG Placeholder kad nema slike */
+    .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 100px; height: 100px; z-index: 1; }
+
+    /* Sadržaj kartice ide na dno */
+    .blog-card-body { 
+      position: absolute; 
+      bottom: 0; 
+      left: 0; 
+      right: 0; 
+      padding: 35px 30px; 
+      z-index: 2; 
+      display: flex; 
+      flex-direction: column; 
+    }
+    
+    .blog-card-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+    .blog-card-category { 
+      font-size: 0.65rem; 
+      letter-spacing: 3px; 
+      color: var(--white); 
+      background: var(--gold); 
+      text-transform: uppercase; 
+      padding: 5px 14px; 
+      border-radius: 20px; 
+      font-weight: 700; 
+    }
+    .blog-card-date { 
+      font-size: 0.75rem; 
+      letter-spacing: 2px; 
+      color: rgba(255,255,255,0.7); 
+      text-transform: uppercase; 
+      font-weight: 600; 
+    }
+    
+    .blog-card-title { 
+      font-family: 'Cinzel', serif; 
+      font-size: 1.6rem; 
+      color: var(--white); 
+      line-height: 1.3; 
+      margin-bottom: 0; 
+      transition: color 0.3s; 
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .blog-card:hover .blog-card-title { color: var(--gold-light); }
+    
+    /* Excerpt skriven po defaultu, otkriva se na hover */
+    .blog-card-excerpt-wrapper {
+      height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-top: 0;
+    }
+    .blog-card:hover .blog-card-excerpt-wrapper {
+      height: 70px; /* Okvirna visina za excerpt */
+      opacity: 1;
+      margin-top: 15px;
+    }
+    .blog-card-excerpt { 
+      font-size: 0.95rem; 
+      color: rgba(255,255,255,0.8); 
+      line-height: 1.6; 
+      font-weight: 300; 
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     /* SINGLE POST VIEW */
-    .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
-    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); font-weight:700; margin-bottom:45px; background:none; border:none; font-family:'Lato',sans-serif; transition:all 0.3s; padding:8px 16px; border-radius: 20px; background: rgba(139,26,26,0.05); }
-    .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-5px); box-shadow: 0 4px 12px rgba(139,26,26,0.2); }
-    .post-category { display:inline-block; font-size:0.65rem; letter-spacing:3px; color:var(--white); background:var(--red-mid); text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:18px; font-weight:700; }
-    .post-date { font-size:0.75rem; letter-spacing:2px; color:var(--gold); text-transform:uppercase; font-weight:700; margin-bottom:20px; display:block; }
-    .post-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,4.5vw,3.2rem); color:var(--red-deep); line-height:1.2; margin-bottom:35px; }
-    .post-divider { width:80px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:40px; border-radius: 2px; }
-    .post-body { font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; }
-    .post-body p { margin-bottom:26px; }
+    .post-container { max-width:850px; margin:0 auto; padding:100px 40px 120px; }
+    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); margin-bottom:50px; background:none; border:none; font-family:'Mulish',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(139,26,26,0.06); }
+    .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-8px); box-shadow: 0 5px 15px rgba(139,26,26,0.25); }
+    
+    .post-header-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+    .post-category { font-size:0.7rem; letter-spacing:3px; color:var(--white); background:var(--gold); text-transform:uppercase; padding:6px 16px; border-radius:20px; font-weight:700; }
+    .post-date { font-size:0.8rem; letter-spacing:2px; color:var(--text-mid); text-transform:uppercase; font-weight:600; }
+    
+    .post-title { font-family:'Cinzel',serif; font-size:clamp(2.2rem,5vw,3.8rem); color:var(--red-deep); line-height:1.2; margin-bottom:40px; }
+    .post-divider { width:100px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:50px; border-radius: 2px; }
+    .post-body { font-size:1.15rem; line-height:2.1; color:var(--text-dark); font-weight:300; }
+    .post-body p { margin-bottom:30px; }
 
     /* FOOTER */
-    footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
-    footer::before { content:''; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity: 0.3; }
-    .footer-logo { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold-light); margin-bottom:10px; font-style:italic; text-shadow: 0 2px 8px rgba(232,196,106,0.2); }
-    .footer-tagline { font-size:0.75rem; letter-spacing:5px; text-transform:uppercase; margin-bottom:40px; color:rgba(255,255,255,0.4); }
-    .footer-links { display:flex; justify-content:center; gap:35px; margin-bottom:40px; flex-wrap:wrap; }
-    .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; }
-    .footer-links a:hover { color:var(--gold-light); transform: translateY(-2px); display: inline-block; }
-    .footer-copy { font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:25px; color:rgba(255,255,255,0.3); letter-spacing:1px; }
+    footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:80px 40px 50px; position:relative; z-index:1; }
+    footer::before { content:''; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity: 0.4; }
+    .footer-logo { font-family:'Cinzel',serif; font-size:2.5rem; color:var(--gold-light); margin-bottom:15px; text-shadow: 0 3px 10px rgba(232,196,106,0.2); }
+    .footer-tagline { font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:6px; text-transform:uppercase; margin-bottom:45px; color:rgba(255,255,255,0.5); }
+    .footer-links { display:flex; justify-content:center; gap:40px; margin-bottom:50px; flex-wrap:wrap; }
+    .footer-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.8rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; }
+    .footer-links a:hover { color:var(--gold-light); transform: translateY(-3px); display: inline-block; text-shadow: 0 0 10px rgba(232,196,106,0.3); }
+    .footer-copy { font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.06); padding-top:30px; color:rgba(255,255,255,0.3); letter-spacing:2px; font-weight:300; }
     footer::after { content:''; display:block; height:4px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); position: absolute; bottom: 0; left: 0; right: 0; }
 
     @media (max-width:768px) {
       .header-top { padding:16px 20px; }
-      .hero { padding:40px 20px 50px; }
-      .hero-logo { width:130px; height:130px; }
-      nav ul li a { padding:14px 10px; font-size:0.65rem; letter-spacing: 1px; }
-      .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:60px 20px; }
-      .post-container { padding:50px 20px 80px; }
-      .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 10px; }
+      .hero { padding:40px 20px 60px; }
+      .hero-logo { width:180px; height:180px; }
+      nav ul li a { padding:16px 12px; font-size:0.7rem; letter-spacing: 1px; }
+      .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:80px 20px; }
+      .post-container { padding:60px 20px 80px; }
+      .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 15px; }
       .social-links { display:none; }
-      .page-header { padding:50px 20px 40px; }
+      .page-header { padding:60px 20px 40px; }
+      .blog-card { height: 350px; }
     }
   </style>
 </head>
@@ -197,7 +323,7 @@
       <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
     </div>
   </div>
-  <div class="hero">
+  <div class="hero scroll-reveal">
     <img src="logo.png" alt="Christmas Wish Logo" class="hero-logo" onclick="showView('home')"/>
     <div class="logo-text" onclick="showView('home')">Christmas <span>Wish</span></div>
     <div class="hero-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
@@ -215,15 +341,16 @@
   </ul>
 </nav>
 
+<!-- HOME VIEW -->
 <div id="view-home" class="view active">
 
-  <section class="intro-section">
+  <section class="intro-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Dobrodošli" data-en="Welcome">Dobrodošli</div>
     <h2 data-hr="Mjesto gdje Božić živi cijele godine" data-en="A place where Christmas lives all year long">Mjesto gdje Božić živi cijele godine</h2>
     <p data-hr="Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a labour of love — a website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
-  <section class="video-section" id="video">
+  <section class="video-section scroll-reveal" id="video">
     <div class="section-eyebrow" data-hr="Najnovije" data-en="Latest">Najnovije</div>
     <h2 data-hr="Zimska atmosfera — novi video" data-en="Winter atmosphere — new video">Zimska atmosfera — novi video</h2>
     <div class="video-wrapper">
@@ -231,14 +358,14 @@
     </div>
   </section>
 
-  <section class="blog-preview-section">
+  <section class="blog-preview-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Čitanje uz čaj" data-en="Reading with tea">Čitanje uz čaj</div>
     <h2 data-hr="Iz našeg bloga" data-en="From our blog">Iz našeg bloga</h2>
     <div class="blog-grid" id="home-blog-grid"></div>
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
 
-  <section class="gallery-section" id="galerija">
+  <section class="gallery-section scroll-reveal" id="galerija">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
     <div class="gallery-grid" id="gallery-grid">
@@ -256,36 +383,40 @@
 
 </div>
 
+<!-- BLOG LIST VIEW -->
 <div id="view-blog" class="view">
-  <div class="page-header">
+  <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Čitanje uz čaj" data-en="Reading with tea">Čitanje uz čaj</div>
     <h1 data-hr="Blog" data-en="Blog">Blog</h1>
     <p data-hr="Priče, razmišljanja i uspomene o Božiću, zimi i svemu što dolazi s prvim pahuljama." data-en="Stories, thoughts and memories about Christmas, winter and everything that comes with the first snowflakes.">Priče, razmišljanja i uspomene o Božiću, zimi i svemu što dolazi s prvim pahuljama.</p>
   </div>
-  <div class="filter-bar">
+  <div class="filter-bar scroll-reveal">
     <button class="filter-btn active" onclick="filterPosts('sve', this)" data-hr="Sve" data-en="All">Sve</button>
     <button class="filter-btn" onclick="filterPosts('tradicija', this)" data-hr="Tradicija" data-en="Tradition">Tradicija</button>
     <button class="filter-btn" onclick="filterPosts('atmosfera', this)" data-hr="Atmosfera" data-en="Atmosphere">Atmosfera</button>
     <button class="filter-btn" onclick="filterPosts('recepti', this)" data-hr="Recepti" data-en="Recipes">Recepti</button>
     <button class="filter-btn" onclick="filterPosts('uspomene', this)" data-hr="Uspomene" data-en="Memories">Uspomene</button>
   </div>
-  <section class="blog-section">
+  <section class="blog-section scroll-reveal">
     <div class="blog-grid" id="blog-grid"></div>
   </section>
 </div>
 
+<!-- SINGLE POST VIEW -->
 <div id="view-post" class="view">
   <div class="post-container">
     <button class="post-back" onclick="showView('blog')">&#8592; <span data-hr="Natrag na blog" data-en="Back to blog">Natrag na blog</span></button>
-    <span class="post-category" id="post-cat"></span>
-    <span class="post-date" id="post-date"></span>
+    <div class="post-header-meta">
+      <span class="post-category" id="post-cat"></span>
+      <span class="post-date" id="post-date"></span>
+    </div>
     <h1 class="post-title" id="post-title"></h1>
     <div class="post-divider"></div>
     <div class="post-body" id="post-body"></div>
   </div>
 </div>
 
-<footer id="kontakt">
+<footer id="kontakt" class="scroll-reveal">
   <div class="footer-logo">Christmas Wish</div>
   <div class="footer-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
   <div class="footer-links">
@@ -298,9 +429,9 @@
 </footer>
 
 <script>
-// Sav JS funkcionalni kod je ostao isti za ispravan rad tvojih podataka i rutera!
 const SF_SVG = `<svg viewBox="0 0 70 70" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="35" cy="35" r="3"/><line x1="35" y1="8" x2="35" y2="62" stroke="white" stroke-width="2"/><line x1="8" y1="35" x2="62" y2="35" stroke="white" stroke-width="2"/><line x1="16" y1="16" x2="54" y2="54" stroke="white" stroke-width="2"/><line x1="54" y1="16" x2="16" y2="54" stroke="white" stroke-width="2"/></svg>`;
 
+// Postovi su isti, ostavio sam ih kakvi jesu
 const posts = [
   { id:1, category:'atmosfera', categoryLabel:'Atmosfera', date:'Prosinac 2024', title:'Mirisi koji nas vraćaju kući', image:'', excerpt:'Cimet, vanilija, bor... Postoje mirisi koji nas bez upozorenja vrate na neko staro božićno jutro kad smo bili djeca i sve je bilo jednostavno.', body:`<p>Postoji nešto gotovo iracionalno u tome kako nas miris može teleportirati. Ne slika, ne zvuk — miris. Onaj koji udahneš slučajno, prolazeći pokraj nečije kuhinje, ili kad otvoriš ladicu u kojoj je netko nekad držao čaj od šipka i cimet.</p><p>Cimet je vjerojatno najsavršeniji primjer. Nema ga u životu gotovo cijelu godinu — a onda, prvog dana studenog kad netko negdje u zgradi počne kuhati nešto toplo, i on se vrati. I s njim sve: baka koja je mijesila tijesto, kuhinja prepuna pare, prozor na kojemu je netko nacrtao srce u magli.</p><p>Vanilija je nježnija. Dolazi tiše, bez najave. Ali ostaje dulje. Ima nešto umiruće u tome kako miriše — kao da govori da nije žurba, da ima vremena, da će sve biti dobro.</p><p>Bor je pak miris koji ne traži razgovor. On samo stane u prostoriju i svi znaju što znači. Čak i oni koji nisu odrasli uz pravo drvce — čak i oni prepoznaju taj miris. Kao da je negdje duboko u nama, upisan odavno.</p><p>Mirise ne možemo kupiti, ne možemo ih pohraniti, ne možemo ih dijeliti kao fotografije. Ali kad dođu — a uvijek dođu — vraćaju nam nešto što nismo ni znali da smo izgubili.</p>` },
   { id:2, category:'atmosfera', categoryLabel:'Atmosfera', date:'Studeni 2024', title:'Prva pahulja — zašto nas toliko raduje?', image:'', excerpt:'Nema razlike ima li pet ili pet tisuća pahulja — onu prvu uvijek primijetimo. Pogledamo van kroz prozor i na trenutak sve stanemo.', body:`<p>Zima ima puno lica. Ima maglu, led, vjetar koji reže, sive dane koji se ni ne potrude rasvijetliti do kraja. I svako od tih lica podnašamo, nekako, jer znamo da prolazi.</p><p>Ali prvu pahuljу — nju čekamo.</p><p>Nema razlike koliko nam je hladno, koliko smo umorni, koliko nas čeka posla. Kad padne prva pahulja, stanemo. Pogledamo kroz prozor. I na trenutak — samo na trenutak — sve ostalo prestane biti važno.</p><p>Djeca to rade glasno, s vrištenjem i trčanjem prema prozoru. Odrasli to radimo tiho, za sebe, s osmijehom koji ne objašnjavamo nikome. Ali radimo isto.</p><p>Možda je to zato što je pahulja obećanje. Ne garancija bijelog Božića, ne najava savršene zime — samo obećanje da nešto dolazi. Da se nešto mijenja. Da ono što je bilo sivo i dosadno može, sasvim iznenada, postati bijelo i tiho i lijepo.</p>` },
@@ -316,6 +447,7 @@ const posts = [
   { id:12, category:'tradicija', categoryLabel:'Tradicija', date:'Studeni 2020', title:'Adventski kalendar: tradicija koja nikad ne stari', image:'', excerpt:'Bila su to 24 malena prozorčića. Iza svakog nešto sitno. I svako jutro u prosincu — taj poseban osjećaj da Božić dolazi sve bliže.', body:`<p>Adventski kalendar je jedna od onih tradicija koje funkcioniraju jednako dobro u pet godina kao i u pedeset. Možda čak i bolje u pedeset, jer odrasli znaju cijeniti sitnice koje djeca uzimaju zdravo za gotovo.</p><p>Prvotno su bili samo prozorčići s biblijskim prizorima. Onda su dobili čokolade. Onda igračke. Svijet je pronašao način da komercijalizira čak i odbrojavanje do Božića.</p><p>Ali suština je ostala ista: svako jutro u prosincu, jedan mali čin iščekivanja. Jedan mali korak prema nečemu što dolazi.</p><p>Ima nešto duboko mudro u ideji da se radost razmaže na 24 dana umjesto da se sruši sve odjednom u jednoj noći. Svako malo veselje je i dalje veselje.</p><p>Kupite si kalendar. Ili ga napravite. I otvarajte ga svako jutro polako, bez žurbe. Božić ionako dolazi — nema potrebe žuriti mu u susret.</p>` }
 ];
 
+// NOVA HTML STRUKTURA KARTICE (EDITORIAL STYLE)
 function cardHTML(p) {
   const img = p.image
     ? `<img src="${p.image}" alt="${p.title}" loading="lazy">`
@@ -324,11 +456,14 @@ function cardHTML(p) {
     <div class="blog-card" onclick="showPost(${p.id})">
       <div class="blog-card-img">${img}</div>
       <div class="blog-card-body">
-        <span class="blog-card-category">${p.categoryLabel}</span>
-        <div class="blog-card-date">${p.date}</div>
-        <div class="blog-card-title">${p.title}</div>
-        <div class="blog-card-excerpt">${p.excerpt}</div>
-        <button class="blog-card-link" onclick="event.stopPropagation();showPost(${p.id})">Pročitaj više</button>
+        <div class="blog-card-header">
+          <span class="blog-card-category">${p.categoryLabel}</span>
+          <span class="blog-card-date">${p.date}</span>
+        </div>
+        <h3 class="blog-card-title">${p.title}</h3>
+        <div class="blog-card-excerpt-wrapper">
+          <div class="blog-card-excerpt">${p.excerpt}</div>
+        </div>
       </div>
     </div>`;
 }
@@ -336,6 +471,9 @@ function cardHTML(p) {
 function renderGrid(filter, targetId) {
   const filtered = filter === 'sve' ? posts : posts.filter(p => p.category === filter);
   document.getElementById(targetId).innerHTML = filtered.map(cardHTML).join('');
+  
+  // Ponovno pokreni animacije na novim elementima ako je observer aktivan
+  if (window.initObserver) window.initObserver();
 }
 
 function showView(name) {
@@ -344,12 +482,9 @@ function showView(name) {
   });
   
   const nextView = document.getElementById('view-' + name);
-  
-  // Re-trigger animaciju
   nextView.style.animation = 'none';
-  nextView.offsetHeight; /* trigger reflow */
+  nextView.offsetHeight; 
   nextView.style.animation = null;
-  
   nextView.classList.add('active');
   
   document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
@@ -358,6 +493,8 @@ function showView(name) {
   
   window.scrollTo({top: 0, behavior: 'smooth'});
   if (name === 'blog') renderGrid('sve', 'blog-grid');
+  
+  if (window.initObserver) window.initObserver();
 }
 
 function showPost(id) {
@@ -382,7 +519,26 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
-// Snowflakes - Optimizirano za glatkiji pad
+// SCROLL ANIMATIONS OBSERVER
+window.initObserver = function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
+  
+  document.querySelectorAll('.scroll-reveal').forEach(el => {
+    observer.observe(el);
+  });
+};
+
+// Pokretanje
+document.addEventListener('DOMContentLoaded', () => {
+  window.initObserver();
+});
+
 const container = document.getElementById('snowflakes');
 const symbols = ['❄','❅','❆'];
 for (let i = 0; i < 28; i++) {
@@ -397,7 +553,6 @@ for (let i = 0; i < 28; i++) {
   container.appendChild(sf);
 }
 
-// Init home blog preview
 document.getElementById('home-blog-grid').innerHTML = posts.slice(0,6).map(cardHTML).join('');
 </script>
 </body>
