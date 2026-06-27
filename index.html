@@ -69,21 +69,30 @@
     .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
     .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); box-shadow: 0 0 15px rgba(201,148,58,0.4); }
 
-    /* BOŽIĆNE KUGLICE ANIMACIJA - VEĆE I VIŠE NJIH */
-    .bauble-container { position: absolute; top: 0; z-index: 15; display: flex; gap: 25px; pointer-events: none; }
-    .bauble-container.left-1 { left: 6%; }
-    .bauble-container.left-2 { left: 24%; }
-    .bauble-container.right-1 { right: 8%; }
+    /* BOŽIĆNE KUGLICE ANIMACIJA - VEĆE, VIŠE NJIH, PREKRASAN RASPORED */
+    .bauble-container { position: absolute; top: 0; z-index: 15; display: flex; gap: 35px; pointer-events: none; }
+    .bauble-container.left-1 { left: 8%; }
+    .bauble-container.left-2 { left: 22%; }
+    .bauble-container.right-1 { right: 10%; }
+    .bauble-container.right-2 { right: 25%; }
     
     .bauble { transform-origin: top center; animation: swing 3s ease-in-out infinite alternate; display: flex; flex-direction: column; align-items: center; }
-    .bauble-wire { width: 1.5px; background: rgba(201,148,58,0.6); }
-    .bauble-cap { width: 12px; height: 5px; background: #c9943a; border-radius: 3px 3px 0 0; }
+    .bauble-wire { width: 1.5px; background: rgba(201,148,58,0.8); }
+    .bauble-cap { width: 16px; height: 6px; background: #c9943a; border-radius: 3px 3px 0 0; }
     
-    .bauble-ball { width: 36px; height: 36px; background: radial-gradient(circle at 35% 35%, #fdf8f0, #c9943a, #6b0f0f); border-radius: 50%; box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
+    .bauble-ball { width: 45px; height: 45px; background: radial-gradient(circle at 35% 35%, #fdf8f0, #c9943a, #6b0f0f); border-radius: 50%; box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
     .bauble-ball.red { background: radial-gradient(circle at 30% 30%, #e8c46a, #8b1a1a, #3d0707); }
-    .bauble-ball.small { width: 28px; height: 28px; }
+    .bauble-ball.small { width: 35px; height: 35px; }
+    .bauble-ball.large { width: 55px; height: 55px; }
     
     @keyframes swing { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
+
+    /* LIGHTBOX GALERIJA */
+    #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 99999; display: none; justify-content: center; align-items: center; flex-direction: column; }
+    #lightbox img { max-width: 90%; max-height: 75vh; border: 4px solid var(--white); box-shadow: 0 0 30px rgba(201,148,58,0.3); border-radius: 4px; }
+    .lb-controls { margin-top: 30px; display: flex; gap: 20px; }
+    .lb-btn { padding: 12px 30px; background: transparent; border: 2px solid var(--gold-light); color: var(--gold-light); text-decoration: none; border-radius: 30px; font-family: 'Mulish', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+    .lb-btn:hover { background: var(--gold-light); color: #3d0707; }
 
     /* HERO SEKCIJA */
     .hero { 
@@ -246,13 +255,7 @@
     .video-section .section-eyebrow { color:var(--gold-light); }
     .video-section h2 { font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
     
-    .home-video-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
+    .home-video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 1000px; margin: 0 auto; }
     .video-wrapper { border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.3); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #000; }
     .video-wrapper:hover { transform: translateY(-6px) scale(1.02); box-shadow:0 30px 60px rgba(0,0,0,0.7); }
     .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; border:none; }
@@ -270,9 +273,9 @@
     .gallery-section { background:var(--white); padding:100px 40px; text-align:center; }
     .gallery-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); margin-bottom:50px; }
     .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:15px; max-width:1100px; margin:0 auto; }
-    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:12px; display:flex; align-items:center; justify-content:center; transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); position: relative; }
+    .gallery-item { aspect-ratio:1; background:linear-gradient(135deg,var(--red-mid),var(--red-deep)); border-radius:12px; display:flex; align-items:center; justify-content:center; transition:all 0.5s cubic-bezier(0.16, 1, 0.3, 1); overflow:hidden; box-shadow: var(--shadow-soft); position: relative; cursor: pointer; }
     .gallery-item:hover { transform:scale(1.03) translateY(-5px); box-shadow: var(--shadow-hover); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; z-index: 2; position: absolute; top:0; left:0; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; z-index: 2; position: absolute; top:0; left:0; pointer-events: none; }
     .gallery-item:hover img { transform: scale(1.1); }
     .gallery-item svg { opacity:0.15; width:50px; height:50px; transition: all 0.4s ease; z-index: 1; position: absolute; }
     .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Mulish',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
@@ -286,7 +289,7 @@
     .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:35px; max-width:1150px; margin:0 auto; }
 
     .blog-card { 
-      position: relative; height: 400px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+      position: relative; height: 420px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
     }
     .blog-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
     .blog-card-img { position: absolute; inset: 0; background: linear-gradient(135deg, var(--red-mid), var(--red-deep)); }
@@ -296,7 +299,7 @@
     .blog-card:hover .blog-card-img::after { background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.6) 55%, rgba(26, 3, 3, 0.2) 100%); }
     .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 80px; height: 80px; z-index: 1; }
 
-    .blog-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 25px; z-index: 2; display: flex; flex-direction: column; }
+    .blog-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 25px 25px; z-index: 2; display: flex; flex-direction: column; }
     .blog-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
     .blog-card-category { font-size: 0.65rem; letter-spacing: 3px; color: var(--white); background: var(--gold); text-transform: uppercase; padding: 4px 12px; border-radius: 20px; font-weight: 700; }
     .blog-card-date { font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); text-transform: uppercase; font-weight: 600; }
@@ -305,6 +308,12 @@
     .blog-card-excerpt-wrapper { height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 0; }
     .blog-card:hover .blog-card-excerpt-wrapper { height: 65px; opacity: 1; margin-top: 12px; }
     .blog-card-excerpt { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-weight: 300; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* LAJK I DIJELI GUMBI NA KARTICAMA */
+    .blog-card-actions { margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; opacity: 0; transition: opacity 0.5s ease; }
+    .blog-card:hover .blog-card-actions { opacity: 1; }
+    .btn-card-action { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Mulish', sans-serif; display: flex; align-items: center; gap: 5px; }
+    .btn-card-action:hover { background: var(--gold); border-color: var(--gold); }
 
     /* SINGLE POST VIEW */
     .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
@@ -319,15 +328,20 @@
     .post-body { font-size:1.1rem; line-height:2; color:var(--text-dark); font-weight:300; }
     .post-body p { margin-bottom:25px; }
 
+    /* NOVOSTI VIEW */
+    .news-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+    .news-item { background: var(--white); border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-soft); border-left: 4px solid var(--gold); }
+    .news-date { font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; display: block; text-transform: uppercase; }
+    .news-text { font-size: 1.05rem; line-height: 1.8; color: var(--text-dark); }
+
+    /* PRIVACY POLICY VIEW */
+    .privacy-container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
+    .privacy-container p { font-size: 1.05rem; line-height: 2; color: var(--text-dark); font-weight: 300; text-align: justify; }
+
     /* LIVE SANTA VIEW */
     .live-santa-section { padding: 40px 20px 80px; text-align: center; background: var(--cream); }
     .live-santa-wrapper { max-width: 1000px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); border: 1px solid rgba(201,148,58,0.4); background: #000; }
     .live-santa-wrapper iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
-
-    /* PRIVACY POLICY VIEW */
-    .privacy-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; text-align: left; }
-    .privacy-container h2 { font-family:'Cinzel',serif; color:var(--red-deep); margin-bottom: 20px; font-size: 2rem; }
-    .privacy-container p { font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; margin-bottom: 20px; }
 
     /* FOOTER */
     footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
@@ -337,7 +351,6 @@
     .footer-links { display:flex; justify-content:center; gap:30px; margin-bottom:40px; flex-wrap:wrap; }
     .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; cursor:pointer; }
     .footer-links a:hover { color:var(--gold-light); transform: translateY(-2px); display: inline-block; text-shadow: 0 0 8px rgba(232,196,106,0.3); }
-    
     .footer-copy { font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:25px; color:rgba(255,255,255,0.3); letter-spacing:1px; font-weight:300; line-height: 1.8; }
     footer::after { content:''; display:block; height:4px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); position: absolute; bottom: 0; left: 0; right: 0; }
 
@@ -348,15 +361,15 @@
       .hero-social { display: none; }
       nav ul li a { padding:14px 10px; font-size:0.65rem; letter-spacing: 1px; }
       .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:60px 20px; }
-      .post-container, .privacy-container { padding:50px 20px 70px; }
+      .post-container { padding:50px 20px 70px; }
       .home-video-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 10px; }
       .page-header { padding:50px 20px 35px; }
-      .blog-card { height: 320px; }
+      .blog-card { height: 350px; }
       .modern-countdown { gap: 8px; }
       .mc-item { min-width: 60px; padding: 10px; }
       .mc-val { font-size: 1.4rem; }
-      .bauble-container.left-2, .bauble-container.right-1 { display: none; } /* Manje kuglica na mobitelu */
+      .bauble-container.left-2, .bauble-container.right-2 { display: none; }
     }
   </style>
 </head>
@@ -364,42 +377,56 @@
 
 <div class="snowflakes" id="snowflakes"></div>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="if(event.target === this) this.style.display='none'">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-controls">
+    <a href="#" id="lb-down" class="lb-btn" download>Preuzmi fotografiju</a>
+    <button class="lb-btn" onclick="document.getElementById('lightbox').style.display='none'">Zatvori</button>
+  </div>
+</div>
+
 <header>
   <!-- BOŽIĆNE KUGLICE ANIMACIJA -->
-  <!-- LIJEVA GRUPA 1 -->
   <div class="bauble-container left-1">
     <div class="bauble">
-      <div class="bauble-wire" style="height: 50px;"></div>
+      <div class="bauble-wire" style="height: 60px;"></div>
       <div class="bauble-cap"></div>
-      <div class="bauble-ball"></div>
+      <div class="bauble-ball large"></div>
     </div>
     <div class="bauble" style="animation-delay: 1.2s; animation-duration: 3.5s;">
-      <div class="bauble-wire" style="height: 80px;"></div>
+      <div class="bauble-wire" style="height: 100px;"></div>
       <div class="bauble-cap"></div>
       <div class="bauble-ball red small"></div>
     </div>
   </div>
   
-  <!-- LIJEVA GRUPA 2 -->
   <div class="bauble-container left-2">
     <div class="bauble" style="animation-delay: 0.5s; animation-duration: 4s;">
-      <div class="bauble-wire" style="height: 35px;"></div>
+      <div class="bauble-wire" style="height: 45px;"></div>
       <div class="bauble-cap"></div>
       <div class="bauble-ball small"></div>
     </div>
   </div>
 
-  <!-- DESNA GRUPA -->
   <div class="bauble-container right-1">
     <div class="bauble" style="animation-delay: 0.8s; animation-duration: 3.2s;">
-      <div class="bauble-wire" style="height: 60px;"></div>
+      <div class="bauble-wire" style="height: 80px;"></div>
       <div class="bauble-cap"></div>
-      <div class="bauble-ball red"></div>
+      <div class="bauble-ball red large"></div>
     </div>
     <div class="bauble" style="animation-delay: 1.5s; animation-duration: 3.8s;">
-      <div class="bauble-wire" style="height: 40px;"></div>
+      <div class="bauble-wire" style="height: 50px;"></div>
       <div class="bauble-cap"></div>
       <div class="bauble-ball small"></div>
+    </div>
+  </div>
+  
+  <div class="bauble-container right-2">
+    <div class="bauble" style="animation-delay: 0.2s; animation-duration: 4.2s;">
+      <div class="bauble-wire" style="height: 35px;"></div>
+      <div class="bauble-cap"></div>
+      <div class="bauble-ball red small"></div>
     </div>
   </div>
 
@@ -458,13 +485,13 @@
     <li><a onclick="showView('video')" id="nav-video" data-hr="Video" data-en="Video">Video</a></li>
     <li><a onclick="showView('live')" id="nav-live" data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</a></li>
     <li><a onclick="showView('galerija')" id="nav-galerija" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
+    <li><a onclick="showView('novosti')" id="nav-novosti" data-hr="Novosti" data-en="News">Novosti s fejsa</a></li>
     <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),100)" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
   </ul>
 </nav>
 
 <!-- HOME VIEW -->
 <div id="view-home" class="view active">
-
   <section class="intro-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Dobrodošli" data-en="Welcome">Dobrodošli</div>
     <h2 data-hr="Mjesto gdje Božić živi cijele godine" data-en="A place where Christmas lives all year long">Mjesto gdje Božić živi cijele godine</h2>
@@ -496,14 +523,13 @@
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
     <button class="view-all-btn" onclick="showView('galerija')" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
   </section>
-
 </div>
 
 <!-- VIDEO VIEW -->
@@ -545,26 +571,57 @@
   </section>
 </div>
 
+<!-- GALERIJA VIEW SA KATEGORIJAMA -->
 <div id="view-galerija" class="view">
   <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h1 data-hr="Galerija" data-en="Gallery">Galerija</h1>
     <p data-hr="Svi zabilježeni trenuci zimske čarolije na jednom mjestu." data-en="All captured moments of winter magic in one place.">Svi zabilježeni trenuci zimske čarolije na jednom mjestu.</p>
   </div>
-  <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-5.jpg" alt="Zimski prizor 5" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-6.jpg" alt="Zimski prizor 6" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-7.jpg" alt="Zimski prizor 7" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item"><img src="slika-8.jpg" alt="Zimski prizor 8" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+  <section class="gallery-section scroll-reveal" style="padding-top: 20px;">
+    
+    <div class="filter-bar scroll-reveal">
+      <button class="filter-btn active" onclick="filterGallery('sve', this)" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
+      <button class="filter-btn" onclick="filterGallery('glavne', this)" data-hr="Glavne fotografije" data-en="Main photos">Glavne fotografije</button>
+      <button class="filter-btn" onclick="filterGallery('bozicne', this)" data-hr="Božićne fotografije" data-en="Christmas photos">Božićne fotografije</button>
+      <button class="filter-btn" onclick="filterGallery('zimske', this)" data-hr="Zimske fotografije" data-en="Winter photos">Zimske fotografije</button>
+    </div>
+
+    <div class="gallery-grid" id="full-gallery-grid">
+      <!-- Dodane klase za filtriranje i onclick za Lightbox -->
+      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item bozicne" onclick="openLightbox('slika-5.jpg')"><img src="slika-5.jpg" alt="Zimski prizor 5" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item zimske" onclick="openLightbox('slika-6.jpg')"><img src="slika-6.jpg" alt="Zimski prizor 6" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item bozicne" onclick="openLightbox('slika-7.jpg')"><img src="slika-7.jpg" alt="Zimski prizor 7" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item zimske" onclick="openLightbox('slika-8.jpg')"><img src="slika-8.jpg" alt="Zimski prizor 8" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
   </section>
 </div>
 
+<!-- NOVOSTI SA FEJSA VIEW -->
+<div id="view-novosti" class="view">
+  <div class="page-header scroll-reveal">
+    <div class="section-eyebrow" data-hr="Trenutno s weba" data-en="Currently on web">Trenutno s weba</div>
+    <h1 data-hr="Blagdanske novosti" data-en="Holiday News">Blagdanske novosti</h1>
+    <p data-hr="Zadnje objave, novosti i preporuke direktno s naše Facebook zajednice." data-en="Latest posts, news and recommendations directly from our Facebook community.">Zadnje objave, novosti i preporuke direktno s naše Facebook zajednice.</p>
+  </div>
+  <section class="scroll-reveal" style="padding: 50px 20px; max-width: 800px; margin: 0 auto;">
+    <!-- Ovdje ručno ubacuješ novosti -->
+    <div class="news-item" style="background: white; border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-soft); border-left: 4px solid var(--gold);">
+      <span style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; display: block; text-transform: uppercase;">Prosinac 2025.</span>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-dark);">Dobrodošli u novo izdanje naše zimske čarolije! Upravo smo podijelili najnovije fotografije s našeg putovanja na Facebooku, svakako ih pogledajte!</p>
+    </div>
+    <div class="news-item" style="background: white; border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-soft); border-left: 4px solid var(--gold);">
+      <span style="font-size: 0.75rem; color: var(--gold); font-weight: 700; letter-spacing: 2px; margin-bottom: 10px; display: block; text-transform: uppercase;">Studeni 2025.</span>
+      <p style="font-size: 1.05rem; line-height: 1.8; color: var(--text-dark);">Približava se vrijeme najljepših mirisa iz kuhinje. Imamo novi recept za medenjake koji se topi u ustima.</p>
+    </div>
+  </section>
+</div>
+
+<!-- BLOG LIST VIEW -->
 <div id="view-blog" class="view">
   <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Čitanje uz čaj" data-en="Reading with tea">Čitanje uz čaj</div>
@@ -598,9 +655,9 @@
 
 <!-- PRAVILA PRIVATNOSTI VIEW -->
 <div id="view-privacy" class="view">
-  <div class="privacy-container scroll-reveal">
-    <h2 data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</h2>
-    <p data-hr="Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige." data-en="Privacy Policy for Christmas Wish. Your privacy is extremely important to us. All data you leave on our site is kept strictly confidential, and we use it solely to improve your holiday experience. Our site collects basic analytical data so we can understand what our visitors like to read and watch the most. We never sell this data, nor do we share it with unauthorized persons. For all additional information, feel free to contact us via our contact address. Enjoy the Christmas magic without worry.">Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige.</p>
+  <div class="privacy-container scroll-reveal" style="max-width: 800px; margin: 0 auto; padding: 80px 40px 100px; text-align: left;">
+    <h2 style="font-family:'Cinzel',serif; color:var(--red-deep); margin-bottom: 20px; font-size: 2rem;" data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</h2>
+    <p style="font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; margin-bottom: 20px;" data-hr="Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige." data-en="Privacy Policy for Christmas Wish. Your privacy is extremely important to us. All data you leave on our site is kept strictly confidential, and we use it solely to improve your holiday experience. Our site collects basic analytical data so we can understand what our visitors like to read and watch the most. We never sell this data, nor do we share it with unauthorized persons. For all additional information, feel free to contact us via our contact address. Enjoy the Christmas magic without worry.">Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige.</p>
   </div>
 </div>
 
@@ -611,7 +668,7 @@
     <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/christmas_wish2" target="_blank">Instagram</a>
     <a href="https://www.youtube.com/@ChristmasWishHR" target="_blank">YouTube</a>
-    <a onclick="showView('privacy')" id="nav-privacy" data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</a>
+    <a onclick="showView('privacy')" id="nav-privacy" data-hr="Pravila privatnosti" data-en="Privacy Policy" style="cursor: pointer;">Pravila privatnosti</a>
     <a href="mailto:bozic.christmas@gmail.com">bozic.christmas@gmail.com</a>
   </div>
   <div class="footer-copy">
@@ -654,6 +711,10 @@ function cardHTML(p) {
         <h3 class="blog-card-title">${p.title}</h3>
         <div class="blog-card-excerpt-wrapper">
           <div class="blog-card-excerpt">${p.excerpt}</div>
+        </div>
+        <div style="margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
+          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Mulish',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); this.style.backgroundColor='var(--red-mid)'; this.style.color='white'; this.style.borderColor='var(--red-mid)'; this.textContent='❤ Lajkano'">❤ Lajkaj</button>
+          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Mulish',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); alert('Hvala na dijeljenju ove objave!');">➦ Podijeli</button>
         </div>
       </div>
     </div>`;
@@ -713,6 +774,33 @@ function filterPosts(filter, btn) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   renderGrid(filter, 'blog-grid');
+}
+
+// LOGIKA ZA GALERIJU I LIGHTBOX
+function filterGallery(cat, btn) {
+  const buttons = document.querySelectorAll('#view-galerija .filter-btn');
+  buttons.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  
+  const items = document.querySelectorAll('#full-gallery-grid .gallery-item');
+  items.forEach(item => {
+    if (cat === 'sve') {
+      item.style.display = 'block';
+    } else {
+      if (item.classList.contains(cat)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    }
+  });
+}
+
+function openLightbox(src) {
+  const lb = document.getElementById('lightbox');
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb-down').href = src;
+  lb.style.display = 'flex';
 }
 
 function setLang(lang) {
