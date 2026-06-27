@@ -45,7 +45,7 @@
       transform: translateY(0);
     }
 
-    /* PAHULJE - POPRAVLJENA VIDLJIVOST (Z-INDEX) */
+    /* PAHULJE */
     .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; overflow: hidden; }
     .sf-flake {
       position: absolute;
@@ -64,16 +64,10 @@
     header { background: linear-gradient(160deg, #6b0f0f 0%, #3d0707 60%, #1a0303 100%); position: relative; z-index: 10; }
     header::before { content:''; display:block; height:3px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); }
 
-    .header-top { display:flex; justify-content:space-between; align-items:center; padding:12px 50px; border-bottom:1px solid rgba(201,148,58,0.15); }
+    .header-top { display:flex; justify-content:flex-end; align-items:center; padding:12px 50px; border-bottom:1px solid rgba(201,148,58,0.15); }
     .lang-toggle { display:flex; gap:8px; }
     .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
     .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); box-shadow: 0 0 15px rgba(201,148,58,0.4); }
-    
-    /* MODERNE MINIMALISTIČKE IKONE U ZAGLAVLJU */
-    .social-links { display:flex; gap:20px; align-items:center; }
-    .social-links a { color:rgba(255,255,255,0.6); display:flex; align-items:center; transition:all 0.3s ease; }
-    .social-links a svg { width:20px; height:20px; stroke-width:1.5px; transition:all 0.3s ease; }
-    .social-links a:hover { color:var(--gold-light); transform:translateY(-2px); filter:drop-shadow(0 0 8px rgba(232, 196, 106, 0.5)); }
 
     /* BOŽIĆNE KUGLICE ANIMACIJA */
     .bauble-container { position: absolute; top: 0; left: 8%; z-index: 15; display: flex; gap: 20px; pointer-events: none; }
@@ -83,18 +77,23 @@
     .bauble-ball { width: 28px; height: 28px; background: radial-gradient(circle at 35% 35%, #fdf8f0, #c9943a, #6b0f0f); border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
     @keyframes swing { 0% { transform: rotate(-6deg); } 100% { transform: rotate(6deg); } }
 
+    /* HERO SEKCIJA */
     .hero { 
       text-align:center; 
-      padding:35px 20px 45px; 
+      padding:45px 20px 55px; 
       position: relative; 
-      background: radial-gradient(circle at 50% 40%, rgba(201,148,58,0.15) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 40%, rgba(201,148,58,0.12) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     
     .hero-logo { 
-      width:180px; 
-      height:180px; 
+      width:160px; 
+      height:160px; 
       object-fit:contain; 
-      margin:0 auto 15px; 
+      margin:0 auto 20px; 
       display:block; 
       filter:brightness(0) invert(1) drop-shadow(0 0 15px rgba(255,255,255,0.2)); 
       opacity:0.95; 
@@ -105,26 +104,100 @@
       50% { transform: translateY(-8px); }
       100% { transform: translateY(0px); }
     }
+
+    /* NOVO ODBROJAVANJE */
+    .modern-countdown {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin: 10px auto 25px auto;
+      z-index: 2;
+    }
+    .mc-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(201,148,58,0.3);
+      border-radius: 8px;
+      padding: 12px 18px;
+      min-width: 80px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: border-color 0.3s ease;
+    }
+    .mc-item:hover {
+      border-color: rgba(201,148,58,0.6);
+    }
+    .mc-val {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      text-shadow: 0 0 15px rgba(201,148,58,0.4);
+    }
+    .mc-label {
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 2px;
+      margin-top: 6px;
+    }
     
-    .logo-text { font-family:'Cinzel', serif; font-size:clamp(1.5rem,3.5vw,2.5rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 3px 15px rgba(0,0,0,0.5); }
+    .logo-text { font-family:'Cinzel', serif; font-size:clamp(1.8rem,4vw,3.2rem); color:var(--white); font-weight:700; letter-spacing:4px; text-shadow: 0 3px 15px rgba(0,0,0,0.5); }
     .logo-text span { color:var(--gold-light); }
     .hero-tagline { font-family: 'Mulish', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:12px; }
     .gold-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px auto 0; opacity: 0.8; }
 
-    /* DISKRETNO ODBROJAVANJE IZMEĐU LOGA I NASLOVA */
-    .discrete-countdown {
-      display: flex; justify-content: center; align-items: center; gap: 8px;
-      font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-light);
-      margin: 10px auto 20px auto; letter-spacing: 1px;
+    /* LEBDEĆE DRUŠTVENE MREŽE U HERO SEKCIJI */
+    .hero-social {
+      position: absolute;
+      right: 50px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 20;
     }
-    .dc-box {
-      background: rgba(0,0,0,0.2); border: 1px solid rgba(201,148,58,0.3);
-      padding: 4px 10px; border-radius: 4px; font-weight: 600;
-      box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    .hero-social a {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.6);
+      transition: all 0.4s ease;
+      opacity: 0;
+      animation: slideInRight 0.8s forwards cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .dc-box small { font-size: 0.6rem; margin-left: 2px; color: rgba(255,255,255,0.6); font-family: 'Mulish', sans-serif; text-transform: uppercase; }
-    .dc-sep { animation: blink 1.5s infinite; color: var(--gold); }
-    @keyframes blink { 0%,100% { opacity: 0.4; } 50% { opacity: 0.1; } }
+    .hero-social a:nth-child(1) { animation-delay: 0.3s; }
+    .hero-social a:nth-child(2) { animation-delay: 0.45s; }
+    .hero-social a:nth-child(3) { animation-delay: 0.6s; }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    .hero-social a:hover {
+      background: var(--gold);
+      color: #3d0707;
+      border-color: var(--gold);
+      transform: scale(1.1) translateX(-5px);
+      box-shadow: 0 5px 20px rgba(201,148,58,0.4);
+    }
+    .hero-social svg { width: 18px; height: 18px; stroke-width: 1.5px; }
 
     /* NAV */
     nav { 
@@ -136,8 +209,8 @@
       position: sticky; top: 0; z-index: 100; 
       box-shadow: 0 5px 30px rgba(0,0,0,0.4); 
     }
-    nav ul { display:flex; justify-content:center; list-style:none; }
-    nav ul li a { display:block; padding:18px 30px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; cursor: pointer; }
+    nav ul { display:flex; justify-content:center; list-style:none; flex-wrap: wrap; }
+    nav ul li a { display:block; padding:18px 25px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; cursor: pointer; }
     nav ul li a:hover, nav ul li a.active { color:var(--gold-light); border-bottom-color:var(--gold); background: linear-gradient(to top, rgba(201,148,58,0.15), transparent); text-shadow: 0 0 8px rgba(232,196,106,0.3); }
 
     /* VIEWS ANIMATION */
@@ -148,25 +221,42 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* COMMON PAGE HEADER */
+    .page-header { background:var(--white); padding:80px 40px 50px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
+    .page-header h1 { font-family:'Cinzel',serif; font-size:clamp(2.5rem,5vw,3.5rem); color:var(--red-deep); }
+    .page-header p { max-width:600px; margin:20px auto 0; color:var(--text-mid); font-size:1.05rem; line-height:1.9; font-weight:300; }
+
     /* HOME VIEW */
     .intro-section { background:var(--white); padding:100px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
     .section-eyebrow { font-family:'Mulish',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
     .intro-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
     .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.1rem; font-weight:300; }
 
+    /* MALA MREŽA VIDEA NA NASLOVNOJ */
     .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:100px 40px; text-align:center; position: relative; }
     .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,148,58,0.4),transparent); }
     .video-section .section-eyebrow { color:var(--gold-light); }
     .video-section h2 { font-family:'Cinzel',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
-    .video-wrapper { max-width:900px; margin:0 auto; border-radius:16px; overflow:hidden; box-shadow:0 35px 70px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.4); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-    .video-wrapper:hover { transform: translateY(-8px) scale(1.01); box-shadow:0 40px 80px rgba(0,0,0,0.7); }
-    .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; }
+    
+    .home-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .video-wrapper { border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.3); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #000; }
+    .video-wrapper:hover { transform: translateY(-6px) scale(1.02); box-shadow:0 30px 60px rgba(0,0,0,0.7); }
+    .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; border:none; }
+
+    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
+    .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+    .view-all-btn.light { border-color: var(--gold-light); color: var(--gold-light); }
+    .view-all-btn.light:hover { background: var(--gold-light); color: #3d0707; border-color: var(--gold-light); }
 
     .blog-preview-section { padding:100px 40px; background:var(--cream); }
     .blog-preview-section .section-eyebrow { text-align:center; }
     .blog-preview-section > h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); text-align:center; margin-bottom:60px; }
-    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
-    .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
 
     /* GALLERY */
     .gallery-section { background:var(--white); padding:100px 40px; text-align:center; }
@@ -179,11 +269,7 @@
     .gallery-item svg { opacity:0.15; width:50px; height:50px; transition: all 0.4s ease; z-index: 1; position: absolute; }
     .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Mulish',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
 
-    /* BLOG LIST VIEW */
-    .page-header { background:var(--white); padding:80px 40px 50px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .page-header h1 { font-family:'Cinzel',serif; font-size:clamp(2.5rem,5vw,3.5rem); color:var(--red-deep); }
-    .page-header p { max-width:600px; margin:20px auto 0; color:var(--text-mid); font-size:1.05rem; line-height:1.9; font-weight:300; }
-
+    /* BLOG LIST & CARDS */
     .filter-bar { background:var(--cream); padding:30px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
     .filter-btn { background:transparent; border:1px solid rgba(139,26,26,0.25); color:var(--text-mid); padding:10px 24px; border-radius:30px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; cursor: pointer; }
     .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 5px 15px rgba(139,26,26,0.25); transform: translateY(-2px); }
@@ -191,70 +277,27 @@
     .blog-section { padding:80px 40px 100px; }
     .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:35px; max-width:1150px; margin:0 auto; }
 
-    /* EDITORIAL/CINEMATIC BLOG CARDS */
     .blog-card { 
-      position: relative;
-      height: 400px; 
-      border-radius: 12px; 
-      overflow: hidden; 
-      box-shadow: var(--shadow-soft); 
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
-      cursor: pointer;
+      position: relative; height: 400px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
     }
-    .blog-card:hover { 
-      transform: translateY(-10px); 
-      box-shadow: var(--shadow-hover); 
-    }
-    
-    .blog-card-img { 
-      position: absolute; 
-      inset: 0; 
-      background: linear-gradient(135deg, var(--red-mid), var(--red-deep)); 
-    }
-    .blog-card-img img { 
-      width: 100%; 
-      height: 100%; 
-      object-fit: cover; 
-      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); 
-    }
+    .blog-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
+    .blog-card-img { position: absolute; inset: 0; background: linear-gradient(135deg, var(--red-mid), var(--red-deep)); }
+    .blog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .blog-card:hover .blog-card-img img { transform: scale(1.08); }
-    
-    .blog-card-img::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.5) 45%, rgba(26, 3, 3, 0.1) 100%);
-      transition: background 0.5s ease;
-    }
-    .blog-card:hover .blog-card-img::after {
-      background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.6) 55%, rgba(26, 3, 3, 0.2) 100%);
-    }
-
+    .blog-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.5) 45%, rgba(26, 3, 3, 0.1) 100%); transition: background 0.5s ease; }
+    .blog-card:hover .blog-card-img::after { background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.6) 55%, rgba(26, 3, 3, 0.2) 100%); }
     .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 80px; height: 80px; z-index: 1; }
 
-    .blog-card-body { 
-      position: absolute; 
-      bottom: 0; 
-      left: 0; 
-      right: 0; 
-      padding: 30px 25px; 
-      z-index: 2; 
-      display: flex; 
-      flex-direction: column; 
-    }
-    
+    .blog-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 30px 25px; z-index: 2; display: flex; flex-direction: column; }
     .blog-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
     .blog-card-category { font-size: 0.65rem; letter-spacing: 3px; color: var(--white); background: var(--gold); text-transform: uppercase; padding: 4px 12px; border-radius: 20px; font-weight: 700; }
     .blog-card-date { font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); text-transform: uppercase; font-weight: 600; }
-    
     .blog-card-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--white); line-height: 1.3; margin-bottom: 0; transition: color 0.3s; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     .blog-card:hover .blog-card-title { color: var(--gold-light); }
-    
     .blog-card-excerpt-wrapper { height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 0; }
     .blog-card:hover .blog-card-excerpt-wrapper { height: 65px; opacity: 1; margin-top: 12px; }
     .blog-card-excerpt { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-weight: 300; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
-    /* SINGLE POST VIEW */
     .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
     .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); margin-bottom:40px; background:none; border:none; font-family:'Mulish',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(139,26,26,0.06); cursor: pointer; }
     .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-6px); box-shadow: 0 4px 12px rgba(139,26,26,0.25); }
@@ -262,11 +305,15 @@
     .post-header-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
     .post-category { font-size:0.7rem; letter-spacing:3px; color:var(--white); background:var(--gold); text-transform:uppercase; padding:5px 14px; border-radius:20px; font-weight:700; }
     .post-date { font-size:0.8rem; letter-spacing:2px; color:var(--text-mid); text-transform:uppercase; font-weight:600; }
-    
     .post-title { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3.5rem); color:var(--red-deep); line-height:1.2; margin-bottom:30px; }
     .post-divider { width:80px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:40px; border-radius: 2px; }
     .post-body { font-size:1.1rem; line-height:2; color:var(--text-dark); font-weight:300; }
     .post-body p { margin-bottom:25px; }
+
+    /* NOVO - LIVE SANTA VIEW */
+    .live-santa-section { padding: 40px 20px 80px; text-align: center; background: var(--cream); }
+    .live-santa-wrapper { max-width: 1000px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); border: 1px solid rgba(201,148,58,0.4); background: #000; }
+    .live-santa-wrapper iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
 
     /* FOOTER */
     footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
@@ -283,12 +330,18 @@
       .header-top { padding:14px 20px; }
       .hero { padding:30px 20px 40px; }
       .hero-logo { width:120px; height:120px; }
+      /* Makni društvene mreže u mobilnom prikazu iz heroja ako nema mjesta */
+      .hero-social { display: none; }
       nav ul li a { padding:14px 10px; font-size:0.65rem; letter-spacing: 1px; }
       .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:60px 20px; }
       .post-container { padding:50px 20px 70px; }
+      .home-video-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 10px; }
       .page-header { padding:50px 20px 35px; }
       .blog-card { height: 320px; }
+      .modern-countdown { gap: 8px; }
+      .mc-item { min-width: 60px; padding: 10px; }
+      .mc-val { font-size: 1.4rem; }
     }
   </style>
 </head>
@@ -297,6 +350,7 @@
 <div class="snowflakes" id="snowflakes"></div>
 
 <header>
+  <!-- BOŽIĆNE KUGLICE ANIMACIJA -->
   <div class="bauble-container">
     <div class="bauble">
       <div class="bauble-wire" style="height: 40px;"></div>
@@ -311,7 +365,17 @@
   </div>
 
   <div class="header-top">
-    <div class="social-links">
+    <!-- Prazan prostor s lijeve strane jer su mreže otišle u Hero odjeljak -->
+    <div></div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('hr')" id="btn-hr">HR</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+  
+  <div class="hero scroll-reveal">
+    <!-- MODERNE LEBDEĆE DRUŠTVENE MREŽE (Desna strana) -->
+    <div class="hero-social">
       <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank" aria-label="Facebook">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
       </a>
@@ -322,20 +386,27 @@
          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2C5.12 19.5 12 19.5 12 19.5s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
       </a>
     </div>
-    <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('hr')" id="btn-hr">HR</button>
-      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
-    </div>
-  </div>
-  
-  <div class="hero scroll-reveal">
+
     <img src="logo.png" alt="Christmas Wish Logo" class="hero-logo" onclick="showView('home')"/>
     
-    <div class="discrete-countdown" id="countdown-boxes">
-      <div class="dc-box"><span id="cd-days">--</span><small>D</small></div> <span class="dc-sep">:</span>
-      <div class="dc-box"><span id="cd-hours">--</span><small>H</small></div> <span class="dc-sep">:</span>
-      <div class="dc-box"><span id="cd-mins">--</span><small>M</small></div> <span class="dc-sep">:</span>
-      <div class="dc-box"><span id="cd-secs">--</span><small>S</small></div>
+    <!-- MODERNO STAKLENO ODBROJAVANJE -->
+    <div class="modern-countdown" id="countdown-boxes">
+      <div class="mc-item">
+        <span class="mc-val" id="mc-days">--</span>
+        <span class="mc-label" data-hr="Dana" data-en="Days">Dana</span>
+      </div>
+      <div class="mc-item">
+        <span class="mc-val" id="mc-hours">--</span>
+        <span class="mc-label" data-hr="Sati" data-en="Hours">Sati</span>
+      </div>
+      <div class="mc-item">
+        <span class="mc-val" id="mc-mins">--</span>
+        <span class="mc-label" data-hr="Min" data-en="Mins">Min</span>
+      </div>
+      <div class="mc-item">
+        <span class="mc-val" id="mc-secs">--</span>
+        <span class="mc-label" data-hr="Sek" data-en="Secs">Sek</span>
+      </div>
     </div>
 
     <div class="logo-text" onclick="showView('home')">Christmas <span>Wish</span></div>
@@ -348,12 +419,14 @@
   <ul>
     <li><a onclick="showView('home')" id="nav-home" class="active" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
     <li><a onclick="showView('blog')" id="nav-blog" data-hr="Blog" data-en="Blog">Blog</a></li>
-    <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('video').scrollIntoView({behavior:'smooth'}),100)" data-hr="Video" data-en="Video">Video</a></li>
+    <li><a onclick="showView('video')" id="nav-video" data-hr="Video" data-en="Video">Video</a></li>
+    <li><a onclick="showView('live')" id="nav-live" data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</a></li>
     <li><a onclick="showView('galerija')" id="nav-galerija" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
     <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),100)" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
   </ul>
 </nav>
 
+<!-- HOME VIEW -->
 <div id="view-home" class="view active">
 
   <section class="intro-section scroll-reveal">
@@ -362,12 +435,20 @@
     <p data-hr="Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a labour of love — a website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
-  <section class="video-section scroll-reveal" id="video">
+  <!-- MREŽA DVA VIDEA NA NASLOVNOJ -->
+  <section class="video-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Najnovije" data-en="Latest">Najnovije</div>
-    <h2 data-hr="Zimska atmosfera — novi video" data-en="Winter atmosphere — new video">Zimska atmosfera — novi video</h2>
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <h2 data-hr="Zimska atmosfera — novi videi" data-en="Winter atmosphere — new videos">Zimska atmosfera — novi videi</h2>
+    <div class="home-video-grid">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <!-- Ovdje možeš dodati link za svoj drugi video kada ga napraviš -->
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
     </div>
+    <button class="view-all-btn light" onclick="showView('video')" data-hr="Više videa" data-en="More videos">Više videa</button>
   </section>
 
   <section class="blog-preview-section scroll-reveal">
@@ -377,7 +458,7 @@
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
 
-  <section class="gallery-section scroll-reveal" id="galerija">
+  <section class="gallery-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
     <div class="gallery-grid">
@@ -389,6 +470,48 @@
     <button class="view-all-btn" onclick="showView('galerija')" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
   </section>
 
+</div>
+
+<!-- NOVA STRANICA: VIDEO -->
+<div id="view-video" class="view">
+  <div class="page-header scroll-reveal">
+    <div class="section-eyebrow" data-hr="Zvuci i prizori" data-en="Sounds and scenes">Zvuci i prizori</div>
+    <h1 data-hr="Video Kolekcija" data-en="Video Collection">Video Kolekcija</h1>
+    <p data-hr="Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala." data-en="Here we bring our collection of winter atmospheres from our YouTube channel.">Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala.</p>
+  </div>
+  <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
+    <!-- Koristimo istu logiku mreže kao na naslovnoj ali veće -->
+    <div class="home-video-grid" style="margin-bottom: 40px;">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <!-- Zasad stavi isti video kao rezervu dok ne dobiješ drugi -->
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- NOVA STRANICA: LIVE SANTA CLAUSE VILLAGE -->
+<div id="view-live" class="view">
+  <div class="page-header scroll-reveal">
+    <div class="section-eyebrow" data-hr="Uživo iz Laponije" data-en="Live from Lapland">Uživo iz Laponije</div>
+    <h1 data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</h1>
+    <p data-hr="Uključite se u prijenos uživo i doživite djelić prave magije direktno iz sela Djeda Božićnjaka." data-en="Tune into the live stream and experience a piece of real magic directly from Santa Claus Village.">Uključite se u prijenos uživo i doživite djelić prave magije direktno iz sela Djeda Božićnjaka.</p>
+  </div>
+  <section class="live-santa-section scroll-reveal">
+    <div class="live-santa-wrapper">
+      <!-- ID je dodan kako bi ga JS automatski pokrenuo -->
+      <iframe id="live-santa-iframe" title="Live Santa Clause Village" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </section>
 </div>
 
 <div id="view-galerija" class="view">
@@ -500,6 +623,12 @@ function renderGrid(filter, targetId) {
 }
 
 function showView(name) {
+  // PAMETNO ZAUSTAVLJANJE SVIH VIDEA PRILIKOM PREBACIVANJA KATEGORIJE
+  document.querySelectorAll('iframe').forEach(iframe => {
+    let currentSrc = iframe.src;
+    iframe.src = currentSrc; 
+  });
+
   document.querySelectorAll('.view').forEach(v => {
     v.classList.remove('active');
   });
@@ -515,7 +644,16 @@ function showView(name) {
   if (navEl) navEl.classList.add('active');
   
   window.scrollTo({top: 0, behavior: 'smooth'});
+  
   if (name === 'blog') renderGrid('sve', 'blog-grid');
+  
+  // AKO JE KLIKNUTO NA LIVE SANTA - AUTOMATSKI POKRENI VIDEO (AUTOPLAY)
+  if (name === 'live') {
+    const liveVideo = document.getElementById('live-santa-iframe');
+    if(liveVideo && !liveVideo.src.includes('autoplay=1')) {
+        liveVideo.src = "https://www.youtube.com/embed/Cp4RRAEgpeU?autoplay=1&mute=1";
+    }
+  }
   
   if (window.initObserver) window.initObserver();
 }
@@ -562,7 +700,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const container = document.getElementById('snowflakes');
 
-// REALNE SVG PAHULJE - AŽURIRANA BOJA ZA VIDLJIVOST
 function createSnowflake() {
   const sf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   sf.setAttribute('viewBox', '0 0 20 20');
@@ -575,7 +712,6 @@ function createSnowflake() {
   const delay = Math.random() * 15;
   const drift = (Math.random() - 0.5) * 80;
   
-  // Zlatna boja umjesto bijele kako bi bile vidljive svugdje!
   const strokeColor = "rgba(201,148,58, 0.6)"; 
 
   sf.style.cssText = `
@@ -630,7 +766,7 @@ function updateCountdown() {
   const diff = christmas - now;
 
   if (diff <= 0) {
-    document.getElementById('countdown-boxes').innerHTML = '<div style="font-family: \'Cinzel\', serif; font-size: 1.2rem; color: var(--gold-light); margin-bottom: 20px;">&#127876; Sretan Božić! &#127876;</div>';
+    document.getElementById('countdown-boxes').innerHTML = '<div style="font-family: \'Cinzel\', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-shadow: 0 0 15px rgba(201,148,58,0.5);">&#127876; Sretan Božić! &#127876;</div>';
     return;
   }
 
@@ -639,10 +775,10 @@ function updateCountdown() {
   const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const secs  = Math.floor((diff % (1000 * 60)) / 1000);
 
-  document.getElementById('cd-days').textContent  = String(days).padStart(3, '0');
-  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
-  document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
-  document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+  document.getElementById('mc-days').textContent  = String(days).padStart(2, '0');
+  document.getElementById('mc-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('mc-mins').textContent  = String(mins).padStart(2, '0');
+  document.getElementById('mc-secs').textContent  = String(secs).padStart(2, '0');
 }
 
 updateCountdown();
