@@ -113,6 +113,184 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* FLOATING SOCIAL ICONS */
+    .social-float {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 999;
+    }
+    .social-float a {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      transform: translateX(60px);
+      animation: slideInIcon 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      position: relative;
+    }
+    .social-float a:nth-child(1) { animation-delay: 0.2s; background: rgba(24,119,242,0.15); border: 1px solid rgba(24,119,242,0.3); }
+    .social-float a:nth-child(2) { animation-delay: 0.35s; background: rgba(225,48,108,0.15); border: 1px solid rgba(225,48,108,0.3); }
+    .social-float a:nth-child(3) { animation-delay: 0.5s; background: rgba(201,148,58,0.15); border: 1px solid rgba(201,148,58,0.3); }
+    @keyframes slideInIcon {
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .social-float a:hover {
+      transform: translateX(-6px) scale(1.15);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .social-float a:nth-child(1):hover { background: rgba(24,119,242,0.35); box-shadow: 0 8px 25px rgba(24,119,242,0.3); }
+    .social-float a:nth-child(2):hover { background: rgba(225,48,108,0.35); box-shadow: 0 8px 25px rgba(225,48,108,0.3); }
+    .social-float a:nth-child(3):hover { background: rgba(255,0,0,0.25); box-shadow: 0 8px 25px rgba(255,0,0,0.25); }
+    .social-float svg { width: 20px; height: 20px; }
+    /* tooltip */
+    .social-float a::before {
+      content: attr(data-tip);
+      position: absolute;
+      right: 54px;
+      background: rgba(20,5,5,0.9);
+      color: var(--gold-light);
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      border: 1px solid rgba(201,148,58,0.2);
+    }
+    .social-float a:hover::before { opacity: 1; }
+
+    /* REAL SVG SNOWFLAKES */
+    .snowflakes { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+    .sf-flake {
+      position: absolute;
+      top: -30px;
+      animation: sfFall linear infinite;
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    @keyframes sfFall {
+      0%   { transform: translateY(-30px) translateX(0) rotate(0deg); opacity: 0.8; }
+      50%  { transform: translateY(50vh) translateX(var(--drift)) rotate(180deg); opacity: 0.5; }
+      100% { transform: translateY(105vh) translateX(0) rotate(360deg); opacity: 0; }
+    }
+
+    /* COUNTDOWN */
+    .countdown-section {
+      background: linear-gradient(160deg, #3d0707, #1a0303);
+      padding: 50px 40px;
+      text-align: center;
+      border-top: 1px solid rgba(201,148,58,0.15);
+      border-bottom: 1px solid rgba(201,148,58,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .countdown-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,148,58,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .countdown-label {
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .countdown-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
+      color: rgba(255,255,255,0.6);
+      font-weight: 400;
+      margin-bottom: 35px;
+      letter-spacing: 3px;
+    }
+    .countdown-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .countdown-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .countdown-num {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+      min-width: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(201,148,58,0.2);
+      border-radius: 8px;
+      padding: 20px 16px 16px;
+      position: relative;
+      text-shadow: 0 0 30px rgba(201,148,58,0.3);
+      transition: all 0.3s ease;
+    }
+    .countdown-num::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 0 0 8px 8px;
+    }
+    .countdown-unit {
+      font-family: 'Mulish', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .countdown-sep {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--gold);
+      opacity: 0.4;
+      align-self: flex-start;
+      margin-top: 18px;
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 0.4; } 50% { opacity: 0.1; } }
+    .countdown-done {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      color: var(--gold-light);
+      letter-spacing: 4px;
+    }
+    @media (max-width: 768px) {
+      .social-float { right: 12px; gap: 10px; }
+      .social-float a { width: 38px; height: 38px; }
+      .social-float a::before { display: none; }
+      .countdown-boxes { gap: 10px; }
+      .countdown-num { min-width: 70px; padding: 14px 10px 12px; }
+      .countdown-sep { margin-top: 12px; }
+    }
+
     /* HOME VIEW */
     .intro-section { background:var(--white); padding:100px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
     .section-eyebrow { font-family:'Mulish',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
@@ -265,6 +443,28 @@
 
 <div class="snowflakes" id="snowflakes"></div>
 
+<!-- FLOATING SOCIAL ICONS -->
+<div class="social-float">
+  <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank" data-tip="Facebook" aria-label="Facebook">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="#4a90d9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <a href="https://www.instagram.com/christmas_wish2" target="_blank" data-tip="Instagram" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="#e1306c" stroke-width="2"/>
+      <circle cx="12" cy="12" r="4" stroke="#e1306c" stroke-width="2"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="#e1306c"/>
+    </svg>
+  </a>
+  <a href="https://www.youtube.com/@ChristmasWishHR" target="_blank" data-tip="YouTube" aria-label="YouTube">
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z" stroke="#ff4444" stroke-width="2"/>
+      <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" stroke="#ff4444" stroke-width="2" stroke-linejoin="round"/>
+    </svg>
+  </a>
+</div>
+
 <header>
   <div class="header-top">
     <div class="social-links">
@@ -284,6 +484,33 @@
     <div class="gold-divider"></div>
   </div>
 </header>
+
+<!-- COUNTDOWN DO BOŽIĆA -->
+<div class="countdown-section">
+  <div class="countdown-label" data-hr="Odbrojavanje do Božića" data-en="Countdown to Christmas">Odbrojavanje do Božića</div>
+  <div class="countdown-title" data-hr="25. prosinca" data-en="December 25th">25. prosinca</div>
+  <div class="countdown-boxes" id="countdown-boxes">
+    <div class="countdown-box">
+      <div class="countdown-num" id="cd-days">--</div>
+      <div class="countdown-unit" data-hr="Dana" data-en="Days">Dana</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cd-hours">--</div>
+      <div class="countdown-unit" data-hr="Sati" data-en="Hours">Sati</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cd-mins">--</div>
+      <div class="countdown-unit" data-hr="Minuta" data-en="Minutes">Minuta</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cd-secs">--</div>
+      <div class="countdown-unit" data-hr="Sekundi" data-en="Seconds">Sekundi</div>
+    </div>
+  </div>
+</div>
 
 <nav>
   <ul>
@@ -502,18 +729,90 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const container = document.getElementById('snowflakes');
-const symbols = ['❄','❅','❆'];
-for (let i = 0; i < 28; i++) {
-  const sf = document.createElement('div');
-  sf.className = 'snowflake';
-  sf.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-  sf.style.left = Math.random() * 100 + 'vw';
-  sf.style.fontSize = (0.7 + Math.random() * 1.2) + 'em';
-  sf.style.animationDuration = (7 + Math.random() * 15) + 's';
-  sf.style.animationDelay = (Math.random() * 12) + 's';
-  sf.style.opacity = 0.15 + Math.random() * 0.35;
+
+// REALNE SVG PAHULJE
+function createSnowflake() {
+  const sf = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  sf.setAttribute('viewBox', '0 0 20 20');
+  sf.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  sf.classList.add('sf-flake');
+
+  const size = 6 + Math.random() * 12;
+  const opacity = 0.15 + Math.random() * 0.45;
+  const duration = 10 + Math.random() * 20;
+  const delay = Math.random() * 15;
+  const drift = (Math.random() - 0.5) * 80;
+
+  sf.style.cssText = `
+    left: ${Math.random() * 100}vw;
+    width: ${size}px;
+    height: ${size}px;
+    opacity: ${opacity};
+    animation-duration: ${duration}s;
+    animation-delay: -${delay}s;
+    --drift: ${drift}px;
+  `;
+
+  // Koja vrsta pahulje (3 tipa)
+  const type = Math.floor(Math.random() * 3);
+  if (type === 0) {
+    sf.innerHTML = `
+      <line x1="10" y1="1" x2="10" y2="19" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="1" y1="10" x2="19" y2="10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="3.5" y1="3.5" x2="16.5" y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="16.5" y1="3.5" x2="3.5" y2="16.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="1.5" fill="white"/>`;
+  } else if (type === 1) {
+    sf.innerHTML = `
+      <line x1="10" y1="1" x2="10" y2="19" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="1" y1="10" x2="19" y2="10" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="3.5" y1="3.5" x2="16.5" y2="16.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="16.5" y1="3.5" x2="3.5" y2="16.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="10" y1="1" x2="7" y2="4" stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="10" y1="1" x2="13" y2="4" stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="10" y1="19" x2="7" y2="16" stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <line x1="10" y1="19" x2="13" y2="16" stroke="white" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="1.2" fill="white"/>`;
+  } else {
+    sf.innerHTML = `
+      <circle cx="10" cy="10" r="8" fill="none" stroke="white" stroke-width="0.8"/>
+      <line x1="10" y1="2" x2="10" y2="18" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="2" y1="10" x2="18" y2="10" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="4.3" y1="4.3" x2="15.7" y2="15.7" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="15.7" y1="4.3" x2="4.3" y2="15.7" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="10" cy="10" r="1.5" fill="white"/>`;
+  }
+
   container.appendChild(sf);
 }
+
+for (let i = 0; i < 40; i++) createSnowflake();
+
+// ODBROJAVANJE DO BOŽIĆA
+function updateCountdown() {
+  const now = new Date();
+  const year = now.getMonth() >= 11 && now.getDate() > 25 ? now.getFullYear() + 1 : now.getFullYear();
+  const christmas = new Date(year, 11, 25, 0, 0, 0);
+  const diff = christmas - now;
+
+  if (diff <= 0) {
+    document.getElementById('countdown-boxes').innerHTML = '<div class="countdown-done">&#127876; Sretan Božić! &#127876;</div>';
+    return;
+  }
+
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById('cd-days').textContent  = String(days).padStart(3, '0');
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('cd-mins').textContent  = String(mins).padStart(2, '0');
+  document.getElementById('cd-secs').textContent  = String(secs).padStart(2, '0');
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
 
 document.getElementById('home-blog-grid').innerHTML = posts.slice(0,6).map(cardHTML).join('');
 </script>
