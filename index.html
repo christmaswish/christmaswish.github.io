@@ -69,13 +69,21 @@
     .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
     .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); box-shadow: 0 0 15px rgba(201,148,58,0.4); }
 
-    /* BOŽIĆNE KUGLICE ANIMACIJA */
-    .bauble-container { position: absolute; top: 0; left: 8%; z-index: 15; display: flex; gap: 20px; pointer-events: none; }
+    /* BOŽIĆNE KUGLICE ANIMACIJA - VEĆE I VIŠE NJIH */
+    .bauble-container { position: absolute; top: 0; z-index: 15; display: flex; gap: 25px; pointer-events: none; }
+    .bauble-container.left-1 { left: 6%; }
+    .bauble-container.left-2 { left: 24%; }
+    .bauble-container.right-1 { right: 8%; }
+    
     .bauble { transform-origin: top center; animation: swing 3s ease-in-out infinite alternate; display: flex; flex-direction: column; align-items: center; }
-    .bauble-wire { width: 1px; background: rgba(201,148,58,0.6); }
-    .bauble-cap { width: 8px; height: 4px; background: #c9943a; border-radius: 2px 2px 0 0; }
-    .bauble-ball { width: 28px; height: 28px; background: radial-gradient(circle at 35% 35%, #fdf8f0, #c9943a, #6b0f0f); border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.4); }
-    @keyframes swing { 0% { transform: rotate(-6deg); } 100% { transform: rotate(6deg); } }
+    .bauble-wire { width: 1.5px; background: rgba(201,148,58,0.6); }
+    .bauble-cap { width: 12px; height: 5px; background: #c9943a; border-radius: 3px 3px 0 0; }
+    
+    .bauble-ball { width: 36px; height: 36px; background: radial-gradient(circle at 35% 35%, #fdf8f0, #c9943a, #6b0f0f); border-radius: 50%; box-shadow: 0 6px 15px rgba(0,0,0,0.5); }
+    .bauble-ball.red { background: radial-gradient(circle at 30% 30%, #e8c46a, #8b1a1a, #3d0707); }
+    .bauble-ball.small { width: 28px; height: 28px; }
+    
+    @keyframes swing { 0% { transform: rotate(-8deg); } 100% { transform: rotate(8deg); } }
 
     /* HERO SEKCIJA */
     .hero { 
@@ -105,7 +113,7 @@
       100% { transform: translateY(0px); }
     }
 
-    /* NOVO ODBROJAVANJE */
+    /* ODBROJAVANJE */
     .modern-countdown {
       display: flex;
       justify-content: center;
@@ -232,7 +240,7 @@
     .intro-section h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
     .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.1rem; font-weight:300; }
 
-    /* MALA MREŽA VIDEA NA NASLOVNOJ */
+    /* MREŽA VIDEA NA NASLOVNOJ */
     .video-section { background:linear-gradient(160deg,#6b0f0f,#3d0707); padding:100px 40px; text-align:center; position: relative; }
     .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(201,148,58,0.4),transparent); }
     .video-section .section-eyebrow { color:var(--gold-light); }
@@ -298,6 +306,7 @@
     .blog-card:hover .blog-card-excerpt-wrapper { height: 65px; opacity: 1; margin-top: 12px; }
     .blog-card-excerpt { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.6; font-weight: 300; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
+    /* SINGLE POST VIEW */
     .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
     .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--red-mid); margin-bottom:40px; background:none; border:none; font-family:'Mulish',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(139,26,26,0.06); cursor: pointer; }
     .post-back:hover { color:var(--white); background: var(--red-mid); transform: translateX(-6px); box-shadow: 0 4px 12px rgba(139,26,26,0.25); }
@@ -310,10 +319,15 @@
     .post-body { font-size:1.1rem; line-height:2; color:var(--text-dark); font-weight:300; }
     .post-body p { margin-bottom:25px; }
 
-    /* NOVO - LIVE SANTA VIEW */
+    /* LIVE SANTA VIEW */
     .live-santa-section { padding: 40px 20px 80px; text-align: center; background: var(--cream); }
     .live-santa-wrapper { max-width: 1000px; margin: 0 auto; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3); border: 1px solid rgba(201,148,58,0.4); background: #000; }
     .live-santa-wrapper iframe { width: 100%; aspect-ratio: 16/9; display: block; border: none; }
+
+    /* PRIVACY POLICY VIEW */
+    .privacy-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; text-align: left; }
+    .privacy-container h2 { font-family:'Cinzel',serif; color:var(--red-deep); margin-bottom: 20px; font-size: 2rem; }
+    .privacy-container p { font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; margin-bottom: 20px; }
 
     /* FOOTER */
     footer { background:linear-gradient(160deg,#3d0707,#1a0303); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
@@ -321,20 +335,20 @@
     .footer-logo { font-family:'Cinzel',serif; font-size:2.2rem; color:var(--gold-light); margin-bottom:12px; text-shadow: 0 2px 8px rgba(232,196,106,0.2); }
     .footer-tagline { font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:5px; text-transform:uppercase; margin-bottom:40px; color:rgba(255,255,255,0.4); }
     .footer-links { display:flex; justify-content:center; gap:30px; margin-bottom:40px; flex-wrap:wrap; }
-    .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; }
+    .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; cursor:pointer; }
     .footer-links a:hover { color:var(--gold-light); transform: translateY(-2px); display: inline-block; text-shadow: 0 0 8px rgba(232,196,106,0.3); }
-    .footer-copy { font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:25px; color:rgba(255,255,255,0.3); letter-spacing:1px; font-weight:300; }
+    
+    .footer-copy { font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.05); padding-top:25px; color:rgba(255,255,255,0.3); letter-spacing:1px; font-weight:300; line-height: 1.8; }
     footer::after { content:''; display:block; height:4px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); position: absolute; bottom: 0; left: 0; right: 0; }
 
     @media (max-width:768px) {
       .header-top { padding:14px 20px; }
       .hero { padding:30px 20px 40px; }
       .hero-logo { width:120px; height:120px; }
-      /* Makni društvene mreže u mobilnom prikazu iz heroja ako nema mjesta */
       .hero-social { display: none; }
       nav ul li a { padding:14px 10px; font-size:0.65rem; letter-spacing: 1px; }
       .blog-section,.intro-section,.video-section,.gallery-section,.blog-preview-section { padding:60px 20px; }
-      .post-container { padding:50px 20px 70px; }
+      .post-container, .privacy-container { padding:50px 20px 70px; }
       .home-video-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns:repeat(2,1fr); gap: 10px; }
       .page-header { padding:50px 20px 35px; }
@@ -342,6 +356,7 @@
       .modern-countdown { gap: 8px; }
       .mc-item { min-width: 60px; padding: 10px; }
       .mc-val { font-size: 1.4rem; }
+      .bauble-container.left-2, .bauble-container.right-1 { display: none; } /* Manje kuglica na mobitelu */
     }
   </style>
 </head>
@@ -351,21 +366,44 @@
 
 <header>
   <!-- BOŽIĆNE KUGLICE ANIMACIJA -->
-  <div class="bauble-container">
+  <!-- LIJEVA GRUPA 1 -->
+  <div class="bauble-container left-1">
     <div class="bauble">
-      <div class="bauble-wire" style="height: 40px;"></div>
+      <div class="bauble-wire" style="height: 50px;"></div>
       <div class="bauble-cap"></div>
       <div class="bauble-ball"></div>
     </div>
     <div class="bauble" style="animation-delay: 1.2s; animation-duration: 3.5s;">
-      <div class="bauble-wire" style="height: 65px;"></div>
+      <div class="bauble-wire" style="height: 80px;"></div>
       <div class="bauble-cap"></div>
-      <div class="bauble-ball" style="width: 22px; height: 22px; background: radial-gradient(circle at 30% 30%, #e8c46a, #8b1a1a);"></div>
+      <div class="bauble-ball red small"></div>
+    </div>
+  </div>
+  
+  <!-- LIJEVA GRUPA 2 -->
+  <div class="bauble-container left-2">
+    <div class="bauble" style="animation-delay: 0.5s; animation-duration: 4s;">
+      <div class="bauble-wire" style="height: 35px;"></div>
+      <div class="bauble-cap"></div>
+      <div class="bauble-ball small"></div>
+    </div>
+  </div>
+
+  <!-- DESNA GRUPA -->
+  <div class="bauble-container right-1">
+    <div class="bauble" style="animation-delay: 0.8s; animation-duration: 3.2s;">
+      <div class="bauble-wire" style="height: 60px;"></div>
+      <div class="bauble-cap"></div>
+      <div class="bauble-ball red"></div>
+    </div>
+    <div class="bauble" style="animation-delay: 1.5s; animation-duration: 3.8s;">
+      <div class="bauble-wire" style="height: 40px;"></div>
+      <div class="bauble-cap"></div>
+      <div class="bauble-ball small"></div>
     </div>
   </div>
 
   <div class="header-top">
-    <!-- Prazan prostor s lijeve strane jer su mreže otišle u Hero odjeljak -->
     <div></div>
     <div class="lang-toggle">
       <button class="lang-btn active" onclick="setLang('hr')" id="btn-hr">HR</button>
@@ -374,7 +412,6 @@
   </div>
   
   <div class="hero scroll-reveal">
-    <!-- MODERNE LEBDEĆE DRUŠTVENE MREŽE (Desna strana) -->
     <div class="hero-social">
       <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank" aria-label="Facebook">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
@@ -389,7 +426,6 @@
 
     <img src="logo.png" alt="Christmas Wish Logo" class="hero-logo" onclick="showView('home')"/>
     
-    <!-- MODERNO STAKLENO ODBROJAVANJE -->
     <div class="modern-countdown" id="countdown-boxes">
       <div class="mc-item">
         <span class="mc-val" id="mc-days">--</span>
@@ -435,7 +471,6 @@
     <p data-hr="Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a labour of love — a website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
-  <!-- MREŽA DVA VIDEA NA NASLOVNOJ -->
   <section class="video-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Najnovije" data-en="Latest">Najnovije</div>
     <h2 data-hr="Zimska atmosfera — novi videi" data-en="Winter atmosphere — new videos">Zimska atmosfera — novi videi</h2>
@@ -443,7 +478,6 @@
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
-      <!-- Ovdje možeš dodati link za svoj drugi video kada ga napraviš -->
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
@@ -458,7 +492,7 @@
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
 
-  <section class="gallery-section scroll-reveal">
+  <section class="gallery-section scroll-reveal" id="galerija">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
     <div class="gallery-grid">
@@ -472,7 +506,7 @@
 
 </div>
 
-<!-- NOVA STRANICA: VIDEO -->
+<!-- VIDEO VIEW -->
 <div id="view-video" class="view">
   <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Zvuci i prizori" data-en="Sounds and scenes">Zvuci i prizori</div>
@@ -480,13 +514,11 @@
     <p data-hr="Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala." data-en="Here we bring our collection of winter atmospheres from our YouTube channel.">Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala.</p>
   </div>
   <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
-    <!-- Koristimo istu logiku mreže kao na naslovnoj ali veće -->
     <div class="home-video-grid" style="margin-bottom: 40px;">
       <div class="video-wrapper">
         <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-wrapper">
-        <!-- Zasad stavi isti video kao rezervu dok ne dobiješ drugi -->
         <iframe src="https://www.youtube.com/embed/PaEUlzUHpes" title="Christmas Wish Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-wrapper">
@@ -499,7 +531,7 @@
   </section>
 </div>
 
-<!-- NOVA STRANICA: LIVE SANTA CLAUSE VILLAGE -->
+<!-- LIVE SANTA CLAUSE VILLAGE VIEW -->
 <div id="view-live" class="view">
   <div class="page-header scroll-reveal">
     <div class="section-eyebrow" data-hr="Uživo iz Laponije" data-en="Live from Lapland">Uživo iz Laponije</div>
@@ -508,7 +540,6 @@
   </div>
   <section class="live-santa-section scroll-reveal">
     <div class="live-santa-wrapper">
-      <!-- ID je dodan kako bi ga JS automatski pokrenuo -->
       <iframe id="live-santa-iframe" title="Live Santa Clause Village" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   </section>
@@ -565,6 +596,14 @@
   </div>
 </div>
 
+<!-- PRAVILA PRIVATNOSTI VIEW -->
+<div id="view-privacy" class="view">
+  <div class="privacy-container scroll-reveal">
+    <h2 data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</h2>
+    <p data-hr="Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige." data-en="Privacy Policy for Christmas Wish. Your privacy is extremely important to us. All data you leave on our site is kept strictly confidential, and we use it solely to improve your holiday experience. Our site collects basic analytical data so we can understand what our visitors like to read and watch the most. We never sell this data, nor do we share it with unauthorized persons. For all additional information, feel free to contact us via our contact address. Enjoy the Christmas magic without worry.">Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige.</p>
+  </div>
+</div>
+
 <footer id="kontakt" class="scroll-reveal">
   <div class="footer-logo">Christmas Wish</div>
   <div class="footer-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
@@ -572,9 +611,14 @@
     <a href="https://www.facebook.com/Bozic.ChristmasWish.hr" target="_blank">Facebook</a>
     <a href="https://www.instagram.com/christmas_wish2" target="_blank">Instagram</a>
     <a href="https://www.youtube.com/@ChristmasWishHR" target="_blank">YouTube</a>
+    <a onclick="showView('privacy')" id="nav-privacy" data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</a>
     <a href="mailto:bozic.christmas@gmail.com">bozic.christmas@gmail.com</a>
   </div>
-  <div class="footer-copy">© 2026 Christmas Wish &nbsp;·&nbsp; <span data-hr="Sva prava pridržana" data-en="All rights reserved">Sva prava pridržana</span></div>
+  <div class="footer-copy">
+    © 2026 Christmas Wish &nbsp;·&nbsp; <span data-hr="Sva prava pridržana" data-en="All rights reserved">Sva prava pridržana</span>
+    <br><br>
+    Dizajn i razvoj: <a href="https://kezicvizuali.com/" target="_blank" style="color: var(--gold-light); text-decoration: none;">Kezić Vizuali</a>
+  </div>
 </footer>
 
 <script>
@@ -623,7 +667,6 @@ function renderGrid(filter, targetId) {
 }
 
 function showView(name) {
-  // PAMETNO ZAUSTAVLJANJE SVIH VIDEA PRILIKOM PREBACIVANJA KATEGORIJE
   document.querySelectorAll('iframe').forEach(iframe => {
     let currentSrc = iframe.src;
     iframe.src = currentSrc; 
@@ -647,7 +690,6 @@ function showView(name) {
   
   if (name === 'blog') renderGrid('sve', 'blog-grid');
   
-  // AKO JE KLIKNUTO NA LIVE SANTA - AUTOMATSKI POKRENI VIDEO (AUTOPLAY)
   if (name === 'live') {
     const liveVideo = document.getElementById('live-santa-iframe');
     if(liveVideo && !liveVideo.src.includes('autoplay=1')) {
@@ -758,7 +800,6 @@ function createSnowflake() {
 
 for (let i = 0; i < 40; i++) createSnowflake();
 
-// ODBROJAVANJE DO BOŽIĆA
 function updateCountdown() {
   const now = new Date();
   const year = now.getMonth() >= 11 && now.getDate() > 25 ? now.getFullYear() + 1 : now.getFullYear();
