@@ -265,6 +265,20 @@
     .view-all-btn.light { border-color: var(--gold-light); color: var(--gold-light); }
     .view-all-btn.light:hover { background: var(--gold-light); color: #3d0707; border-color: var(--gold-light); }
 
+    /* VIDEO TABOVI */
+    .video-tabs { display: flex; justify-content: center; gap: 12px; margin: 0 0 40px 0; }
+    .video-tab-btn { background: transparent; border: 2px solid rgba(201,148,58,0.4); color: rgba(255,255,255,0.6); padding: 10px 30px; border-radius: 30px; font-family: 'Mulish', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s ease; cursor: pointer; }
+    .video-tab-btn.active, .video-tab-btn:hover { background: var(--gold); color: #3d0707; border-color: var(--gold); box-shadow: 0 5px 20px rgba(201,148,58,0.3); }
+
+    /* SHORTS GRID — vertikalni format */
+    .shorts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .shorts-wrapper { border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.6); border: 1px solid rgba(201,148,58,0.3); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #000; }
+    .shorts-wrapper:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 30px 60px rgba(0,0,0,0.7); }
+    .shorts-wrapper iframe { width: 100%; aspect-ratio: 9/16; display: block; border: none; }
+
+    .video-tab-panel { display: none; }
+    .video-tab-panel.active { display: block; }
+
     .blog-preview-section { padding:100px 40px; background:var(--cream); }
     .blog-preview-section .section-eyebrow { text-align:center; }
     .blog-preview-section > h2 { font-family:'Cinzel',serif; font-size:clamp(2rem,4vw,3rem); color:var(--red-deep); text-align:center; margin-bottom:60px; }
@@ -539,10 +553,28 @@
     <h1 data-hr="Video Kolekcija" data-en="Video Collection">Video Kolekcija</h1>
     <p data-hr="Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala." data-en="Here we bring our collection of winter atmospheres from our YouTube channel.">Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala.</p>
   </div>
-  <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
-    <div class="home-video-grid" id="all-video-grid" style="margin-bottom: 40px;">
-      <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
-        <span style="color:rgba(255,255,255,0.4);font-family:'Mulish',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
+  <section class="video-section scroll-reveal" style="padding-top: 50px; background: linear-gradient(160deg,#6b0f0f,#3d0707);">
+    <!-- TABOVI -->
+    <div class="video-tabs">
+      <button class="video-tab-btn active" onclick="switchVideoTab('videi', this)" data-hr="Videi" data-en="Videos">🎬 Videi</button>
+      <button class="video-tab-btn" onclick="switchVideoTab('shorts', this)" data-hr="Shorts" data-en="Shorts">📱 Shorts</button>
+    </div>
+
+    <!-- PANEL: Videi -->
+    <div class="video-tab-panel active" id="tab-videi">
+      <div class="home-video-grid" id="all-video-grid" style="margin-bottom: 40px;">
+        <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
+          <span style="color:rgba(255,255,255,0.4);font-family:'Mulish',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL: Shorts -->
+    <div class="video-tab-panel" id="tab-shorts">
+      <div class="shorts-grid" id="all-shorts-grid" style="margin-bottom: 40px;">
+        <div class="shorts-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:300px;">
+          <span style="color:rgba(255,255,255,0.4);font-family:'Mulish',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje Shortsa...</span>
+        </div>
       </div>
     </div>
   </section>
@@ -919,6 +951,14 @@ function videoWrapperHTML(videoId, title) {
   </div>`;
 }
 
+function shortsWrapperHTML(videoId, title) {
+  return `<div class="shorts-wrapper">
+    <iframe src="https://www.youtube.com/embed/${videoId}" title="${title}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>`;
+}
+
 function loadYouTubeVideos() {
   fetch(PROXY)
     .then(r => r.json())
@@ -927,26 +967,47 @@ function loadYouTubeVideos() {
       const xml = parser.parseFromString(data.contents, 'text/xml');
       const entries = Array.from(xml.querySelectorAll('entry'));
 
-      const videos = entries.map(e => {
+      const allVideos = entries.map(e => {
         const idEl = e.querySelector('videoId');
         const rawId = idEl ? idEl.textContent : e.querySelector('id').textContent.split(':').pop();
-        return { id: rawId, title: e.querySelector('title') ? e.querySelector('title').textContent : '' };
+        const title = e.querySelector('title') ? e.querySelector('title').textContent : '';
+        // YouTube Shorts imaju '#shorts' u naslovu ili su kraći — detektiramo po naslovu
+        const isShort = title.toLowerCase().includes('#shorts') || title.toLowerCase().includes('short');
+        return { id: rawId, title, isShort };
       }).filter(v => v.id && v.id.length === 11);
 
-      // Naslovna — prikaži 2 najnovija
+      const regularVideos = allVideos.filter(v => !v.isShort);
+      const shorts = allVideos.filter(v => v.isShort);
+
+      // Naslovna — prikaži 2 najnovija regularna videa
       const homeGrid = document.getElementById('home-video-grid');
-      if (homeGrid && videos.length > 0) {
-        homeGrid.innerHTML = videos.slice(0, 2).map(v => videoWrapperHTML(v.id, v.title)).join('');
+      if (homeGrid) {
+        const homeVids = regularVideos.length > 0 ? regularVideos : allVideos;
+        homeGrid.innerHTML = homeVids.slice(0, 2).map(v => videoWrapperHTML(v.id, v.title)).join('');
       }
 
-      // Video stranica — prikaži sve
+      // Video tab — svi regularni videi
       const allGrid = document.getElementById('all-video-grid');
-      if (allGrid && videos.length > 0) {
-        allGrid.innerHTML = videos.map(v => videoWrapperHTML(v.id, v.title)).join('');
+      if (allGrid) {
+        if (regularVideos.length > 0) {
+          allGrid.innerHTML = regularVideos.map(v => videoWrapperHTML(v.id, v.title)).join('');
+        } else {
+          allGrid.innerHTML = allVideos.map(v => videoWrapperHTML(v.id, v.title)).join('');
+        }
+      }
+
+      // Shorts tab — svi shortsovi
+      const shortsGrid = document.getElementById('all-shorts-grid');
+      if (shortsGrid) {
+        if (shorts.length > 0) {
+          shortsGrid.innerHTML = shorts.map(v => shortsWrapperHTML(v.id, v.title)).join('');
+        } else {
+          shortsGrid.innerHTML = '<div style="text-align:center;padding:60px 20px;color:rgba(255,255,255,0.4);font-family:Mulish,sans-serif;letter-spacing:2px;font-size:0.85rem;">🎄 Shorts uskoro...</div>';
+        }
       }
     })
     .catch(() => {
-      // Fallback na ručno postavljene videe ako RSS ne radi
+      // Fallback
       const fallback = [
         { id: 'wTDzAWNmhfo', title: 'Christmas Snowy Atmosphere – Sweet Wordless Christmas Jazz Music to Relax' },
         { id: 'VcLOcXuDT2o', title: 'Christmas Wish Video 2' }
@@ -955,10 +1016,21 @@ function loadYouTubeVideos() {
       if (homeGrid) homeGrid.innerHTML = fallback.map(v => videoWrapperHTML(v.id, v.title)).join('');
       const allGrid = document.getElementById('all-video-grid');
       if (allGrid) allGrid.innerHTML = fallback.map(v => videoWrapperHTML(v.id, v.title)).join('');
+      const shortsGrid = document.getElementById('all-shorts-grid');
+      if (shortsGrid) shortsGrid.innerHTML = '<div style="text-align:center;padding:60px 20px;color:rgba(255,255,255,0.4);font-family:Mulish,sans-serif;letter-spacing:2px;font-size:0.85rem;">🎄 Shorts uskoro...</div>';
     });
 }
 
 loadYouTubeVideos();
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── SHORTS VIDEO TAB SWITCHER ───────────────────────────────────────────────
+function switchVideoTab(tab, btn) {
+  document.querySelectorAll('.video-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.video-tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+}
 // ─────────────────────────────────────────────────────────────────────────────
 </script>
 </body>
