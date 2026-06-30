@@ -3,9 +3,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Christmas Wish | Božićna atmosfera</title>
+  <title>Christmas Wish | Mjesto gdje Božić živi cijele godine</title>
+  <meta name="description" content="Christmas Wish je sestrinsko-bratski projekt iz ljubavi — web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi i božićnom ugođaju cijele godine."/>
+  <link rel="canonical" href="https://christmaswish.github.io/"/>
+
+  <!-- OPEN GRAPH (Facebook, WhatsApp, LinkedIn...) -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Christmas Wish"/>
+  <meta property="og:title" content="Christmas Wish | Mjesto gdje Božić živi cijele godine"/>
+  <meta property="og:description" content="Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama."/>
+  <meta property="og:image" content="https://christmaswish.github.io/hero.jpg"/>
+  <meta property="og:url" content="https://christmaswish.github.io/"/>
+  <meta property="og:locale" content="hr_HR"/>
+
+  <!-- TWITTER / X CARD -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Christmas Wish | Mjesto gdje Božić živi cijele godine"/>
+  <meta name="twitter:description" content="Zimska atmosfera, božićni ugođaj i priče cijele godine."/>
+  <meta name="twitter:image" content="https://christmaswish.github.io/hero.jpg"/>
+
   <link rel="icon" type="image/png" href="logo.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Mulish:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Christmas Wish",
+    "url": "https://christmaswish.github.io/",
+    "logo": "https://christmaswish.github.io/logo.png",
+    "sameAs": [
+      "https://www.facebook.com/Bozic.ChristmasWish.hr",
+      "https://www.instagram.com/christmas_wish2",
+      "https://www.youtube.com/@ChristmasWishHR"
+    ]
+  }
+  </script>
   <style>
     :root {
       --red-deep: #8b1a1a;
@@ -65,7 +99,7 @@
       position: relative; 
       z-index: 10; 
       background-image: 
-        linear-gradient(180deg, rgba(26,3,3,0.55) 0%, rgba(26,3,3,0.7) 55%, rgba(26,3,3,0.92) 100%),
+        linear-gradient(180deg, rgba(26,3,3,0.78) 0%, rgba(26,3,3,0.8) 55%, rgba(26,3,3,0.92) 100%),
         url('hero.jpg');
       background-size: cover;
       background-position: center;
@@ -179,6 +213,11 @@
     .logo-text span { color:var(--gold-light); }
     .hero-tagline { font-family: 'Mulish', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:12px; }
     .gold-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px auto 0; opacity: 0.8; }
+
+    /* PREKIDAČ VREMENSKE ZONE ZA ODBROJAVANJE */
+    .tz-toggle { display:flex; justify-content:center; gap:8px; margin: 0 auto 5px; flex-wrap: wrap; }
+    .tz-btn { background:transparent; border:1px solid rgba(201,148,58,0.35); color:rgba(255,255,255,0.55); padding:5px 14px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; transition:all 0.3s ease; cursor: pointer; }
+    .tz-btn.active, .tz-btn:hover { background:rgba(201,148,58,0.18); color:var(--gold-light); border-color:var(--gold); }
 
     /* LEBDEĆE DRUŠTVENE MREŽE U HERO SEKCIJI */
     .hero-social {
@@ -404,6 +443,12 @@
       .mc-val { font-size: 1.4rem; }
       .bauble-container.left-2, .bauble-container.right-2 { display: none; }
     }
+
+    /* MANJE ANIMACIJA ZA KORISNIKE KOJI TO TRAŽE U SUSTAVU */
+    @media (prefers-reduced-motion: reduce) {
+      .hero-logo, .bauble, .sf-flake, .scroll-reveal { animation: none !important; }
+      * { transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
@@ -511,6 +556,11 @@
       </div>
     </div>
 
+    <div class="tz-toggle">
+      <button class="tz-btn active" id="tz-cet" onclick="setCountdownMode('cet')" data-hr="🇭🇷 Hrvatska (CET)" data-en="🇭🇷 Croatia (CET)">🇭🇷 Hrvatska (CET)</button>
+      <button class="tz-btn" id="tz-local" onclick="setCountdownMode('local')" data-hr="🌍 Moja vremenska zona" data-en="🌍 My timezone">🌍 Moja vremenska zona</button>
+    </div>
+
     <div class="logo-text" onclick="showView('home')">Christmas <span>Wish</span></div>
     <div class="hero-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
     <div class="gold-divider"></div>
@@ -519,12 +569,12 @@
 
 <nav>
   <ul>
-    <li><a onclick="showView('home')" id="nav-home" class="active" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
-    <li><a onclick="showView('blog')" id="nav-blog" data-hr="Blog" data-en="Blog">Blog</a></li>
-    <li><a onclick="showView('video')" id="nav-video" data-hr="Video" data-en="Video">Video</a></li>
-    <li><a onclick="showView('live')" id="nav-live" data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</a></li>
-    <li><a onclick="showView('galerija')" id="nav-galerija" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
-    <li><a onclick="showView('novosti')" id="nav-novosti" data-hr="Novosti" data-en="News">Novosti s fejsa</a></li>
+    <li><a onclick="showView('home')" id="nav-home" class="active" role="button" tabindex="0" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
+    <li><a onclick="showView('blog')" id="nav-blog" role="button" tabindex="0" data-hr="Blog" data-en="Blog">Blog</a></li>
+    <li><a onclick="showView('video')" id="nav-video" role="button" tabindex="0" data-hr="Video" data-en="Video">Video</a></li>
+    <li><a onclick="showView('live')" id="nav-live" role="button" tabindex="0" data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</a></li>
+    <li><a onclick="showView('galerija')" id="nav-galerija" role="button" tabindex="0" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
+    <li><a onclick="showView('novosti')" id="nav-novosti" role="button" tabindex="0" data-hr="Novosti" data-en="News">Novosti s fejsa</a></li>
     <li><a onclick="showView('home'); setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),100)" data-hr="Kontakt" data-en="Contact">Kontakt</a></li>
   </ul>
 </nav>
@@ -562,10 +612,10 @@
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
     <h2 data-hr="Galerija zimskih prizora" data-en="Gallery of winter scenes">Galerija zimskih prizora</h2>
     <div class="gallery-grid">
-      <div class="gallery-item" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 1" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 2" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 3" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 4" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
     <button class="view-all-btn" onclick="showView('galerija')" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
   </section>
@@ -624,14 +674,14 @@
 
     <div class="gallery-grid" id="full-gallery-grid">
       <!-- Dodane klase za filtriranje i onclick za Lightbox -->
-      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Zimski prizor 1" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Zimski prizor 2" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Zimski prizor 3" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Zimski prizor 4" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item bozicne" onclick="openLightbox('slika-5.jpg')"><img src="slika-5.jpg" alt="Zimski prizor 5" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item zimske" onclick="openLightbox('slika-6.jpg')"><img src="slika-6.jpg" alt="Zimski prizor 6" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item bozicne" onclick="openLightbox('slika-7.jpg')"><img src="slika-7.jpg" alt="Zimski prizor 7" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
-      <div class="gallery-item zimske" onclick="openLightbox('slika-8.jpg')"><img src="slika-8.jpg" alt="Zimski prizor 8" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-1.jpg')"><img src="slika-1.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 1" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-2.jpg')"><img src="slika-2.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 2" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne bozicne" onclick="openLightbox('slika-3.jpg')"><img src="slika-3.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 3" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item glavne zimske" onclick="openLightbox('slika-4.jpg')"><img src="slika-4.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 4" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item bozicne" onclick="openLightbox('slika-5.jpg')"><img src="slika-5.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 5" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item zimske" onclick="openLightbox('slika-6.jpg')"><img src="slika-6.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 6" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item bozicne" onclick="openLightbox('slika-7.jpg')"><img src="slika-7.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 7" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
+      <div class="gallery-item zimske" onclick="openLightbox('slika-8.jpg')"><img src="slika-8.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 8" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
   </section>
 </div>
@@ -939,6 +989,14 @@ window.initObserver = function() {
 
 document.addEventListener('DOMContentLoaded', () => {
   window.initObserver();
+  document.querySelectorAll('[role="button"]').forEach(el => {
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        el.click();
+      }
+    });
+  });
 });
 
 const container = document.getElementById('snowflakes');
@@ -999,12 +1057,43 @@ function createSnowflake() {
   container.appendChild(sf);
 }
 
-for (let i = 0; i < 40; i++) createSnowflake();
+// Manje pahulja na mobitelu (slabiji uređaji, baterija), ništa ako korisnik traži manje animacija
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isSmallScreen = window.innerWidth < 768;
+const snowflakeCount = prefersReducedMotion ? 0 : (isSmallScreen ? 18 : 40);
+for (let i = 0; i < snowflakeCount; i++) createSnowflake();
+
+// ─── ODBROJAVANJE DO BOŽIĆA (CET fiksno ili lokalno vrijeme korisnika) ───────
+let countdownMode = 'cet'; // 'cet' = hrvatsko vrijeme (uvijek točno), 'local' = vrijeme uređaja korisnika
+
+function setCountdownMode(mode) {
+  countdownMode = mode;
+  document.getElementById('tz-cet').classList.toggle('active', mode === 'cet');
+  document.getElementById('tz-local').classList.toggle('active', mode === 'local');
+  updateCountdown();
+}
+
+function getNextChristmas(now) {
+  if (countdownMode === 'cet') {
+    // 25.12. 00:00 po hrvatskom vremenu (Zagreb) je uvijek 24.12. 23:00 UTC,
+    // jer je Božić uvijek izvan razdoblja ljetnog računanja vremena (CEST).
+    let year = now.getUTCFullYear();
+    let target = Date.UTC(year, 11, 24, 23, 0, 0);
+    if (now.getTime() > target) {
+      year++;
+      target = Date.UTC(year, 11, 24, 23, 0, 0);
+    }
+    return new Date(target);
+  } else {
+    // Lokalno vrijeme uređaja korisnika
+    const year = now.getMonth() >= 11 && now.getDate() > 25 ? now.getFullYear() + 1 : now.getFullYear();
+    return new Date(year, 11, 25, 0, 0, 0);
+  }
+}
 
 function updateCountdown() {
   const now = new Date();
-  const year = now.getMonth() >= 11 && now.getDate() > 25 ? now.getFullYear() + 1 : now.getFullYear();
-  const christmas = new Date(year, 11, 25, 0, 0, 0);
+  const christmas = getNextChristmas(now);
   const diff = christmas - now;
 
   if (diff <= 0) {
@@ -1031,7 +1120,8 @@ document.getElementById('home-blog-grid').innerHTML = posts.slice(0,6).map(cardH
 // ─── AUTO YOUTUBE VIDEO LOADER ───────────────────────────────────────────────
 const YT_CHANNEL_ID = 'UC4SBUomBU93aQryQ-6SaNew';
 const YT_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
-const PROXY = `https://api.allorigins.win/get?url=${encodeURIComponent(YT_RSS)}`;
+const WORKER_PROXY = 'https://christmas-wish-proxy.krunoslav-kezic.workers.dev';
+const PROXY = `${WORKER_PROXY}/?url=${encodeURIComponent(YT_RSS)}`;
 
 let allVideosData = []; // {id, title, type: 'video' | 'shorts'}
 
@@ -1048,9 +1138,8 @@ function videoWrapperHTML(videoId, title) {
 // Zahtjev preko /watch?v= uvijek vraća standardni 16:9, bez obzira na stvarni format.
 function detectVideoType(videoId) {
   const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/shorts/' + videoId)}&format=json`;
-  return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(oembedUrl)}`)
+  return fetch(`${WORKER_PROXY}/?url=${encodeURIComponent(oembedUrl)}`)
     .then(r => r.json())
-    .then(wrapper => JSON.parse(wrapper.contents))
     .then(data => (data.height > data.width ? 'shorts' : 'video'))
     .catch(() => 'video');
 }
@@ -1073,10 +1162,10 @@ function filterVideos(filter, btn) {
 
 function loadYouTubeVideos() {
   fetch(PROXY)
-    .then(r => r.json())
-    .then(data => {
+    .then(r => r.text())
+    .then(xmlText => {
       const parser = new DOMParser();
-      const xml = parser.parseFromString(data.contents, 'text/xml');
+      const xml = parser.parseFromString(xmlText, 'text/xml');
       const entries = Array.from(xml.querySelectorAll('entry'));
 
       const videos = entries.map(e => {
