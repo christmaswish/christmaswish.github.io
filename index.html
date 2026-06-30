@@ -23,7 +23,7 @@
   <meta name="twitter:image" content="https://christmaswish.github.io/hero.jpg"/>
 
   <link rel="icon" type="image/png" href="logo.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet"/>
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
@@ -63,7 +63,7 @@
     body { 
       background: var(--cream); 
       color: var(--text-dark); 
-      font-family: 'Inter', sans-serif; 
+      font-family: 'Jost', sans-serif; 
       overflow-x: hidden;
       cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="%23a98c52"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>') 10 10, auto;
     }
@@ -119,7 +119,7 @@
 
     .header-top { display:flex; justify-content:flex-end; align-items:center; padding:12px 50px; }
     .lang-toggle { display:flex; gap:8px; }
-    .lang-btn { background:transparent; border:1px solid rgba(169,140,82,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
+    .lang-btn { background:transparent; border:1px solid rgba(169,140,82,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
     .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#0c130e; border-color:var(--gold); box-shadow: 0 0 15px rgba(169,140,82,0.4); }
 
     /* dekorativni element kuglica je uklonjen — fotografija i tipografija nose atmosferu */
@@ -128,7 +128,7 @@
     #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 99999; display: none; justify-content: center; align-items: center; flex-direction: column; }
     #lightbox img { max-width: 90%; max-height: 75vh; border: 4px solid var(--white); box-shadow: 0 0 30px rgba(169,140,82,0.3); border-radius: 4px; }
     .lb-controls { margin-top: 30px; display: flex; gap: 20px; }
-    .lb-btn { padding: 12px 30px; background: transparent; border: 2px solid var(--gold-light); color: var(--gold-light); text-decoration: none; border-radius: 30px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
+    .lb-btn { padding: 12px 30px; background: transparent; border: 2px solid var(--gold-light); color: var(--gold-light); text-decoration: none; border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
     .lb-btn:hover { background: var(--gold-light); color: #0c130e; }
 
     /* HERO SEKCIJA */
@@ -141,6 +141,24 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
+
+    /* GLAVNI NASLOV — kaligrafski, mirno smješten unutar hero sekcije */
+    .logo-script {
+      display: block;
+      font-family: 'Mrs Saint Delafield', cursive;
+      font-weight: 400;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 1;
+      color: var(--cream);
+      text-shadow: 0 4px 20px rgba(11,18,13,0.4);
+    }
+    .logo-script em {
+      font-style: normal;
+      color: var(--gold-light);
+    }
+    @media (max-width:768px) {
+      .logo-script { font-size: clamp(2.4rem, 13vw, 3.6rem); }
     }
     
     .hero-logo { 
@@ -187,7 +205,7 @@
       border-color: rgba(169,140,82,0.6);
     }
     .mc-val {
-      font-family: 'Fraunces', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.8rem;
       font-weight: 700;
       color: var(--white);
@@ -195,7 +213,7 @@
       text-shadow: 0 0 15px rgba(169,140,82,0.4);
     }
     .mc-label {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Jost', sans-serif;
       font-size: 0.65rem;
       text-transform: uppercase;
       color: rgba(255,255,255,0.5);
@@ -203,14 +221,14 @@
       margin-top: 6px;
     }
     
-    .logo-text { font-family:'Fraunces', serif; font-size:clamp(1.8rem,4vw,3.2rem); color:var(--white); font-weight:500; letter-spacing:2px; text-shadow: 0 3px 15px rgba(0,0,0,0.5); }
+    .logo-text { font-family:'Cormorant Garamond', serif; font-size:clamp(1.8rem,4vw,3.2rem); color:var(--white); font-weight:500; letter-spacing:2px; text-shadow: 0 3px 15px rgba(0,0,0,0.5); }
     .logo-text span { color:var(--gold-light); font-style:italic; font-weight:400; }
-    .hero-tagline { font-family: 'Inter', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:12px; }
-    .gold-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px auto 0; opacity: 0.8; }
+    .hero-tagline { font-family: 'Jost', sans-serif; font-weight:400; color:rgba(255,255,255,0.7); font-size:0.85rem; letter-spacing:5px; text-transform:uppercase; margin-top:12px; }
+    .gold-divider { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:20px auto 25px; opacity: 0.8; }
 
     /* PREKIDAČ VREMENSKE ZONE ZA ODBROJAVANJE */
     .tz-toggle { display:flex; justify-content:center; gap:8px; margin: 0 auto 5px; flex-wrap: wrap; }
-    .tz-btn { background:transparent; border:1px solid rgba(169,140,82,0.35); color:rgba(255,255,255,0.55); padding:5px 14px; border-radius:20px; font-family:'Inter',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; transition:all 0.3s ease; cursor: pointer; }
+    .tz-btn { background:transparent; border:1px solid rgba(169,140,82,0.35); color:rgba(255,255,255,0.55); padding:5px 14px; border-radius:20px; font-family:'Jost',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; transition:all 0.3s ease; cursor: pointer; }
     .tz-btn.active, .tz-btn:hover { background:rgba(169,140,82,0.18); color:var(--gold-light); border-color:var(--gold); }
 
     /* LEBDEĆE DRUŠTVENE MREŽE U HERO SEKCIJI */
@@ -269,7 +287,7 @@
       box-shadow: 0 5px 30px rgba(0,0,0,0.4); 
     }
     nav ul { display:flex; justify-content:center; list-style:none; flex-wrap: wrap; }
-    nav ul li a { display:block; padding:18px 25px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; cursor: pointer; }
+    nav ul li a { display:block; padding:18px 25px; color:rgba(255,255,255,0.7); text-decoration:none; font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:3px; text-transform:uppercase; transition:all 0.3s ease; border-bottom:2px solid transparent; cursor: pointer; }
     nav ul li a:hover, nav ul li a.active { color:var(--gold-light); border-bottom-color:var(--gold); background: linear-gradient(to top, rgba(169,140,82,0.15), transparent); text-shadow: 0 0 8px rgba(203,180,127,0.3); }
 
     /* VIEWS ANIMATION */
@@ -282,20 +300,20 @@
 
     /* COMMON PAGE HEADER */
     .page-header { background:var(--white); padding:80px 40px 50px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .page-header h1 { font-family:'Fraunces',serif; font-size:clamp(2.5rem,5vw,3.5rem); color:var(--pine-deep); }
+    .page-header h1 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2.5rem,5vw,3.5rem); color:var(--pine-deep); }
     .page-header p { max-width:600px; margin:20px auto 0; color:var(--text-mid); font-size:1.05rem; line-height:1.9; font-weight:300; }
 
     /* HOME VIEW */
     .intro-section { background:var(--white); padding:100px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); }
-    .section-eyebrow { font-family:'Inter',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
-    .intro-section h2 { font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
+    .section-eyebrow { font-family:'Jost',sans-serif; font-size:0.8rem; letter-spacing:6px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:25px; }
+    .intro-section h2 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); max-width:750px; margin:0 auto 30px; line-height:1.2; }
     .intro-section p { max-width:650px; margin:0 auto; color:var(--text-mid); line-height:2; font-size:1.1rem; font-weight:300; }
 
     /* MREŽA VIDEA NA NASLOVNOJ */
     .video-section { background:linear-gradient(160deg,#16241b,#0c130e); padding:100px 40px; text-align:center; position: relative; }
     .video-section::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(169,140,82,0.4),transparent); }
     .video-section .section-eyebrow { color:var(--gold-light); }
-    .video-section h2 { font-family:'Fraunces',serif; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
+    .video-section h2 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(1.8rem,3.5vw,2.8rem); color:var(--white); margin-bottom:50px; text-shadow: 0 3px 15px rgba(0,0,0,0.4); }
     
     .home-video-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 1000px; margin: 0 auto; }
     .video-wrapper { border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.6); border:1px solid rgba(169,140,82,0.3); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #000; }
@@ -309,16 +327,16 @@
       .shorts-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--pine); color:var(--pine); font-family:'Inter',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
+    .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--pine); color:var(--pine); font-family:'Jost',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
     .view-all-btn:hover { background:var(--pine-deep); color:var(--white); border-color:var(--pine-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
     .view-all-btn.light { border-color: var(--gold-light); color: var(--gold-light); }
     .view-all-btn.light:hover { background: var(--gold-light); color: #0c130e; border-color: var(--gold-light); }
 
     /* SHARE GUMBI U POSTU */
     .post-share { margin: 50px 0 40px 0; padding: 30px; background: var(--cream); border-radius: 12px; border: 1px solid rgba(169,140,82,0.2); }
-    .post-share-label { display: block; font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px; }
+    .post-share-label { display: block; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 15px; }
     .post-share-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 30px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; }
+    .share-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 30px; font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; text-decoration: none; border: none; cursor: pointer; transition: all 0.3s ease; }
     .share-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
     .share-fb { background: #1877f2; color: white; }
     .share-fb:hover { background: #0d65d8; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(24,119,242,0.4); }
@@ -329,15 +347,52 @@
 
     /* KOMENTARI SEKCIJA */
     .post-comments { margin-top: 50px; padding-top: 40px; border-top: 1px solid rgba(0,0,0,0.08); }
-    .post-comments-title { font-family: 'Fraunces', serif; font-size: 1.5rem; color: var(--pine-deep); margin-bottom: 30px; }
+    .post-comments-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--pine-deep); margin-bottom: 30px; }
 
     .blog-preview-section { padding:100px 40px; background:var(--cream); }
     .blog-preview-section .section-eyebrow { text-align:center; }
-    .blog-preview-section > h2 { font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); text-align:center; margin-bottom:60px; }
+    .blog-preview-section > h2 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); text-align:center; margin-bottom:60px; }
 
     /* GALLERY */
+    /* KINEMATOGRAFSKI RAZDJELNIK — fotografija preko cijele širine između sekcija */
+    .cinematic-break {
+      position: relative;
+      width: 100%;
+      height: 56vh;
+      min-height: 340px;
+      max-height: 620px;
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .cinematic-break::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(11,18,13,0.05) 0%, rgba(11,18,13,0.15) 60%, rgba(11,18,13,0.55) 100%);
+    }
+    .cinematic-break .cinematic-caption {
+      position: absolute;
+      left: 6%; bottom: 8%;
+      z-index: 2;
+      max-width: 480px;
+      color: var(--cream);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2.6vw, 2rem);
+      line-height: 1.35;
+      text-shadow: 0 4px 20px rgba(11,18,13,0.6);
+    }
+    @media (min-width: 1024px) and (pointer: fine) {
+      .cinematic-break { background-attachment: fixed; }
+    }
+    @media (max-width: 768px) {
+      .cinematic-break { height: 40vh; min-height: 240px; }
+    }
+
     .gallery-section { background:var(--white); padding:100px 40px; text-align:center; }
-    .gallery-section h2 { font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); margin-bottom:50px; }
+    .gallery-section h2 { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2rem,4vw,3rem); color:var(--pine-deep); margin-bottom:50px; }
     .gallery-grid { display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:140px; gap:15px; max-width:1100px; margin:0 auto; }
     .gallery-grid .gallery-item:nth-child(6n+1) { grid-column: span 2; grid-row: span 2; }
     .gallery-grid .gallery-item:nth-child(6n+4) { grid-row: span 2; }
@@ -346,32 +401,42 @@
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; z-index: 2; position: absolute; top:0; left:0; pointer-events: none; }
     .gallery-item:hover img { transform: scale(1.1); }
     .gallery-item svg { opacity:0.15; width:50px; height:50px; transition: all 0.4s ease; z-index: 1; position: absolute; }
-    .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Inter',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
+    .gallery-coming { margin-top:40px; color:var(--text-mid); font-family:'Jost',sans-serif; font-size:0.9rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; }
 
     /* BLOG LIST & CARDS */
     .filter-bar { background:var(--cream); padding:30px 40px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
-    .filter-btn { background:transparent; border:1px solid rgba(31,51,38,0.25); color:var(--text-mid); padding:10px 24px; border-radius:30px; font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; cursor: pointer; }
+    .filter-btn { background:transparent; border:1px solid rgba(31,51,38,0.25); color:var(--text-mid); padding:10px 24px; border-radius:30px; font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s ease; cursor: pointer; }
     .filter-btn.active, .filter-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: 0 5px 15px rgba(107,31,31,0.25); transform: translateY(-2px); }
 
     .blog-section { padding:80px 40px 100px; }
-    .blog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:35px; max-width:1150px; margin:0 auto; }
+    .blog-grid { display:grid; grid-template-columns:repeat(6,1fr); grid-auto-rows:210px; gap:30px; max-width:1200px; margin:0 auto; }
+    .blog-grid .blog-card:nth-child(6n+1) { grid-column: span 4; grid-row: span 2; }
+    .blog-grid .blog-card:nth-child(6n+2) { grid-column: span 2; grid-row: span 2; }
+    .blog-grid .blog-card:nth-child(6n+3),
+    .blog-grid .blog-card:nth-child(6n+4),
+    .blog-grid .blog-card:nth-child(6n+5) { grid-column: span 2; }
+    .blog-grid .blog-card:nth-child(6n+6) { grid-column: span 6; grid-row: span 2; }
+    @media (max-width: 900px) {
+      .blog-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+      .blog-grid .blog-card { grid-column: span 1 !important; grid-row: span 1 !important; }
+    }
 
     .blog-card { 
-      position: relative; height: 420px; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
+      position: relative; height: 100%; min-height: 210px; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow-soft); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer;
     }
     .blog-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-hover); }
     .blog-card-img { position: absolute; inset: 0; background: linear-gradient(135deg, var(--pine), var(--pine-deep)); }
     .blog-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
     .blog-card:hover .blog-card-img img { transform: scale(1.08); }
-    .blog-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(26, 3, 3, 0.95) 0%, rgba(26, 3, 3, 0.5) 45%, rgba(26, 3, 3, 0.1) 100%); transition: background 0.5s ease; }
-    .blog-card:hover .blog-card-img::after { background: linear-gradient(to top, rgba(26, 3, 3, 0.98) 0%, rgba(26, 3, 3, 0.6) 55%, rgba(26, 3, 3, 0.2) 100%); }
+    .blog-card-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11, 18, 13, 0.95) 0%, rgba(11, 18, 13, 0.5) 45%, rgba(11, 18, 13, 0.1) 100%); transition: background 0.5s ease; }
+    .blog-card:hover .blog-card-img::after { background: linear-gradient(to top, rgba(11, 18, 13, 0.98) 0%, rgba(11, 18, 13, 0.6) 55%, rgba(11, 18, 13, 0.2) 100%); }
     .blog-card-img svg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.1; width: 80px; height: 80px; z-index: 1; }
 
     .blog-card-body { position: absolute; bottom: 0; left: 0; right: 0; padding: 25px 25px; z-index: 2; display: flex; flex-direction: column; }
     .blog-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
     .blog-card-category { font-size: 0.65rem; letter-spacing: 3px; color: var(--white); background: var(--gold); text-transform: uppercase; padding: 4px 12px; border-radius: 20px; font-weight: 700; }
     .blog-card-date { font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.7); text-transform: uppercase; font-weight: 600; }
-    .blog-card-title { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--white); line-height: 1.3; margin-bottom: 0; transition: color 0.3s; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+    .blog-card-title { font-family: 'Cormorant Garamond', serif; font-weight:600; font-size: 1.6rem; color: var(--white); line-height: 1.3; margin-bottom: 0; transition: color 0.3s; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     .blog-card:hover .blog-card-title { color: var(--gold-light); }
     .blog-card-excerpt-wrapper { height: 0; opacity: 0; overflow: hidden; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); margin-top: 0; }
     .blog-card:hover .blog-card-excerpt-wrapper { height: 65px; opacity: 1; margin-top: 12px; }
@@ -380,22 +445,33 @@
     /* LAJK I DIJELI GUMBI NA KARTICAMA */
     .blog-card-actions { margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 15px; opacity: 0; transition: opacity 0.5s ease; }
     .blog-card:hover .blog-card-actions { opacity: 1; }
-    .btn-card-action { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 5px; }
+    .btn-card-action { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.7rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Jost', sans-serif; display: flex; align-items: center; gap: 5px; }
     .btn-card-action:hover { background: var(--gold); border-color: var(--gold); }
+
+    .blog-grid .blog-card:nth-child(6n+1) .blog-card-title,
+    .blog-grid .blog-card:nth-child(6n+6) .blog-card-title { font-size: 2rem; max-width: 70%; }
+
+    .post-image-wrap { position: relative; width: 100%; height: 64vh; min-height: 360px; max-height: 640px; overflow: hidden; margin-bottom: 60px; }
+    .post-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .post-image-wrap::before { content:''; position:absolute; inset:0; background: linear-gradient(180deg, rgba(11,18,13,0.15) 0%, rgba(11,18,13,0.35) 55%, rgba(11,18,13,0.85) 100%); }
+    .post-image-wrap .post-container { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; max-width: 900px; margin: 0 auto; }
+    .post-image-wrap .post-header-meta { margin-bottom: 10px; }
+    .post-image-wrap .post-date { color: rgba(255,255,255,0.75); }
+    .post-title-overlap { color: var(--white) !important; font-size:clamp(2.2rem,5vw,4.2rem) !important; margin-bottom: 35px !important; text-shadow: 0 4px 20px rgba(11,18,13,0.6); }
 
     /* SINGLE POST VIEW */
     .post-container { max-width:800px; margin:0 auto; padding:80px 40px 100px; }
-    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--pine); margin-bottom:40px; background:none; border:none; font-family:'Inter',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(31,51,38,0.06); cursor: pointer; }
+    .post-back { display:inline-flex; align-items:center; gap:10px; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--pine); margin-bottom:40px; background:none; border:none; font-family:'Jost',sans-serif; transition:all 0.3s; padding:10px 20px; border-radius: 30px; background: rgba(31,51,38,0.06); cursor: pointer; }
     .post-back:hover { color:var(--white); background: var(--pine); transform: translateX(-6px); box-shadow: 0 4px 12px rgba(31,51,38,0.25); }
     
     .post-header-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
     .post-category { font-size:0.7rem; letter-spacing:3px; color:var(--white); background:var(--gold); text-transform:uppercase; padding:5px 14px; border-radius:20px; font-weight:700; }
     .post-date { font-size:0.8rem; letter-spacing:2px; color:var(--text-mid); text-transform:uppercase; font-weight:600; }
-    .post-title { font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3.5rem); color:var(--pine-deep); line-height:1.2; margin-bottom:30px; }
+    .post-title { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:clamp(2rem,4vw,3.5rem); color:var(--pine-deep); line-height:1.2; margin-bottom:30px; }
     .post-divider { width:80px; height:3px; background:linear-gradient(90deg, var(--gold), transparent); margin-bottom:40px; border-radius: 2px; }
     .post-body { font-size:1.1rem; line-height:2; color:var(--text-dark); font-weight:300; }
     .post-body p { margin-bottom:25px; }
-    .post-body p:first-of-type::first-letter { font-family:'Fraunces',serif; font-size:4.2rem; font-weight:600; line-height:0.8; float:left; padding:8px 10px 0 0; color:var(--pine-deep); }
+    .post-body p:first-of-type::first-letter { font-family:'Cormorant Garamond',serif; font-size:4.2rem; font-weight:600; line-height:0.8; float:left; padding:8px 10px 0 0; color:var(--pine-deep); }
 
     /* NOVOSTI VIEW */
     .news-container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
@@ -415,8 +491,8 @@
     /* FOOTER */
     footer { background:linear-gradient(160deg,#0c130e,#070b08); color:rgba(255,255,255,0.6); text-align:center; padding:70px 40px 40px; position:relative; z-index:1; }
     footer::before { content:''; position:absolute; top:0; left:10%; right:10%; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); opacity: 0.3; }
-    .footer-logo { font-family:'Fraunces',serif; font-size:2.2rem; color:var(--gold-light); margin-bottom:12px; text-shadow: 0 2px 8px rgba(203,180,127,0.2); }
-    .footer-tagline { font-family:'Inter',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:5px; text-transform:uppercase; margin-bottom:40px; color:rgba(255,255,255,0.4); }
+    .footer-logo { font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--gold-light); margin-bottom:12px; text-shadow: 0 2px 8px rgba(203,180,127,0.2); }
+    .footer-tagline { font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:5px; text-transform:uppercase; margin-bottom:40px; color:rgba(255,255,255,0.4); }
     .footer-links { display:flex; justify-content:center; gap:30px; margin-bottom:40px; flex-wrap:wrap; }
     .footer-links a { color:rgba(255,255,255,0.5); text-decoration:none; font-size:0.75rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; transition:all 0.3s; cursor:pointer; }
     .footer-links a:hover { color:var(--gold-light); transform: translateY(-2px); display: inline-block; text-shadow: 0 0 8px rgba(203,180,127,0.3); }
@@ -436,7 +512,7 @@
       .gallery-grid .gallery-item:nth-child(6n+1) { grid-column: span 1; grid-row: span 1; }
       .gallery-grid .gallery-item:nth-child(6n+4) { grid-row: span 1; }
       .page-header { padding:50px 20px 35px; }
-      .blog-card { height: 350px; }
+      .blog-card { height: 320px; }
       .modern-countdown { gap: 8px; }
       .mc-item { min-width: 60px; padding: 10px; }
       .mc-val { font-size: 1.4rem; }
@@ -492,6 +568,12 @@
       </a>
     </div>
 
+    <div class="logo-text" onclick="showView('home')">
+      <span class="logo-script">Christmas <em>Wish</em></span>
+    </div>
+    <div class="hero-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
+    <div class="gold-divider"></div>
+
     <img src="logo.png" alt="Christmas Wish Logo" class="hero-logo" onclick="showView('home')"/>
     
     <div class="modern-countdown" id="countdown-boxes">
@@ -517,10 +599,6 @@
       <button class="tz-btn active" id="tz-cet" onclick="setCountdownMode('cet')" data-hr="🇭🇷 Hrvatska (CET)" data-en="🇭🇷 Croatia (CET)">🇭🇷 Hrvatska (CET)</button>
       <button class="tz-btn" id="tz-local" onclick="setCountdownMode('local')" data-hr="🌍 Moja vremenska zona" data-en="🌍 My timezone">🌍 Moja vremenska zona</button>
     </div>
-
-    <div class="logo-text" onclick="showView('home')">Christmas <span>Wish</span></div>
-    <div class="hero-tagline" data-hr="Božić tijekom cijele godine" data-en="Christmas all year long">Božić tijekom cijele godine</div>
-    <div class="gold-divider"></div>
   </div>
 </header>
 
@@ -528,6 +606,7 @@
   <ul>
     <li><a onclick="showView('home')" id="nav-home" class="active" role="button" tabindex="0" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
     <li><a onclick="showView('blog')" id="nav-blog" role="button" tabindex="0" data-hr="Blog" data-en="Blog">Blog</a></li>
+
     <li><a onclick="showView('video')" id="nav-video" role="button" tabindex="0" data-hr="Video" data-en="Video">Video</a></li>
     <li><a onclick="showView('live')" id="nav-live" role="button" tabindex="0" data-hr="Live Santa Clause Village" data-en="Live Santa Clause Village">Live Santa Clause Village</a></li>
     <li><a onclick="showView('galerija')" id="nav-galerija" role="button" tabindex="0" data-hr="Galerija" data-en="Gallery">Galerija</a></li>
@@ -544,15 +623,19 @@
     <p data-hr="Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a brother-and-sister labour of love that we started many years ago. A website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
+  <div class="cinematic-break scroll-reveal" style="background-image:url('slika-5.jpg')" role="img" aria-label="Zimska atmosfera">
+    <div class="cinematic-caption" data-hr="Tišina prvog snijega." data-en="The quiet of the first snow.">Tišina prvog snijega.</div>
+  </div>
+
   <section class="video-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Najnovije" data-en="Latest">Najnovije</div>
     <h2 data-hr="Zimska atmosfera — novi videi" data-en="Winter atmosphere — new videos">Zimska atmosfera — novi videi</h2>
     <div class="home-video-grid" id="home-video-grid">
       <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
-        <span style="color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
+        <span style="color:rgba(255,255,255,0.4);font-family:'Jost',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
       </div>
       <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
-        <span style="color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
+        <span style="color:rgba(255,255,255,0.4);font-family:'Jost',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
       </div>
     </div>
     <button class="view-all-btn light" onclick="showView('video')" data-hr="Više videa" data-en="More videos">Više videa</button>
@@ -564,6 +647,10 @@
     <div class="blog-grid" id="home-blog-grid"></div>
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
+
+  <div class="cinematic-break scroll-reveal" style="background-image:url('slika-7.jpg')" role="img" aria-label="Božićna večer">
+    <div class="cinematic-caption" data-hr="Negdje, svijeća još uvijek gori." data-en="Somewhere, a candle is still burning.">Negdje, svijeća još uvijek gori.</div>
+  </div>
 
   <section class="gallery-section scroll-reveal" id="galerija">
     <div class="section-eyebrow" data-hr="Vizualni ugođaj" data-en="Visual atmosphere">Vizualni ugođaj</div>
@@ -593,7 +680,7 @@
   <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
     <div class="home-video-grid" id="all-video-grid" style="margin-bottom: 40px;">
       <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
-        <span style="color:rgba(255,255,255,0.4);font-family:'Inter',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
+        <span style="color:rgba(255,255,255,0.4);font-family:'Jost',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
       </div>
     </div>
   </section>
@@ -683,19 +770,25 @@
 </div>
 
 <div id="view-post" class="view">
+  <div id="post-image-wrap" class="post-image-wrap" style="display:none;">
+    <img id="post-image" src="" alt="">
+    <div class="post-container" style="padding:0 40px;">
+      <div class="post-header-meta">
+        <span class="post-category" id="post-cat-overlap"></span>
+        <span class="post-date" id="post-date-overlap"></span>
+      </div>
+      <h1 class="post-title post-title-overlap" id="post-title-overlap"></h1>
+    </div>
+  </div>
+
   <div class="post-container">
     <button class="post-back" onclick="showView('blog')">&#8592; <span data-hr="Natrag na blog" data-en="Back to blog">Natrag na blog</span></button>
-    <div class="post-header-meta">
+    <div class="post-header-meta" id="post-header-meta-plain">
       <span class="post-category" id="post-cat"></span>
       <span class="post-date" id="post-date"></span>
     </div>
     <h1 class="post-title" id="post-title"></h1>
     <div class="post-divider"></div>
-
-    <!-- FOTOGRAFIJA POSTA -->
-    <div id="post-image-wrap" style="display:none; margin: 0 0 40px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft);">
-      <img id="post-image" src="" alt="" style="width:100%; max-height: 500px; object-fit: cover; display: block;">
-    </div>
 
     <div class="post-body" id="post-body"></div>
 
@@ -739,7 +832,7 @@
 <!-- PRAVILA PRIVATNOSTI VIEW -->
 <div id="view-privacy" class="view">
   <div class="privacy-container scroll-reveal" style="max-width: 800px; margin: 0 auto; padding: 80px 40px 100px; text-align: left;">
-    <h2 style="font-family:'Fraunces',serif; color:var(--pine-deep); margin-bottom: 20px; font-size: 2rem;" data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</h2>
+    <h2 style="font-family:'Cormorant Garamond',serif; color:var(--pine-deep); margin-bottom: 20px; font-size: 2rem;" data-hr="Pravila privatnosti" data-en="Privacy Policy">Pravila privatnosti</h2>
     <p style="font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; margin-bottom: 20px;" data-hr="Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige." data-en="Privacy Policy for Christmas Wish. Your privacy is extremely important to us. All data you leave on our site is kept strictly confidential, and we use it solely to improve your holiday experience. Our site collects basic analytical data so we can understand what our visitors like to read and watch the most. We never sell this data, nor do we share it with unauthorized persons. For all additional information, feel free to contact us via our contact address. Enjoy the Christmas magic without worry.">Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige.</p>
   </div>
 </div>
@@ -796,8 +889,8 @@ function cardHTML(p) {
           <div class="blog-card-excerpt">${p.excerpt}</div>
         </div>
         <div style="margin-top: 15px; display: flex; gap: 10px; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px;">
-          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Inter',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); this.style.backgroundColor='var(--pine)'; this.style.color='white'; this.style.borderColor='var(--pine)'; this.textContent='❤ Lajkano'">❤ Lajkaj</button>
-          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Inter',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); alert('Hvala na dijeljenju ove objave!');">➦ Podijeli</button>
+          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Jost',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); this.style.backgroundColor='var(--pine)'; this.style.color='white'; this.style.borderColor='var(--pine)'; this.textContent='❤ Lajkano'">❤ Lajkaj</button>
+          <button class="btn-action" style="padding: 6px 12px; border: 1px solid var(--gold); background: none; color: var(--gold); border-radius: 20px; cursor: pointer; font-family:'Jost',sans-serif; font-size: 0.75rem; font-weight:600;" onclick="event.stopPropagation(); alert('Hvala na dijeljenju ove objave!');">➦ Podijeli</button>
         </div>
       </div>
     </div>`;
@@ -851,15 +944,25 @@ function showPost(id) {
   document.getElementById('post-title').textContent = post.title;
   document.getElementById('post-body').innerHTML = post.body;
 
-  // FOTOGRAFIJA
+  // FOTOGRAFIJA — magazinski naslov koji se preklapa preko fotografije, ako post ima sliku;
+  // inače standardni naslov iznad teksta.
   const imgWrap = document.getElementById('post-image-wrap');
   const imgEl = document.getElementById('post-image');
+  const plainHeader = document.getElementById('post-header-meta-plain');
+  const plainTitle = document.getElementById('post-title');
   if (post.image) {
     imgEl.src = post.image;
     imgEl.alt = post.title;
+    document.getElementById('post-cat-overlap').textContent = post.categoryLabel;
+    document.getElementById('post-date-overlap').textContent = post.date;
+    document.getElementById('post-title-overlap').textContent = post.title;
     imgWrap.style.display = 'block';
+    plainHeader.style.display = 'none';
+    plainTitle.style.display = 'none';
   } else {
     imgWrap.style.display = 'none';
+    plainHeader.style.display = 'flex';
+    plainTitle.style.display = 'block';
   }
 
   // SHARE GUMBI
@@ -1054,7 +1157,7 @@ function updateCountdown() {
   const diff = christmas - now;
 
   if (diff <= 0) {
-    document.getElementById('countdown-boxes').innerHTML = '<div style="font-family: \'Fraunces\', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-shadow: 0 0 15px rgba(169,140,82,0.5);">&#127876; Sretan Božić! &#127876;</div>';
+    document.getElementById('countdown-boxes').innerHTML = '<div style="font-family: \'Cormorant Garamond\', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-shadow: 0 0 15px rgba(169,140,82,0.5);">&#127876; Sretan Božić! &#127876;</div>';
     return;
   }
 
@@ -1108,7 +1211,7 @@ function renderVideoGrid(filter) {
   allGrid.className = filter === 'shorts' ? 'shorts-grid' : 'home-video-grid';
   allGrid.innerHTML = filtered.length
     ? filtered.map(v => videoWrapperHTML(v.id, v.title)).join('')
-    : '<p style="color:rgba(255,255,255,0.5);font-family:\'Inter\',sans-serif;">Trenutno nema videa u ovoj kategoriji.</p>';
+    : '<p style="color:rgba(255,255,255,0.5);font-family:\'Jost\',sans-serif;">Trenutno nema videa u ovoj kategoriji.</p>';
 }
 
 function filterVideos(filter, btn) {
