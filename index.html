@@ -1047,8 +1047,10 @@ function videoWrapperHTML(videoId, title) {
 // VAŽNO: oEmbed vraća točan (okomit) omjer samo ako se traži preko /shorts/ URL-a.
 // Zahtjev preko /watch?v= uvijek vraća standardni 16:9, bez obzira na stvarni format.
 function detectVideoType(videoId) {
-  return fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/shorts/' + videoId)}&format=json`)
+  const oembedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/shorts/' + videoId)}&format=json`;
+  return fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(oembedUrl)}`)
     .then(r => r.json())
+    .then(wrapper => JSON.parse(wrapper.contents))
     .then(data => (data.height > data.width ? 'shorts' : 'video'))
     .catch(() => 'video');
 }
