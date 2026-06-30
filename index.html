@@ -61,10 +61,19 @@
     }
 
     /* HEADER */
-    header { background: linear-gradient(160deg, #6b0f0f 0%, #3d0707 60%, #1a0303 100%); position: relative; z-index: 10; }
+    header { 
+      position: relative; 
+      z-index: 10; 
+      background-image: 
+        linear-gradient(180deg, rgba(26,3,3,0.55) 0%, rgba(26,3,3,0.7) 55%, rgba(26,3,3,0.92) 100%),
+        url('hero.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
     header::before { content:''; display:block; height:3px; background:linear-gradient(90deg,transparent,var(--green-trace),var(--gold),var(--green-trace),transparent); }
 
-    .header-top { display:flex; justify-content:flex-end; align-items:center; padding:12px 50px; border-bottom:1px solid rgba(201,148,58,0.15); }
+    .header-top { display:flex; justify-content:flex-end; align-items:center; padding:12px 50px; }
     .lang-toggle { display:flex; gap:8px; }
     .lang-btn { background:transparent; border:1px solid rgba(201,148,58,0.5); color:rgba(255,255,255,0.6); padding:6px 16px; border-radius:20px; font-family:'Mulish',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:2px; transition:all 0.3s ease; }
     .lang-btn.active, .lang-btn:hover { background:var(--gold); color:#3d0707; border-color:var(--gold); box-shadow: 0 0 15px rgba(201,148,58,0.4); }
@@ -99,13 +108,7 @@
       text-align:center; 
       padding:45px 20px 55px; 
       position: relative; 
-      background-image: 
-        radial-gradient(circle at 50% 40%, rgba(201,148,58,0.12) 0%, transparent 60%),
-        linear-gradient(180deg, rgba(26,3,3,0.55) 0%, rgba(26,3,3,0.75) 60%, rgba(26,3,3,0.92) 100%),
-        url('hero.jpg');
-      background-size: cover, cover, cover;
-      background-position: center, center, center;
-      background-repeat: no-repeat, no-repeat, no-repeat;
+      background-image: radial-gradient(circle at 50% 40%, rgba(201,148,58,0.15) 0%, transparent 60%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1041,8 +1044,10 @@ function videoWrapperHTML(videoId, title) {
 }
 
 // Provjerava je li video Shorts (okomit format) preko YouTube oEmbed-a
+// VAŽNO: oEmbed vraća točan (okomit) omjer samo ako se traži preko /shorts/ URL-a.
+// Zahtjev preko /watch?v= uvijek vraća standardni 16:9, bez obzira na stvarni format.
 function detectVideoType(videoId) {
-  return fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/watch?v=' + videoId)}&format=json`)
+  return fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/shorts/' + videoId)}&format=json`)
     .then(r => r.json())
     .then(data => (data.height > data.width ? 'shorts' : 'video'))
     .catch(() => 'video');
