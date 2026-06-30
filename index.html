@@ -99,7 +99,13 @@
       text-align:center; 
       padding:45px 20px 55px; 
       position: relative; 
-      background: radial-gradient(circle at 50% 40%, rgba(201,148,58,0.12) 0%, transparent 60%);
+      background-image: 
+        radial-gradient(circle at 50% 40%, rgba(201,148,58,0.12) 0%, transparent 60%),
+        linear-gradient(180deg, rgba(26,3,3,0.55) 0%, rgba(26,3,3,0.75) 60%, rgba(26,3,3,0.92) 100%),
+        url('hero.jpg');
+      background-size: cover, cover, cover;
+      background-position: center, center, center;
+      background-repeat: no-repeat, no-repeat, no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -259,6 +265,13 @@
     .video-wrapper { border-radius:12px; overflow:hidden; box-shadow:0 25px 50px rgba(0,0,0,0.6); border:1px solid rgba(201,148,58,0.3); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); background: #000; }
     .video-wrapper:hover { transform: translateY(-6px) scale(1.02); box-shadow:0 30px 60px rgba(0,0,0,0.7); }
     .video-wrapper iframe { width:100%; aspect-ratio:16/9; display:block; border:none; }
+
+    /* SHORTS MREŽA — okomiti format */
+    .shorts-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1000px; margin: 0 auto; }
+    .shorts-grid .video-wrapper iframe { aspect-ratio: 9/16; }
+    @media (max-width:768px) {
+      .shorts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     .view-all-btn { display:block; width:fit-content; margin:50px auto 0; padding:14px 40px; background:transparent; border:2px solid var(--red-mid); color:var(--red-mid); font-family:'Mulish',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; transition:all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-radius: 40px; cursor: pointer; }
     .view-all-btn:hover { background:var(--red-deep); color:var(--white); border-color:var(--red-deep); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
@@ -518,12 +531,12 @@
   <section class="intro-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Dobrodošli" data-en="Welcome">Dobrodošli</div>
     <h2 data-hr="Mjesto gdje Božić živi cijele godine" data-en="A place where Christmas lives all year long">Mjesto gdje Božić živi cijele godine</h2>
-    <p data-hr="Christmas Wish je sestrinsko bratski projekt projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a labour of love — a website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je projekt iz ljubavi — stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
+    <p data-hr="Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a brother-and-sister labour of love that we started many years ago. A website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
   <section class="video-section scroll-reveal">
     <div class="section-eyebrow" data-hr="Najnovije" data-en="Latest">Najnovije</div>
-    <h2 data-hr="Blagdanska atmosfera — novi videi" data-en="Winter atmosphere — new videos">Blagdanska atmosfera — novi videi</h2>
+    <h2 data-hr="Zimska atmosfera — novi videi" data-en="Winter atmosphere — new videos">Zimska atmosfera — novi videi</h2>
     <div class="home-video-grid" id="home-video-grid">
       <div class="video-wrapper" style="display:flex;align-items:center;justify-content:center;min-height:200px;">
         <span style="color:rgba(255,255,255,0.4);font-family:'Mulish',sans-serif;letter-spacing:2px;font-size:0.8rem;">⏳ Učitavanje videa...</span>
@@ -561,6 +574,11 @@
     <div class="section-eyebrow" data-hr="Zvuci i prizori" data-en="Sounds and scenes">Zvuci i prizori</div>
     <h1 data-hr="Video Kolekcija" data-en="Video Collection">Video Kolekcija</h1>
     <p data-hr="Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala." data-en="Here we bring our collection of winter atmospheres from our YouTube channel.">Ovdje donosimo našu zbirku zimskih ugođaja s našeg YouTube kanala.</p>
+  </div>
+  <div class="filter-bar scroll-reveal">
+    <button class="filter-btn active" onclick="filterVideos('sve', this)" data-hr="Sve" data-en="All">Sve</button>
+    <button class="filter-btn" onclick="filterVideos('video', this)" data-hr="Video" data-en="Video">Video</button>
+    <button class="filter-btn" onclick="filterVideos('shorts', this)" data-hr="Shorts" data-en="Shorts">Shorts</button>
   </div>
   <section class="gallery-section scroll-reveal" style="padding-top: 50px;">
     <div class="home-video-grid" id="all-video-grid" style="margin-bottom: 40px;">
@@ -1012,12 +1030,38 @@ const YT_CHANNEL_ID = 'UC4SBUomBU93aQryQ-6SaNew';
 const YT_RSS = `https://www.youtube.com/feeds/videos.xml?channel_id=${YT_CHANNEL_ID}`;
 const PROXY = `https://api.allorigins.win/get?url=${encodeURIComponent(YT_RSS)}`;
 
+let allVideosData = []; // {id, title, type: 'video' | 'shorts'}
+
 function videoWrapperHTML(videoId, title) {
   return `<div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/${videoId}" title="${title}"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen></iframe>
   </div>`;
+}
+
+// Provjerava je li video Shorts (okomit format) preko YouTube oEmbed-a
+function detectVideoType(videoId) {
+  return fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent('https://www.youtube.com/watch?v=' + videoId)}&format=json`)
+    .then(r => r.json())
+    .then(data => (data.height > data.width ? 'shorts' : 'video'))
+    .catch(() => 'video');
+}
+
+function renderVideoGrid(filter) {
+  const allGrid = document.getElementById('all-video-grid');
+  if (!allGrid) return;
+  const filtered = filter === 'sve' ? allVideosData : allVideosData.filter(v => v.type === filter);
+  allGrid.className = filter === 'shorts' ? 'shorts-grid' : 'home-video-grid';
+  allGrid.innerHTML = filtered.length
+    ? filtered.map(v => videoWrapperHTML(v.id, v.title)).join('')
+    : '<p style="color:rgba(255,255,255,0.5);font-family:\'Mulish\',sans-serif;">Trenutno nema videa u ovoj kategoriji.</p>';
+}
+
+function filterVideos(filter, btn) {
+  document.querySelectorAll('#view-video .filter-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  renderVideoGrid(filter);
 }
 
 function loadYouTubeVideos() {
@@ -1034,28 +1078,29 @@ function loadYouTubeVideos() {
         return { id: rawId, title: e.querySelector('title') ? e.querySelector('title').textContent : '' };
       }).filter(v => v.id && v.id.length === 11);
 
-      // Naslovna — prikaži 2 najnovija
+      // Naslovna — prikaži 2 najnovija (uvijek standardni video format)
       const homeGrid = document.getElementById('home-video-grid');
       if (homeGrid && videos.length > 0) {
         homeGrid.innerHTML = videos.slice(0, 2).map(v => videoWrapperHTML(v.id, v.title)).join('');
       }
 
-      // Video stranica — prikaži sve
-      const allGrid = document.getElementById('all-video-grid');
-      if (allGrid && videos.length > 0) {
-        allGrid.innerHTML = videos.map(v => videoWrapperHTML(v.id, v.title)).join('');
-      }
+      // Klasificiraj sve videe na Video / Shorts pa popuni stranicu Video
+      Promise.all(videos.map(v => detectVideoType(v.id).then(type => ({ ...v, type }))))
+        .then(classified => {
+          allVideosData = classified;
+          renderVideoGrid('sve');
+        });
     })
     .catch(() => {
       // Fallback na ručno postavljene videe ako RSS ne radi
       const fallback = [
-        { id: 'wTDzAWNmhfo', title: 'Christmas Snowy Atmosphere – Sweet Wordless Christmas Jazz Music to Relax' },
-        { id: 'VcLOcXuDT2o', title: 'Christmas Wish Video 2' }
+        { id: 'wTDzAWNmhfo', title: 'Christmas Snowy Atmosphere – Sweet Wordless Christmas Jazz Music to Relax', type: 'video' },
+        { id: 'VcLOcXuDT2o', title: 'Christmas Wish Video 2', type: 'video' }
       ];
       const homeGrid = document.getElementById('home-video-grid');
       if (homeGrid) homeGrid.innerHTML = fallback.map(v => videoWrapperHTML(v.id, v.title)).join('');
-      const allGrid = document.getElementById('all-video-grid');
-      if (allGrid) allGrid.innerHTML = fallback.map(v => videoWrapperHTML(v.id, v.title)).join('');
+      allVideosData = fallback;
+      renderVideoGrid('sve');
     });
 }
 
