@@ -529,8 +529,18 @@
 
 <!-- FACEBOOK SDK -->
 <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-  src="https://connect.facebook.net/hr_HR/sdk.js#xfbml=1&version=v19.0&appId=&autoLogAppEvents=1">
+<script>
+  // Učitaj Facebook SDK tek kad treba (lazy load)
+  function loadFBSDK() {
+    if (window.fbSDKLoaded) return;
+    window.fbSDKLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.defer = true;
+    s.crossOrigin = 'anonymous';
+    s.src = 'https://connect.facebook.net/hr_HR/sdk.js#xfbml=1&version=v19.0&appId=&autoLogAppEvents=1';
+    document.body.appendChild(s);
+  }
 </script>
 
 <div class="snowflakes" id="snowflakes"></div>
@@ -971,7 +981,8 @@ function showPost(id) {
   document.getElementById('share-fb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + postUrl;
   document.getElementById('share-wa').href = 'https://api.whatsapp.com/send?text=' + postTitle + '%20' + postUrl;
 
-  // FACEBOOK KOMENTARI — ažuriraj URL za svaki post
+  // FACEBOOK KOMENTARI — lazy load SDK i ažuriraj URL
+  loadFBSDK();
   const fbThread = document.getElementById('fb-comments-thread');
   if (fbThread) {
     fbThread.setAttribute('data-href', 'https://christmaswish.github.io/#post-' + id);
