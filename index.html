@@ -633,7 +633,7 @@
     <p data-hr="Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo." data-en="Christmas Wish is a brother-and-sister labour of love that we started many years ago. A website, Facebook community and YouTube channel dedicated to winter atmosphere, Christmas spirit and everything that comes with the first snowflakes. No rush, no noise. Just that special feeling we all recognise.">Christmas Wish je sestrinsko bratski projekt iz ljubavi koje smo pokrenuli davnih dana. Web stranica, Facebook zajednica i YouTube kanal posvećeni zimskoj atmosferi, božićnom ugođaju i svemu što dolazi s prvim pahuljama. Bez žurbe, bez buke. Samo onaj poseban osjećaj koji svi prepoznajemo.</p>
   </section>
 
-  <div class="cinematic-break scroll-reveal" style="background-image:url('slike/galerija/slika-5.jpg')" role="img" aria-label="Zimska atmosfera">
+  <div class="cinematic-break scroll-reveal" style="background-image:url('slike/galerija/slika-5.jpg');will-change:opacity;" role="img" aria-label="Zimska atmosfera">
     <div class="cinematic-caption" data-hr="Negdje, svijeća još uvijek gori." data-en="Somewhere, a candle is still burning.">Negdje, svijeća još uvijek gori.</div>
   </div>
 
@@ -658,7 +658,7 @@
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
 
-  <div class="cinematic-break scroll-reveal" style="background-image:url('slike/galerija/slika-7.jpg')" role="img" aria-label="Božićna večer">
+  <div class="cinematic-break scroll-reveal" style="background-image:url('slike/galerija/slika-7.jpg');will-change:opacity;" role="img" aria-label="Božićna večer">
     <div class="cinematic-caption" data-hr="Tišina prvog snijega." data-en="The quiet of the first snow.">Tišina prvog snijega.</div>
   </div>
 
@@ -914,10 +914,7 @@ function renderGrid(filter, targetId) {
 }
 
 function showView(name) {
-  document.querySelectorAll('iframe').forEach(iframe => {
-    let currentSrc = iframe.src;
-    iframe.src = currentSrc; 
-  });
+  // Iframeovi se ne resetiraju - nepotrebno usporava
 
   document.querySelectorAll('.view').forEach(v => {
     v.classList.remove('active');
@@ -1044,17 +1041,22 @@ function setLang(lang) {
   document.documentElement.lang = lang;
 }
 
+let _scrollObserver = null;
 window.initObserver = function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
-  
-  document.querySelectorAll('.scroll-reveal').forEach(el => {
-    observer.observe(el);
+  // Kreiraj observer samo jednom — ne svaki put iznova!
+  if (!_scrollObserver) {
+    _scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          _scrollObserver.unobserve(entry.target); // Prestani pratiti kad postane vidljivo
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -30px 0px" });
+  }
+  // Observe samo elemente koji još nisu vidljivi
+  document.querySelectorAll('.scroll-reveal:not(.visible)').forEach(el => {
+    _scrollObserver.observe(el);
   });
 };
 
