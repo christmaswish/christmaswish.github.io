@@ -23,7 +23,7 @@
   <meta name="twitter:image" content="https://christmaswish.github.io/hero.jpg"/>
 
   <link rel="icon" type="image/png" href="logo.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&family=Mrs+Saint+Delafield&family=Great+Vibes&display=swap" rel="stylesheet"/>
 
   <!-- STRUCTURED DATA -->
   <script type="application/ld+json">
@@ -532,6 +532,330 @@
       .hero-logo, .sf-flake, .scroll-reveal { animation: none !important; }
       * { transition-duration: 0.01ms !important; }
     }
+    /* ═══════════════════════════════════════════════════════════════════
+       PREMIUM 2026 — vizualna nadogradnja
+       (dodano na postojeći sustav; nijedno originalno pravilo nije obrisano)
+       ═══════════════════════════════════════════════════════════════════ */
+    :root {
+      --emerald-deep: #0a1a12;
+      --emerald: #123526;
+      --emerald-soft: #1d4a35;
+      --gold-soft: #e7d3a3;
+      --gold-deep: #8a6d3b;
+      --gold-glow: rgba(203, 180, 127, 0.35);
+      --glass-line: rgba(255, 253, 248, 0.10);
+      --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    ::selection { background: var(--gold); color: #0c130e; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #0c130e; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold-deep), var(--gold)); border-radius: 10px; }
+
+    /* Zlatni foil — za naslove i akcente */
+    .gold-foil {
+      background: linear-gradient(100deg, #8a6d3b 0%, #cbb47f 28%, #fff4d6 50%, #cbb47f 72%, #8a6d3b 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .script-accent { font-family: 'Great Vibes', cursive; font-weight: 400; }
+
+    /* Traka napretka čitanja */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+      background: linear-gradient(90deg, var(--green-trace), var(--gold-light), var(--gold));
+      z-index: 10001; pointer-events: none; transition: width .15s linear;
+      box-shadow: 0 0 12px rgba(203, 180, 127, .5);
+    }
+
+    /* ── NAV: staklo, zlatna linija, elegantno podcrtavanje ── */
+    nav { background: linear-gradient(180deg, rgba(38, 10, 10, .94) 0%, rgba(12, 19, 14, .94) 100%); border-top-color: rgba(203, 180, 127, .28); }
+    nav ul li a { position: relative; padding: 18px 20px; letter-spacing: 2.4px; }
+    nav ul li a::after {
+      content: ''; position: absolute; left: 20px; right: 20px; bottom: 10px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
+      transform: scaleX(0); transform-origin: center; transition: transform .5s var(--ease-lux);
+    }
+    nav ul li a:hover::after, nav ul li a.active::after { transform: scaleX(1); }
+    nav ul li a:hover, nav ul li a.active { text-shadow: 0 0 14px rgba(203, 180, 127, .45); }
+
+    /* ── HERO ── */
+    header {
+      background-image:
+        radial-gradient(120% 90% at 50% 0%, rgba(169, 140, 82, .22) 0%, transparent 55%),
+        linear-gradient(180deg, rgba(11, 18, 13, .72) 0%, rgba(11, 18, 13, .78) 55%, rgba(11, 18, 13, .94) 100%),
+        url('hero.jpg');
+    }
+    header::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(60% 50% at 50% 100%, rgba(169, 140, 82, .14), transparent 70%);
+    }
+    .hero { z-index: 1; }
+    .logo-script { letter-spacing: .5px; filter: drop-shadow(0 6px 24px rgba(0, 0, 0, .35)); }
+    .logo-script em {
+      background: linear-gradient(100deg, #cbb47f, #fff4d6 45%, #cbb47f);
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-tagline { letter-spacing: 6px; }
+    .gold-divider { width: 160px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); opacity: .9; }
+    .hero-logo { filter: brightness(0) invert(1) drop-shadow(0 0 26px rgba(203, 180, 127, .35)); }
+
+    /* ── ODBROJAVANJE: staklene pločice, zlatni rub, mekani "tick" ── */
+    @keyframes cdIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .modern-countdown { gap: 14px; animation: cdIn .8s .15s var(--ease-lux) both; }
+    .mc-item {
+      position: relative; min-width: 92px; padding: 16px 20px 13px; border-radius: 14px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .02));
+      border: 1px solid rgba(203, 180, 127, .32);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 18px 40px rgba(0, 0, 0, .35);
+      transition: transform .4s var(--ease-lux), border-color .4s ease, box-shadow .4s ease;
+    }
+    .mc-item::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      background: radial-gradient(80% 60% at 50% 0%, rgba(203, 180, 127, .16), transparent 70%);
+    }
+    .mc-item:hover { transform: translateY(-4px); border-color: rgba(203, 180, 127, .6); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 24px 45px rgba(0, 0, 0, .42); }
+    .mc-val {
+      font-size: 2.1rem; letter-spacing: -.02em; min-width: 2ch; text-align: center;
+      font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1;
+    }
+    @keyframes mcTick { 0% { transform: translateY(0); opacity: 1; } 35% { transform: translateY(-8px); opacity: .35; } 100% { transform: translateY(0); opacity: 1; } }
+    .mc-val.mc-tick { animation: mcTick .42s var(--ease-lux); }
+    .holiday-countdown {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--gold-soft); text-align: center; padding: 18px 26px; border-radius: 14px;
+      border: 1px solid rgba(203, 180, 127, .4); background: rgba(203, 180, 127, .08);
+      box-shadow: 0 0 40px rgba(203, 180, 127, .18);
+    }
+
+    /* ── GUMBI: zlatni sjaj i sheen pri hoveru ── */
+    .view-all-btn, .filter-btn, .btn-card-action, .share-btn, .lang-btn, .tz-btn { position: relative; overflow: hidden; }
+    .view-all-btn { border-radius: 40px; letter-spacing: 3.4px; backdrop-filter: blur(4px); box-shadow: 0 12px 30px rgba(19, 31, 23, .10); }
+    .view-all-btn::after, .filter-btn::after, .share-btn::after, .btn-card-action::after {
+      content: ''; position: absolute; top: -20%; left: -140%; width: 55%; height: 140%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+      transform: skewX(-18deg); transition: left .75s var(--ease-lux); pointer-events: none;
+    }
+    .view-all-btn:hover::after, .filter-btn:hover::after, .share-btn:hover::after, .btn-card-action:hover::after { left: 150%; }
+    .view-all-btn:hover, .filter-btn:hover { transform: translateY(-3px); }
+    .view-all-btn.light:hover { box-shadow: 0 16px 40px rgba(203, 180, 127, .28); }
+    .filter-btn.active { box-shadow: 0 8px 22px rgba(107, 31, 31, .32); }
+
+    /* ── KARTICE ── */
+    .blog-card, .gallery-item, .video-wrapper, .news-item { border: 1px solid rgba(169, 140, 82, .16); }
+    .blog-card:hover { border-color: rgba(203, 180, 127, .45); }
+    .blog-card::after, .gallery-item::after {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+      box-shadow: inset 0 0 0 1px rgba(203, 180, 127, 0); transition: box-shadow .5s ease;
+    }
+    .blog-card:hover::after, .gallery-item:hover::after { box-shadow: inset 0 0 0 1px rgba(203, 180, 127, .5), inset 0 0 60px rgba(203, 180, 127, .08); }
+    .video-wrapper { border-color: rgba(203, 180, 127, .22); }
+    .blog-list-item { transition: all .4s var(--ease-lux); }
+    .blog-list-item:hover { background: linear-gradient(90deg, rgba(203, 180, 127, .10), transparent); padding-left: 14px; }
+
+    /* ── TIPOGRAFIJA SEKCIJA ── */
+    .section-eyebrow { letter-spacing: 7px; }
+    .page-header { position: relative; overflow: hidden; }
+    .page-header::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(70% 100% at 50% 0%, rgba(203, 180, 127, .10), transparent 70%); }
+    .page-header h1 { letter-spacing: .5px; }
+    .scroll-reveal { transition: opacity .9s var(--ease-lux), transform .9s var(--ease-lux); }
+
+    /* ── SNEŽNI SJAJ (canvas) ── */
+    .snow-glow { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9998; opacity: .85; }
+
+    /* ── ANKETA ── */
+    .poll-section {
+      padding: 100px 40px; text-align: center; position: relative;
+      background: radial-gradient(70% 60% at 50% 0%, rgba(203, 180, 127, .12), transparent 60%), var(--white);
+      border-bottom: 1px solid rgba(0, 0, 0, .05);
+    }
+    .poll-section h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2rem, 4vw, 3rem); color: var(--pine-deep); margin-bottom: 18px; line-height: 1.2; }
+    .poll-lead { max-width: 620px; margin: 0 auto 40px; color: var(--text-mid); font-weight: 300; line-height: 1.9; font-size: 1.05rem; }
+    .poll-card {
+      max-width: 640px; margin: 0 auto; padding: 32px 30px 24px; border-radius: 18px; text-align: left;
+      background: linear-gradient(180deg, #fffdf8, #f9f4ea);
+      border: 1px solid rgba(169, 140, 82, .28);
+      box-shadow: 0 30px 60px rgba(19, 31, 23, .10);
+    }
+    .poll-options { display: grid; gap: 12px; }
+    .poll-option {
+      position: relative; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      width: 100%; padding: 15px 18px; border-radius: 12px; border: 1px solid rgba(19, 31, 23, .12);
+      background: rgba(255, 255, 255, .6); font-family: 'Jost', sans-serif; font-size: .95rem; font-weight: 500;
+      color: var(--text-dark); cursor: pointer; overflow: hidden; isolation: isolate; text-align: left;
+      transition: transform .35s var(--ease-lux), border-color .3s ease, box-shadow .3s ease;
+    }
+    .poll-bar {
+      position: absolute; inset: 0 auto 0 0; height: 100%; width: 0; z-index: -1;
+      background: linear-gradient(90deg, rgba(169, 140, 82, .22), rgba(203, 180, 127, .32));
+      transition: width .9s var(--ease-lux);
+    }
+    .poll-option:hover { transform: translateY(-2px); border-color: rgba(169, 140, 82, .5); box-shadow: 0 12px 26px rgba(19, 31, 23, .08); }
+    .poll-option[aria-pressed="true"] { border-color: var(--gold); background: #fffdf8; box-shadow: 0 0 0 1px rgba(203, 180, 127, .6), 0 14px 30px rgba(169, 140, 82, .16); }
+    .poll-option[aria-pressed="true"] .poll-bar { background: linear-gradient(90deg, rgba(203, 180, 127, .34), rgba(230, 207, 154, .5)); }
+    .poll-opt-main { display: flex; align-items: center; gap: 12px; z-index: 1; }
+    .poll-dot {
+      width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid rgba(169, 140, 82, .65);
+      display: inline-flex; align-items: center; justify-content: center; flex: none; transition: all .3s;
+    }
+    .poll-option[aria-pressed="true"] .poll-dot { border-color: var(--gold); background: radial-gradient(circle, var(--gold) 45%, transparent 46%); }
+    .poll-pct { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--pine); font-size: .9rem; z-index: 1; white-space: nowrap; }
+    .poll-count { color: rgba(19, 31, 23, .42); font-weight: 500; font-size: .78rem; margin-left: 4px; }
+    .poll-meta {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      margin-top: 22px; padding-top: 18px; border-top: 1px solid rgba(19, 31, 23, .08);
+      font-size: .74rem; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(19, 31, 23, .45); font-weight: 600;
+    }
+    .poll-total { color: var(--pine-deep); margin-left: 8px; font-size: .85rem; }
+    .poll-reset {
+      background: none; border: none; font-family: 'Jost', sans-serif; font-size: .72rem; letter-spacing: 1.6px;
+      text-transform: uppercase; color: var(--gold-deep); cursor: pointer; padding: 6px 2px;
+      border-bottom: 1px solid transparent; transition: all .3s;
+    }
+    .poll-reset:hover { color: var(--pine-deep); border-bottom-color: var(--pine-deep); }
+    .poll-reset[disabled] { opacity: .35; cursor: default; border-bottom-color: transparent; }
+    .poll-note { margin: 22px auto 0; max-width: 560px; font-size: .8rem; color: rgba(27, 28, 25, .45); letter-spacing: .3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    /* ── ADVENTSKI KALENDAR ── */
+    .advent-section {
+      padding: 90px 30px 110px;
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(169, 140, 82, .10), transparent 60%), linear-gradient(180deg, #0c130e, #0a110c);
+    }
+    .advent-intro { max-width: 720px; margin: 0 auto 46px; text-align: center; }
+    .advent-intro .section-eyebrow { color: var(--gold-light); }
+    .advent-intro h1 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(2.3rem, 5vw, 3.4rem); color: var(--cream); margin-bottom: 16px; line-height: 1.15; }
+    .advent-intro p { color: rgba(246, 241, 231, .62); font-weight: 300; line-height: 1.9; }
+    .advent-hint {
+      display: inline-flex; align-items: center; gap: 9px; margin-top: 22px; padding: 9px 20px; border-radius: 30px;
+      border: 1px solid rgba(203, 180, 127, .28); background: rgba(203, 180, 127, .07);
+      color: var(--gold-light); font-size: .72rem; letter-spacing: 2.2px; text-transform: uppercase; font-weight: 600;
+    }
+    .advent-hint svg { width: 13px; height: 13px; flex: none; }
+    .advent-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; max-width: 880px; margin: 0 auto; }
+    .advent-door {
+      position: relative; aspect-ratio: 1 / 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+      border-radius: 12px; border: 1px solid rgba(203, 180, 127, .25);
+      background: linear-gradient(160deg, rgba(31, 51, 38, .85), rgba(10, 26, 18, .95));
+      color: rgba(246, 241, 231, .75); cursor: pointer; overflow: hidden; padding: 6px;
+      transition: transform .45s var(--ease-lux), border-color .35s, box-shadow .35s, background .35s;
+    }
+    .advent-door::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .8;
+      background: radial-gradient(80% 70% at 50% 0%, rgba(203, 180, 127, .12), transparent 70%);
+    }
+    .advent-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.3rem, 3.4vw, 1.9rem); font-weight: 600; line-height: 1; color: var(--cream); }
+    .advent-star svg { width: 14px; height: 14px; display: block; opacity: .55; }
+    .advent-caption { font-size: .5rem; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(246, 241, 231, .42); }
+    .advent-door:hover { transform: translateY(-5px); border-color: rgba(203, 180, 127, .55); box-shadow: 0 18px 36px rgba(0, 0, 0, .45); }
+    .advent-door.is-locked { cursor: not-allowed; background: linear-gradient(160deg, rgba(22, 32, 25, .7), rgba(9, 15, 11, .9)); color: rgba(246, 241, 231, .3); }
+    .advent-door.is-locked .advent-num { color: rgba(246, 241, 231, .5); }
+    .advent-door.is-locked:hover { transform: none; border-color: rgba(203, 180, 127, .25); box-shadow: none; }
+    .advent-door.is-open { background: linear-gradient(160deg, rgba(203, 180, 127, .22), rgba(107, 31, 31, .55)); border-color: rgba(230, 207, 154, .5); }
+    .advent-door.is-open .advent-caption { color: rgba(246, 241, 231, .7); }
+    .advent-teaser-tag {
+      position: absolute; top: 7px; right: 7px; font-family: 'Jost', sans-serif; font-size: .46rem; letter-spacing: 1.2px;
+      text-transform: uppercase; color: #0c130e; background: var(--gold-light); padding: 2px 6px; border-radius: 20px; font-weight: 700;
+    }
+    @keyframes adventPulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(230, 207, 154, .55), 0 0 26px rgba(203, 180, 127, .28); }
+      50% { box-shadow: 0 0 0 1px rgba(230, 207, 154, .8), 0 0 46px rgba(203, 180, 127, .45); }
+    }
+    .advent-door.is-today { border-color: var(--gold-light); animation: adventPulse 3.4s ease-in-out infinite; }
+    .advent-footnote { text-align: center; margin-top: 34px; color: rgba(246, 241, 231, .42); font-size: .8rem; letter-spacing: .6px; }
+
+    /* ── ADVENTSKI MODAL ── */
+    #advent-modal {
+      position: fixed; inset: 0; z-index: 100000; display: none; align-items: center; justify-content: center; padding: 24px;
+      background: rgba(4, 8, 6, .78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+    }
+    #advent-modal.open { display: flex; }
+    .advent-modal-card {
+      position: relative; width: min(520px, 100%); border-radius: 18px; padding: 42px 34px 30px;
+      background: linear-gradient(165deg, #16281e 0%, #0b1710 60%, #140b0b 100%);
+      border: 1px solid rgba(203, 180, 127, .42);
+      box-shadow: 0 40px 90px rgba(0, 0, 0, .6), inset 0 1px 0 rgba(255, 255, 255, .08);
+      color: var(--cream); transform: translateY(16px) scale(.97); opacity: 0;
+      transition: transform .5s var(--ease-lux), opacity .4s ease;
+    }
+    #advent-modal.open .advent-modal-card { transform: none; opacity: 1; }
+    .advent-modal-card::before { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(203, 180, 127, .18); border-radius: 12px; pointer-events: none; }
+    .advent-modal-day { display: inline-flex; align-items: center; gap: 10px; font-size: .68rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); }
+    .advent-modal-card h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.55rem, 4vw, 2.1rem); font-weight: 600; line-height: 1.3; margin: 14px 0 18px; }
+    .advent-modal-fact { padding: 16px 18px; border-left: 2px solid var(--gold); background: rgba(203, 180, 127, .07); border-radius: 0 10px 10px 0; }
+    .advent-modal-fact-label { display: block; font-size: .6rem; letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 8px; }
+    .advent-modal-fact p { font-size: .92rem; line-height: 1.8; font-weight: 300; color: rgba(246, 241, 231, .76); }
+    .advent-modal-actions { margin-top: 26px; display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .advent-modal-sign { font-family: 'Great Vibes', cursive; font-size: 1.45rem; color: rgba(246, 241, 231, .7); }
+    .advent-modal-sign em { font-style: normal; color: var(--gold-light); }
+    .advent-modal-actions .view-all-btn { margin: 0; border-color: rgba(203, 180, 127, .5); color: var(--gold-light); padding: 12px 26px; font-size: .68rem; letter-spacing: 2.4px; }
+    .advent-modal-actions .view-all-btn:hover { background: var(--gold-light); color: #0c130e; }
+    .advent-modal-actions .view-all-btn[disabled] { opacity: .35; cursor: default; }
+    .advent-modal-actions .view-all-btn[disabled]:hover { background: transparent; color: var(--gold-light); }
+    .advent-modal-close {
+      position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(203, 180, 127, .35); background: rgba(0, 0, 0, .25); color: var(--gold-light);
+      cursor: pointer; font-size: .95rem; display: flex; align-items: center; justify-content: center; transition: all .3s;
+    }
+    .advent-modal-close:hover { background: var(--gold); color: #0c130e; border-color: var(--gold); transform: rotate(90deg); }
+    .advent-toast {
+      position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 20px);
+      background: rgba(12, 19, 14, .96); color: var(--cream); border: 1px solid rgba(203, 180, 127, .35);
+      padding: 12px 22px; border-radius: 30px; font-size: .82rem; letter-spacing: .4px; z-index: 100001;
+      opacity: 0; pointer-events: none; transition: all .4s var(--ease-lux); box-shadow: 0 20px 40px rgba(0, 0, 0, .5);
+      max-width: calc(100% - 40px); text-align: center;
+    }
+    .advent-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    /* ── HOME TEASER ZA KALENDAR ── */
+    .advent-teaser {
+      padding: 74px 40px; text-align: center; position: relative; overflow: hidden;
+      background: linear-gradient(120deg, #0c130e 0%, #16281e 55%, #1a0f0f 100%);
+    }
+    .advent-teaser::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(50% 80% at 50% 0%, rgba(203, 180, 127, .16), transparent 70%); }
+    .advent-teaser .section-eyebrow { color: var(--gold-light); }
+    .advent-teaser h2 { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: clamp(1.9rem, 3.6vw, 2.7rem); color: var(--cream); margin-bottom: 14px; }
+    .advent-teaser p { max-width: 620px; margin: 0 auto 30px; color: rgba(246, 241, 231, .6); font-weight: 300; line-height: 1.9; }
+    .advent-teaser-doors { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; }
+    .advent-teaser-door {
+      width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 10px;
+      border: 1px solid rgba(203, 180, 127, .28); background: rgba(246, 241, 231, .04);
+      color: rgba(246, 241, 231, .55); font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    }
+    .advent-teaser-door:last-child { border-color: rgba(230, 207, 154, .6); color: var(--gold-light); box-shadow: 0 0 22px rgba(203, 180, 127, .25); }
+
+    @media (max-width: 900px) { .advent-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 768px) {
+      nav ul li a { padding: 13px 10px; letter-spacing: 1px; }
+      .poll-section { padding: 60px 20px; }
+      .poll-card { padding: 24px 18px 18px; }
+      .advent-teaser { padding: 54px 20px; }
+      .advent-teaser-door { width: 44px; height: 44px; font-size: 1rem; }
+    }
+    @media (max-width: 560px) {
+      .advent-section { padding: 56px 16px 76px; }
+      .advent-grid { gap: 9px; }
+      .mc-item { min-width: 64px; padding: 12px 8px; border-radius: 12px; }
+      .mc-val { font-size: 1.45rem; }
+      .mc-label { font-size: .55rem; letter-spacing: 1px; }
+      .advent-modal-card { padding: 34px 22px 24px; }
+    }
+    @media (max-width: 768px) {
+      /* premium: navigacija se na mobitelu klizno pomiče umjesto da se lomi u tri reda */
+      nav ul { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+      nav ul::-webkit-scrollbar { display: none; }
+      nav ul li { flex: 0 0 auto; }
+      nav ul li a { padding: 13px 12px; letter-spacing: 1px; white-space: nowrap; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .snow-glow { display: none; }
+      .modern-countdown { animation: none; }
+      .advent-door.is-today { animation: none; }
+      .mc-val.mc-tick { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -552,7 +876,9 @@
   }
 </script>
 
+<div id="scroll-progress" aria-hidden="true"></div>
 <div class="snowflakes" id="snowflakes"></div>
+<canvas id="snow-glow" class="snow-glow" aria-hidden="true"></canvas>
 
 <!-- LIGHTBOX -->
 <div id="lightbox" onclick="if(event.target === this) this.style.display='none'">
@@ -624,6 +950,7 @@
 <nav>
   <ul>
     <li><a onclick="showView('home')" id="nav-home" class="active" role="button" tabindex="0" data-hr="Naslovna" data-en="Home">Naslovna</a></li>
+    <li><a onclick="showView('advent')" id="nav-advent" role="button" tabindex="0" data-hr="Adventski kalendar" data-en="Advent calendar">Adventski kalendar</a></li>
     <li><a onclick="showView('blog')" id="nav-blog" role="button" tabindex="0" data-hr="Blog" data-en="Blog">Blog</a></li>
 
     <li><a onclick="showView('video')" id="nav-video" role="button" tabindex="0" data-hr="Video" data-en="Video">Video</a></li>
@@ -667,6 +994,16 @@
     <button class="view-all-btn" onclick="showView('blog')" data-hr="Sve objave" data-en="All posts">Sve objave</button>
   </section>
 
+  <!-- ANKETA (premium nadogradnja) -->
+  <section class="poll-section" id="anketa">
+    <div class="section-eyebrow scroll-reveal" data-hr="Tvoj glas" data-en="Your vote">Tvoj glas</div>
+    <h2 class="scroll-reveal" data-hr="Koji ti je omiljeni božićni kolač?" data-en="Which Christmas cake is your favourite?">Koji ti je omiljeni božićni kolač?</h2>
+    <p class="poll-lead scroll-reveal" data-hr="Fritule, linzeri ili makovnjača? Glasaj i otkrij što bira ostatak Hrvatske. Tvoj glas pamti se u pregledniku — bez registracije i bez servera." data-en="Fritule, Linzer cookies or poppy seed roll? Vote and see what the rest of Croatia is choosing. Your vote is remembered in the browser — no sign-up, no server.">Fritule, linzeri ili makovnjača? Glasaj i otkrij što bira ostatak Hrvatske. Tvoj glas pamti se u pregledniku — bez registracije i bez servera.</p>
+    <div class="poll-card scroll-reveal" id="poll-kolac"></div>
+    <p class="poll-note scroll-reveal" data-hr="Glasovi se spremaju lokalno u tvojem pregledniku (localStorage)." data-en="Votes are stored locally in your browser (localStorage).">Glasovi se spremaju lokalno u tvojem pregledniku (localStorage).</p>
+    <div class="poll-live sr-only" id="poll-live" aria-live="polite"></div>
+  </section>
+
   <div class="cinematic-break scroll-reveal" style="background-image:url('slike/galerija/slika-7.jpg');will-change:opacity;" role="img" aria-label="Božićna večer">
     <div class="cinematic-caption" data-hr="Tišina prvog snijega." data-en="The quiet of the first snow.">Tišina prvog snijega.</div>
   </div>
@@ -681,6 +1018,38 @@
       <div class="gallery-item" onclick="openLightbox('slike/galerija/slika-4.jpg')"><img src="slike/galerija/slika-4.jpg" alt="Christmas Wish — zimska božićna atmosfera, fotografija 4" loading="lazy" onerror="this.style.display='none'"><svg viewBox="0 0 50 50" fill="white" xmlns="http://www.w3.org/2000/svg"><circle cx="25" cy="25" r="2"/><line x1="25" y1="5" x2="25" y2="45" stroke="white" stroke-width="1.5"/><line x1="5" y1="25" x2="45" y2="25" stroke="white" stroke-width="1.5"/><line x1="11" y1="11" x2="39" y2="39" stroke="white" stroke-width="1.5"/><line x1="39" y1="11" x2="11" y2="39" stroke="white" stroke-width="1.5"/></svg></div>
     </div>
     <button class="view-all-btn" onclick="showView('galerija')" data-hr="Sve fotografije" data-en="All photos">Sve fotografije</button>
+  </section>
+
+  <!-- TEASER: ADVENTSKI KALENDAR -->
+  <section class="advent-teaser scroll-reveal">
+    <div class="section-eyebrow" data-hr="Novo ove sezone" data-en="New this season">Novo ove sezone</div>
+    <h2 data-hr="Adventski kalendar s 24 prozorčića" data-en="An Advent calendar with 24 doors">Adventski kalendar s 24 prozorčića</h2>
+    <p data-hr="Svakog dana u prosincu otkrij malu poruku, čestitku ili božićnu zanimljivost. Prvi se prozorčić otvara 1. prosinca." data-en="Every December day reveals a little message, a greeting or a Christmas curiosity. The first door opens on December 1.">Svakog dana u prosincu otkrij malu poruku, čestitku ili božićnu zanimljivost. Prvi se prozorčić otvara 1. prosinca.</p>
+    <div class="advent-teaser-doors" aria-hidden="true">
+      <span class="advent-teaser-door">1</span>
+      <span class="advent-teaser-door">2</span>
+      <span class="advent-teaser-door">3</span>
+      <span class="advent-teaser-door">4</span>
+      <span class="advent-teaser-door">5</span>
+    </div>
+    <button class="view-all-btn light" onclick="showView('advent')" data-hr="Otvori kalendar" data-en="Open the calendar">Otvori kalendar</button>
+  </section>
+</div>
+
+<!-- ADVENTSKI KALENDAR VIEW (premium nadogradnja) -->
+<div id="view-advent" class="view">
+  <section class="advent-section">
+    <div class="advent-intro scroll-reveal">
+      <div class="section-eyebrow" data-hr="Adventski kalendar" data-en="Advent calendar">Adventski kalendar</div>
+      <h1 data-hr="24 prozorčića do Božića" data-en="24 doors to Christmas">24 prozorčića do Božića</h1>
+      <p data-hr="Otvori prozorčić za današnji dan i pronađi blagdansku poruku, citat ili malu zanimljivost. Prozorčići koji tek dolaze strpljivo čekaju svoj trenutak." data-en="Open today's door to find a festive message, a quote or a little Christmas curiosity. The doors still to come are patiently waiting for their moment.">Otvori prozorčić za današnji dan i pronađi blagdansku poruku, citat ili malu zanimljivost. Prozorčići koji tek dolaze strpljivo čekaju svoj trenutak.</p>
+      <div class="advent-hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+        <span id="advent-hint-text">Kalendar se otvara 1. prosinca</span>
+      </div>
+    </div>
+    <div class="advent-grid" id="advent-grid"></div>
+    <p class="advent-footnote" data-hr="Otvoreni prozorčići pamte se u tvojem pregledniku." data-en="Opened doors are remembered in your browser.">Otvoreni prozorčići pamte se u tvojem pregledniku.</p>
   </section>
 </div>
 
@@ -855,6 +1224,24 @@
     <p style="font-size:1.05rem; line-height:2; color:var(--text-dark); font-weight:300; margin-bottom: 20px;" data-hr="Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige." data-en="Privacy Policy for Christmas Wish. Your privacy is extremely important to us. All data you leave on our site is kept strictly confidential, and we use it solely to improve your holiday experience. Our site collects basic analytical data so we can understand what our visitors like to read and watch the most. We never sell this data, nor do we share it with unauthorized persons. For all additional information, feel free to contact us via our contact address. Enjoy the Christmas magic without worry.">Pravila privatnosti za Christmas Wish. Vaša privatnost nam je izuzetno važna. Svi podaci koje ostavite na našoj stranici čuvaju se u strogoj tajnosti, a koristimo ih isključivo za poboljšanje vašeg blagdanskog iskustva. Naša stranica prikuplja osnovne analitičke podatke kako bismo razumjeli što naši posjetitelji najviše vole čitati i gledati. Te podatke nikada ne prodajemo, niti ih dijelimo s neovlaštenim osobama. Za sve dodatne informacije, slobodno nam se obratite putem kontakt adrese. Uživajte u božićnoj čaroliji bez brige.</p>
   </div>
 </div>
+
+<!-- ADVENTSKI MODAL (premium nadogradnja) -->
+<div id="advent-modal" role="dialog" aria-modal="true" aria-labelledby="advent-modal-title" aria-hidden="true">
+  <div class="advent-modal-card" role="document">
+    <button type="button" class="advent-modal-close" id="advent-modal-close" aria-label="Zatvori prozorčić">&#10005;</button>
+    <div class="advent-modal-day" id="advent-modal-day">1. prosinca</div>
+    <h3 id="advent-modal-title">Neka ti jutro miriše na medenjake.</h3>
+    <div class="advent-modal-fact">
+      <span class="advent-modal-fact-label" id="advent-modal-fact-label">Zanimljivost</span>
+      <p id="advent-modal-fact"></p>
+    </div>
+    <div class="advent-modal-actions">
+      <span class="advent-modal-sign">S ljubavlju, <em>Christmas Wish</em></span>
+      <button type="button" class="view-all-btn light" id="advent-modal-next">Sljedeći prozorčić</button>
+    </div>
+  </div>
+</div>
+<div class="advent-toast" id="advent-toast" role="status" aria-live="polite"></div>
 
 <footer id="kontakt" class="scroll-reveal">
   <div class="footer-logo">Christmas Wish</div>
@@ -1048,6 +1435,8 @@ function setLang(lang) {
   document.getElementById('btn-hr').classList.toggle('active', lang === 'hr');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+  window.currentLang = lang; // premium: pamti odabrani jezik za dinamički sadržaj
+  if (window.renderAdvent) window.renderAdvent(); // premium: adventski kalendar prati jezik
 }
 
 let _scrollObserver = null;
@@ -1146,7 +1535,9 @@ const snowflakeCount = prefersReducedMotion ? 0 : (isSmallScreen ? 8 : 16);
 for (let i = 0; i < snowflakeCount; i++) createSnowflake();
 
 // ─── ODBROJAVANJE DO BOŽIĆA (CET fiksno ili lokalno vrijeme korisnika) ───────
-let countdownMode = 'cet'; // 'cet' = hrvatsko vrijeme (uvijek točno), 'local' = vrijeme uređaja korisnika
+let countdownMode = 'cet';
+// premium: izvorni izgled brojača pamtimo kako bismo ga vratili nakon božićnog stanja
+const COUNTDOWN_MARKUP = document.getElementById('countdown-boxes').innerHTML; // 'cet' = hrvatsko vrijeme (uvijek točno), 'local' = vrijeme uređaja korisnika
 
 function setCountdownMode(mode) {
   countdownMode = mode;
@@ -1178,9 +1569,19 @@ function updateCountdown() {
   const christmas = getNextChristmas(now);
   const diff = christmas - now;
 
+  const boxes = document.getElementById('countdown-boxes');
   if (diff <= 0) {
-    document.getElementById('countdown-boxes').innerHTML = '<div style="font-family: \'Cormorant Garamond\', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); text-shadow: 0 0 15px rgba(169,140,82,0.5);">&#127876; Sretan Božić! &#127876;</div>';
+    if (boxes && !boxes.dataset.holiday) {
+      boxes.dataset.holiday = '1';
+      boxes.classList.add('is-holiday');
+      boxes.innerHTML = '<div class="holiday-countdown">&#127876; Sretan Božić! &#127876;</div>';
+    }
     return;
+  }
+  if (boxes && boxes.dataset.holiday === '1') {
+    boxes.classList.remove('is-holiday');
+    delete boxes.dataset.holiday;
+    boxes.innerHTML = COUNTDOWN_MARKUP;
   }
 
   const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -1188,10 +1589,17 @@ function updateCountdown() {
   const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
   const secs  = Math.floor((diff % (1000 * 60)) / 1000);
 
-  document.getElementById('mc-days').textContent  = String(days).padStart(2, '0');
-  document.getElementById('mc-hours').textContent = String(hours).padStart(2, '0');
-  document.getElementById('mc-mins').textContent  = String(mins).padStart(2, '0');
-  document.getElementById('mc-secs').textContent  = String(secs).padStart(2, '0');
+  // premium: brojevi se mijenjaju uz mekani "tick" umjesto naglog preskoka
+  [['mc-days', days], ['mc-hours', hours], ['mc-mins', mins], ['mc-secs', secs]].forEach(pair => {
+    const el = document.getElementById(pair[0]);
+    if (!el) return;
+    const next = String(pair[1]).padStart(2, '0');
+    if (el.textContent === next) return;
+    el.textContent = next;
+    el.classList.remove('mc-tick');
+    void el.offsetWidth;
+    el.classList.add('mc-tick');
+  });
 }
 
 updateCountdown();
@@ -1263,6 +1671,9 @@ function loadYouTubeVideos() {
         return { id: rawId, title: e.querySelector('title') ? e.querySelector('title').textContent : '' };
       }).filter(v => v.id && v.id.length === 11);
 
+      // premium: ako proxy vrati prazan odgovor, prebaci se na rezervne videe
+      if (!videos.length) throw new Error('RSS nije vratio nijedan video');
+
       // Naslovna — prikaži 2 najnovija (uvijek standardni video format)
       const homeGrid = document.getElementById('home-video-grid');
       if (homeGrid && videos.length > 0) {
@@ -1291,6 +1702,353 @@ function loadYouTubeVideos() {
 
 loadYouTubeVideos();
 // ─────────────────────────────────────────────────────────────────────────────
+</script>
+
+<script>
+/* PREMIUM NADOGRADNJE (2026) — snježni sjaj, anketa, adventski kalendar */
+/* ═══════════════════════════════════════════════════════════════════════════
+   PREMIUM NADOGRADNJE — traka napretka, snježni sjaj, božićna anketa
+   Sve je dodano uz postojeći kod; postojeće funkcije rade kao i prije.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Traka napretka čitanja ──────────────────────────────────────────────── */
+(function scrollProgress() {
+  const bar = document.getElementById('scroll-progress');
+  if (!bar) return;
+  const update = () => {
+    const doc = document.documentElement;
+    const max = doc.scrollHeight - doc.clientHeight;
+    bar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + '%';
+  };
+  document.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ── Čarobni snježni sjaj (canvas: dubina, twinkle, mekani bokeh) ─────────── */
+(function magicSnow() {
+  const canvas = document.getElementById('snow-glow');
+  if (!canvas) return;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) { canvas.style.display = 'none'; return; }
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  let w = 0, h = 0, flakes = [], raf = null;
+  const COUNT = window.innerWidth < 768 ? 18 : 36;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = canvas.clientWidth; h = canvas.clientHeight;
+    canvas.width = Math.floor(w * dpr); canvas.height = Math.floor(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function make() {
+    flakes = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      r: 0.8 + Math.random() * 2.2,
+      vy: 0.16 + Math.random() * 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      phase: Math.random() * Math.PI * 2,
+      sway: 0.35 + Math.random() * 1.1,
+      alpha: 0.16 + Math.random() * 0.42,
+      glow: 6 + Math.random() * 12
+    }));
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    for (const f of flakes) {
+      f.y += f.vy;
+      f.x += f.vx + Math.sin(t / 2400 + f.phase) * f.sway * 0.12;
+      if (f.y - f.glow > h) { f.y = -f.glow; f.x = Math.random() * w; }
+      if (f.x < -30) f.x = w + 30; else if (f.x > w + 30) f.x = -30;
+      const twinkle = 0.7 + 0.3 * Math.sin(t / 900 + f.phase);
+      const a = f.alpha * twinkle;
+      const g = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.glow);
+      g.addColorStop(0, 'rgba(255,250,235,' + a + ')');
+      g.addColorStop(0.4, 'rgba(246,241,231,' + (a * 0.3) + ')');
+      g.addColorStop(1, 'rgba(246,241,231,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.glow, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(255,253,248,' + Math.min(1, a * 1.4) + ')';
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r * 0.45, 0, Math.PI * 2); ctx.fill();
+    }
+    raf = requestAnimationFrame(draw);
+  }
+  resize(); make();
+  raf = requestAnimationFrame(draw);
+  window.addEventListener('resize', () => { resize(); make(); });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { cancelAnimationFrame(raf); raf = null; }
+    else if (!raf) raf = requestAnimationFrame(draw);
+  });
+})();
+
+/* ── Božićna anketa (glasovi u localStorage) ─────────────────────────────── */
+(function christmasPoll() {
+  const root = document.getElementById('poll-kolac');
+  if (!root) return;
+  const KEY = 'cw-glas-kolac-v1';
+  const BASE = [47, 33, 28];
+  const OPTIONS = [
+    { hr: 'Fritule', en: 'Fritule' },
+    { hr: 'Linzeri', en: 'Linzer cookies' },
+    { hr: 'Makovnjača', en: 'Poppy seed roll' }
+  ];
+  const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'hr');
+  const t = (hr, en) => (lang() === 'en' ? en : hr);
+
+  let choice = -1;
+  try {
+    const raw = localStorage.getItem(KEY);
+    const n = Number(raw);
+    if (raw !== null && Number.isInteger(n) && n >= 0 && n < OPTIONS.length) choice = n;
+  } catch (e) { /* privatni način rada — anketa i dalje radi unutar stranice */ }
+
+  function persist() {
+    try {
+      if (choice >= 0) localStorage.setItem(KEY, String(choice));
+      else localStorage.removeItem(KEY);
+    } catch (e) { /* ignore */ }
+  }
+
+  function render() {
+    const counts = BASE.slice();
+    if (choice >= 0) counts[choice] += 1;
+    const sum = counts.reduce((a, b) => a + b, 0);
+    const pct = i => Math.round((counts[i] / sum) * 100);
+
+    root.innerHTML =
+      '<div class="poll-options" role="group" aria-label="' + t('Glasaj za omiljeni kolač', 'Vote for your favourite cake') + '">' +
+      OPTIONS.map((o, i) =>
+        '<button type="button" class="poll-option" data-index="' + i + '" aria-pressed="' + (choice === i) + '">' +
+          '<span class="poll-bar" style="width:' + pct(i) + '%"></span>' +
+          '<span class="poll-opt-main"><span class="poll-dot"></span>' +
+          '<span class="poll-label" data-hr="' + o.hr + '" data-en="' + o.en + '">' + (lang() === 'en' ? o.en : o.hr) + '</span></span>' +
+          '<span class="poll-pct">' + pct(i) + '%<span class="poll-count">' + counts[i] + '</span></span>' +
+        '</button>'
+      ).join('') +
+      '</div>' +
+      '<div class="poll-meta">' +
+        '<span><span data-hr="Ukupno glasova" data-en="Total votes">' + t('Ukupno glasova', 'Total votes') + '</span><strong class="poll-total">' + sum + '</strong></span>' +
+        '<button type="button" class="poll-reset"' + (choice < 0 ? ' disabled' : '') + ' data-hr="Poništi glas" data-en="Remove vote">' + t('Poništi glas', 'Remove vote') + '</button>' +
+      '</div>';
+  }
+
+  function announce() {
+    const live = document.getElementById('poll-live');
+    if (!live) return;
+    live.textContent = choice >= 0
+      ? t('Hvala na glasu: ' + OPTIONS[choice].hr + '.', 'Thanks for voting: ' + OPTIONS[choice].en + '.')
+      : t('Tvoj glas je poništen.', 'Your vote has been removed.');
+  }
+
+  root.addEventListener('click', (e) => {
+    const option = e.target.closest('.poll-option');
+    if (option) {
+      const i = Number(option.dataset.index);
+      choice = (choice === i) ? -1 : i;
+      persist(); render(); announce();
+      return;
+    }
+    if (e.target.closest('.poll-reset')) {
+      choice = -1;
+      persist(); render(); announce();
+    }
+  });
+
+  render();
+})();
+
+
+/* ── Adventski kalendar: sadržaj 24 prozorčića (hr/en) ───────────────────── */
+const ADVENT_DAYS = [
+  { q: { hr: 'Prva pahulja uvijek padne tiho.', en: 'The first snowflake always falls quietly.' },
+    f: { hr: 'Pahulja nastaje kad se u oblaku kristalizira led. Svaka ima šest krakova jer se molekule vode vežu u heksagonalnu rešetku.', en: 'A snowflake forms when ice crystallises inside a cloud. Every one has six arms because water molecules bond in a hexagonal lattice.' } },
+  { q: { hr: 'Božić se ne mjeri darovima, nego prisustvom.', en: 'Christmas is measured not in gifts, but in presence.' },
+    f: { hr: 'Hrvatska riječ „Božić“ dolazi od riječi „Bog“ — doslovno znači „mali Bog“.', en: 'The Croatian word “Božić” comes from “Bog” (God) — literally “little God”.' } },
+  { q: { hr: 'Adventska svijeća gori i za one koji nisu stigli.', en: 'The Advent candle burns for those who could not come.' },
+    f: { hr: 'Adventski vijenac ima četiri svijeće, po jednu za svaku nedjelju do Božića. Treća, ružičasta, zove se svijeća radosti.', en: 'An Advent wreath holds four candles, one for each Sunday before Christmas. The third, pink one, is the candle of joy.' } },
+  { q: { hr: 'Cimet je miris koji nas vraća kući.', en: 'Cinnamon is the scent that brings us home.' },
+    f: { hr: 'U srednjem vijeku cimet je bio skuplji od zlata i čuvao se pod ključem.', en: 'In the Middle Ages cinnamon was more precious than gold and was kept under lock and key.' } },
+  { q: { hr: 'Neka ti jutro miriše na medenjake.', en: 'May your morning smell of gingerbread.' },
+    f: { hr: 'Medenjaci se u Europi peku još od srednjeg vijeka, a najstariji sačuvani kalupi stariji su od 500 godina.', en: 'Gingerbread has been baked in Europe since the Middle Ages, and the oldest surviving moulds are over 500 years old.' } },
+  { q: { hr: 'Najljepši ukrasi imaju priču, ne cijenu.', en: 'The loveliest decorations carry a story, not a price.' },
+    f: { hr: 'Prva božićna drvca u domovima pojavila su se u 16. stoljeću u Njemačkoj, ukrašena jabukama i orasima.', en: 'The first indoor Christmas trees appeared in 16th-century Germany, decorated with apples and walnuts.' } },
+  { q: { hr: 'Snijeg ne mora pasti da bi Božić bio bijeli.', en: 'Snow does not have to fall for Christmas to be white.' },
+    f: { hr: 'Bijeli je Božić u Hrvatskoj češći u gorju nego na obali — more rijetko kad zamrzne.', en: 'In Croatia a white Christmas is more common in the mountains than on the coast — the sea rarely freezes.' } },
+  { q: { hr: 'Dobra pjesma grije više od vune.', en: 'A good song warms more than wool.' },
+    f: { hr: '„Tiha noć“ prvi je put izvedena 1818. u austrijskom Oberndorfu, uz gitaru, jer je orgulja bila pokvarena.', en: '“Silent Night” was first performed in 1818 in Oberndorf, Austria, with a guitar, because the organ was broken.' } },
+  { q: { hr: 'Kuhano vino i razgovori bez žurbe.', en: 'Mulled wine and unhurried conversation.' },
+    f: { hr: 'Klinčići, cimet i narančina korica u kuhanom vinu stoljećima su bili skuplji od samog vina.', en: 'Cloves, cinnamon and orange peel in mulled wine were once more expensive than the wine itself.' } },
+  { q: { hr: 'Dar je pažnja, ne cijena.', en: 'A gift is attention, not a price tag.' },
+    f: { hr: 'Najstariji poznati božićni darovi bili su jednostavni: voće, orašasti plodovi i med.', en: 'The oldest known Christmas gifts were simple: fruit, nuts and honey.' } },
+  { q: { hr: 'Jelka se kiti polako, kao i sjećanja.', en: 'A tree is decorated slowly, like memories.' },
+    f: { hr: 'Umjetno drvce može trajati i dvadeset godina, ali miris bora ne može se kupiti ni u jednoj trgovini.', en: 'An artificial tree can last twenty years, but the scent of pine cannot be bought in any shop.' } },
+  { q: { hr: 'Pola puta je prošlo — čarolija tek počinje.', en: 'Halfway there — the magic is just beginning.' },
+    f: { hr: 'Dvanaest dana Božića traje do Sveta tri kralja, 6. siječnja, kad se po tradiciji kite jaslice.', en: 'The twelve days of Christmas run until Epiphany on 6 January, when nativity scenes are traditionally set out.' } },
+  { q: { hr: 'Sveta Lucia nosi svjetlo u najkraće dane.', en: 'Saint Lucia carries light into the shortest days.' },
+    f: { hr: '13. prosinca u mnogim se krajevima pjeva „Sveta Lucija“ i sije božićna pšenica.', en: 'On 13 December many regions sing “Sveta Lucija” and sow Christmas wheat.' } },
+  { q: { hr: 'Neka ti se želja ne izgovori naglas — možda se upravo ostvaruje.', en: 'Keep your wish unspoken — it may be coming true right now.' },
+    f: { hr: 'Zvjezdasti papir i škare: najjednostavniji ukras na svijetu i dalje je jedan od najdražih.', en: 'Star paper and scissors: the simplest decoration in the world is still one of the best loved.' } },
+  { q: { hr: 'Toplina doma ne ovisi o vremenskoj prognozi.', en: 'The warmth of home does not depend on the forecast.' },
+    f: { hr: 'Zima je u Hrvatskoj najhladnija u gorju, ali najtoplija sjećanja uvijek dolaze iz kuhinje.', en: 'Winter is coldest in the Croatian mountains, but the warmest memories always come from the kitchen.' } },
+  { q: { hr: 'Zvijezda je bila prva najava nade.', en: 'The star was the first announcement of hope.' },
+    f: { hr: 'Kićenje zvijezdom na vrh jelke simbolizira betlehemsku zvijezdu koja je pokazala put.', en: 'Placing a star atop the tree symbolises the Star of Bethlehem that showed the way.' } },
+  { q: { hr: 'Mirisi iz kuhinje najbolji su kalendar.', en: 'Kitchen aromas are the best calendar.' },
+    f: { hr: 'Fritule, linzeri i makovnjača na hrvatskim su blagdanskim stolovima — svaka regija ima svoju verziju.', en: 'Fritule, Linzer cookies and poppy seed rolls fill Croatian holiday tables — every region has its own version.' } },
+  { q: { hr: 'Božićni filmovi ne stare jer ne stare ni osjećaji.', en: 'Christmas films never age, because feelings do not either.' },
+    f: { hr: '„Sam u kući“ objavljen je 1990. i od tada se gotovo svake godine vraća na male ekrane.', en: '“Home Alone” was released in 1990 and has returned to our screens almost every year since.' } },
+  { q: { hr: 'Medenjaci su najbolji drugi dan.', en: 'Gingerbread is best on the second day.' },
+    f: { hr: 'Med zadržava vlagu, pa medenjaci s vremenom omekšaju i postaju sve bolji — ako dočekaju.', en: 'Honey holds moisture, so gingerbread softens and improves with time — if it lasts that long.' } },
+  { q: { hr: 'Zapiši želju, ne samo dar.', en: 'Write down a wish, not just a gift.' },
+    f: { hr: 'Papirnate želje koje objesimo na jelku često ostanu dulje od samih darova.', en: 'Paper wishes hung on the tree often outlast the gifts themselves.' } },
+  { q: { hr: 'Najkraći dan, najdulja noć, najtoplija svjetla.', en: 'Shortest day, longest night, warmest lights.' },
+    f: { hr: 'Zimski solsticij pada 21. ili 22. prosinca — od tada dani ponovno rastu.', en: 'The winter solstice falls on 21 or 22 December — from then on the days grow longer again.' } },
+  { q: { hr: 'Vrijeme je da usporiš.', en: 'It is time to slow down.' },
+    f: { hr: 'Advent je izvorno razdoblje tihe pripreme: četiri tjedna bez žurbe, s ciljem da Božić dočekamo mirni.', en: 'Advent was originally a season of quiet preparation: four unhurried weeks, so that Christmas could be met in peace.' } },
+  { q: { hr: 'Badnjak je tišina prije radosti.', en: 'Christmas Eve is the quiet before the joy.' },
+    f: { hr: 'Na Badnjak se u Hrvatskoj tradicionalno kiti jelka i pali badnjak — panj koji gori kroz noć.', en: 'On Christmas Eve in Croatia the tree is traditionally decorated and the “badnjak” log is lit to burn through the night.' } },
+  { q: { hr: 'Sretan Božić! Neka ti bude toplo, mirno i puno smijeha.', en: 'Merry Christmas! May it be warm, peaceful and full of laughter.' },
+    f: { hr: 'Božić se u Hrvatskoj slavi 25. prosinca, a blagdani se nastavljaju do Sveta tri kralja.', en: 'In Croatia Christmas is celebrated on 25 December, and the holidays continue until Epiphany.' } }
+];
+
+
+/* ── Adventski kalendar: otvaranje prozorčića, modal, lokalna memorija ───── */
+(function adventCalendar() {
+  const grid = document.getElementById('advent-grid');
+  const hintText = document.getElementById('advent-hint-text');
+  if (!grid) return;
+
+  const KEY = 'cw-advent-v1';
+  const LOCK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+  const STAR_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 6.1L20 12l-5.8 2.9L12 21l-2.2-6.1L4 12l5.8-2.9Z"/></svg>';
+
+  const modal = document.getElementById('advent-modal');
+  const dayEl = document.getElementById('advent-modal-day');
+  const titleEl = document.getElementById('advent-modal-title');
+  const factEl = document.getElementById('advent-modal-fact');
+  const factLabel = document.getElementById('advent-modal-fact-label');
+  const nextBtn = document.getElementById('advent-modal-next');
+  const closeBtn = document.getElementById('advent-modal-close');
+  const toast = document.getElementById('advent-toast');
+
+  const lang = () => (document.documentElement.lang === 'en' ? 'en' : 'hr');
+  const t = (hr, en) => (lang() === 'en' ? en : hr);
+  const today = () => { const d = new Date(); return d.getMonth() === 11 ? d.getDate() : 0; };
+  const isUnlocked = d => d <= today();
+  const dayLabel = d => (lang() === 'en' ? 'December ' + d : d + '. prosinca');
+
+  let opened = new Set();
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+    if (Array.isArray(saved)) opened = new Set(saved.filter(d => Number.isInteger(d) && d >= 1 && d <= 24));
+  } catch (e) { /* ignore */ }
+
+  function persist() {
+    try { localStorage.setItem(KEY, JSON.stringify(Array.from(opened))); } catch (e) { /* ignore */ }
+  }
+
+  function render() {
+    const current = today();
+    grid.innerHTML = ADVENT_DAYS.map((entry, index) => {
+      const d = index + 1;
+      const unlocked = d <= current;
+      const isToday = d === current;
+      const isOpen = unlocked && opened.has(d);
+      const classes = ['advent-door'];
+      if (!unlocked) classes.push('is-locked');
+      if (isOpen) classes.push('is-open');
+      if (isToday) classes.push('is-today');
+      const caption = !unlocked ? t('Zaključano', 'Locked') : (isToday ? t('Danas', 'Today') : t('Otvoreno', 'Opened'));
+      return '<button type="button" class="' + classes.join(' ') + '" data-day="' + d + '"' +
+        (unlocked ? '' : ' aria-disabled="true"') +
+        ' aria-label="' + dayLabel(d) + ' — ' + caption + '">' +
+        (isToday ? '<span class="advent-teaser-tag">' + t('Danas', 'Today') + '</span>' : '') +
+        '<span class="advent-star">' + (unlocked ? STAR_SVG : LOCK_SVG) + '</span>' +
+        '<span class="advent-num">' + d + '</span>' +
+        '<span class="advent-caption">' + caption + '</span>' +
+      '</button>';
+    }).join('');
+
+    if (hintText) {
+      hintText.textContent = current === 0
+        ? t('Kalendar se otvara 1. prosinca', 'The calendar opens on December 1')
+        : (current > 24
+            ? t('Svi prozorčići su otvoreni', 'All doors are open')
+            : t('Danas je otvoren prozorčić broj ' + current, 'Door number ' + current + ' is open today'));
+    }
+  }
+
+  let toastTimer = null;
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 3400);
+  }
+
+  let currentDay = 0;
+
+  function openDay(day, trigger) {
+    const entry = ADVENT_DAYS[day - 1];
+    if (!entry) return;
+    currentDay = day;
+    if (dayEl) dayEl.textContent = dayLabel(day);
+    if (titleEl) titleEl.textContent = entry.q[lang()];
+    if (factLabel) factLabel.textContent = t('Zanimljivost', 'Fun fact');
+    if (factEl) factEl.textContent = entry.f[lang()];
+    if (nextBtn) {
+      const nextDay = day + 1;
+      const canGoNext = nextDay <= 24 && nextDay <= today();
+      nextBtn.disabled = false;
+      nextBtn.dataset.mode = canGoNext ? 'next' : 'close';
+      nextBtn.textContent = canGoNext ? t('Sljedeći prozorčić', 'Next door') : t('Zatvori', 'Close');
+    }
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    opened.add(day);
+    persist();
+    render();
+    if (trigger && trigger.blur) trigger.blur();
+    setTimeout(() => { if (closeBtn) closeBtn.focus(); }, 80);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    const target = grid.querySelector('.advent-door[data-day="' + currentDay + '"]');
+    if (target) target.focus();
+  }
+
+  grid.addEventListener('click', (e) => {
+    const door = e.target.closest('.advent-door');
+    if (!door) return;
+    const day = Number(door.dataset.day);
+    if (!isUnlocked(day)) {
+      showToast(t('Strpi se još malo… ovaj se prozorčić otvara ' + dayLabel(day) + '.', 'Patience… this door opens on ' + dayLabel(day) + '.'));
+      return;
+    }
+    openDay(day, door);
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => {
+    if (nextBtn.dataset.mode === 'next') openDay(currentDay + 1, null);
+    else closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) closeModal();
+  });
+
+  // setLang() u originalnom kodu poziva ovo kako bi kalendar pratio jezik
+  window.renderAdvent = render;
+  render();
+})();
+
 </script>
 </body>
 </html>
